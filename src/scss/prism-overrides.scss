@@ -1,0 +1,28 @@
+code[class*="language-"], pre[class*="language-"] {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace #{!important};
+}
+
+.language-text {
+    @apply inline-block relative text-base text-gray bg-gray-light rounded-none text-gray-medium #{!important};
+    text-shadow: none #{!important};
+    padding: 5px 4px 0px 4px !important;
+    transform: translateY(-2px);
+    display: inline-block #{!important};
+}
+
+.gatsby-highlight {
+    overflow: auto;
+    @apply mt-6 mb-6;
+    
+    &, & * {
+        @apply text-base #{!important};
+
+        @screen lg {
+            @apply text-lg #{!important};
+        }
+    }
+}
+
+.parameter {
+    color: white;
+}

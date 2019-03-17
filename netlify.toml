@@ -1,0 +1,7 @@
+[build]
+  publish = "public"
+  command = "npm run build"
+  functions = "lambda"
+
+[context.production.environment]
+  NODE_VERSION = "v10.15.3"

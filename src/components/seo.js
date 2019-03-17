@@ -1,96 +1,129 @@
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import { StaticQuery, graphql } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import Helmet from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
+import ogImage from '../images/open-graph.jpg';
 
 function SEO({ description, lang, meta, keywords, title }) {
+  const data = useStaticQuery(graphql`
+    query DefaultSEOQuery {
+      site {
+        ...allProductData
+        siteMetadata {
+          title
+          description
+          typeItVersion
+          author {
+            name
+            twitterHandle
+            social
+          }
+        }
+      }
+    }
+  `).site.siteMetadata;
+
+  const metaDescription = description || data.description;
+
+  const offers = data.licenseOptions.map(option => {
+    return {
+      "@type": "Offer",
+      priceCurrency: "USD",
+      price: (option.price / 100).toFixed(2),
+      seller: {
+        "@type": "Person",
+        name: data.author.name,
+        sameAs: data.author.social
+      }
+    };
+  });
+
+  const formattedTitle = `${title.length > 0 ? title + " | " : ""}${
+    data.title
+  }`;
+
   return (
-    <StaticQuery
-      query={detailsQuery}
-      render={data => {
-        const metaDescription =
-          description || data.site.siteMetadata.description
-        return (
-          <Helmet
-            htmlAttributes={{
-              lang,
-            }}
-            title={title}
-            titleTemplate={`%s | ${data.site.siteMetadata.title}`}
-            meta={[
-              {
-                name: `description`,
-                content: metaDescription,
-              },
-              {
-                property: `og:title`,
-                content: title,
-              },
-              {
-                property: `og:description`,
-                content: metaDescription,
-              },
-              {
-                property: `og:type`,
-                content: `website`,
-              },
-              {
-                name: `twitter:card`,
-                content: `summary`,
-              },
-              {
-                name: `twitter:creator`,
-                content: data.site.siteMetadata.author,
-              },
-              {
-                name: `twitter:title`,
-                content: title,
-              },
-              {
-                name: `twitter:description`,
-                content: metaDescription,
-              },
-            ]
-              .concat(
-                keywords.length > 0
-                  ? {
-                      name: `keywords`,
-                      content: keywords.join(`, `),
-                    }
-                  : []
-              )
-              .concat(meta)}
-          />
-        )
+    <Helmet
+      htmlAttributes={{
+        lang
       }}
-    />
-  )
+      title={formattedTitle}
+      meta={[
+        {
+          name: `description`,
+          content: metaDescription
+        },
+        {
+          property: `og:title`,
+          content: formattedTitle
+        },
+        {
+          property: `og:description`,
+          content: metaDescription
+        },
+        {
+          property: `og:type`,
+          content: `website`
+        },
+        {
+          name: `twitter:card`,
+          content: `summary`
+        },
+        {
+          name: `twitter:creator`,
+          content: data.author.twitterHandle
+        },
+        {
+          name: `twitter:title`,
+          content: formattedTitle
+        },
+        {
+          name: `twitter:description`,
+          content: metaDescription
+        }, 
+        {
+          name: `og:image`, 
+          content: ogImage
+        }
+      ]
+        .concat(
+          keywords.length > 0
+            ? {
+                name: `keywords`,
+                content: keywords.join(`, `)
+              }
+            : []
+        )
+        .concat(meta)}
+    >
+      <script type="application/ld+json">{`
+        {
+          "@context": "http://schema.org",
+          "@type": "SoftwareApplication",
+          "applicationCategory": "WebApplication",
+          "description" : "${data.description}",
+          "screenshot" : "https://typeitjs.com/open-graph.jpg",
+          "softwareVersion" : "${data.typeItVersion}",
+          "license" : "GPL-2.0",
+          "offers": ${JSON.stringify(offers)}
+        }
+      `}</script>
+    </Helmet>
+  );
 }
 
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
-  keywords: [],
-}
+  keywords: []
+};
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.array,
   keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
-}
+  title: PropTypes.string.isRequired
+};
 
-export default SEO
-
-const detailsQuery = graphql`
-  query DefaultSEOQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-      }
-    }
-  }
-`
+export default SEO;

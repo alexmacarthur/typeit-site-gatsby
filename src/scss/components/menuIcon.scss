@@ -1,0 +1,29 @@
+.menuIcon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.menuIcon {
+    
+    li {
+        @apply bg-gray h-1;
+        display: block;
+        width: 100%;
+    }
+
+    &.is-open {
+        li {
+            &:nth-child(1) {
+                transform: translate3d(0, 1.3rem, 0) rotate(-45deg);
+            }
+
+            &:nth-child(2) {
+                @apply opacity-0;
+            } 
+
+            &:nth-child(3) {
+                transform: translate3d(0, -1.5rem, 0) rotate(45deg);
+            }
+        }
+    }
+}
