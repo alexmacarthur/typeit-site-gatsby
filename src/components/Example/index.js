@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ListDivider from "../ListDivider";
+import LazyLoader from "../LazyLoader";
 
 export default function({ data, instance, isLast }) {
   const element = useRef(null);
@@ -12,6 +13,7 @@ export default function({ data, instance, isLast }) {
 
   useEffect(() => {
     setTiInstnace(instance.func(element.current));
+    
     // eslint-disable-next-line
   }, []);
 
@@ -47,9 +49,11 @@ export default function({ data, instance, isLast }) {
           </div>
         </div>
 
-        <div
-          dangerouslySetInnerHTML={{ __html: data.html }}
-        ></div>
+          <LazyLoader>
+            <div
+              dangerouslySetInnerHTML={{ __html: data.html }}
+            ></div>
+          </LazyLoader>
       </div>
 
       {!isLast && 
