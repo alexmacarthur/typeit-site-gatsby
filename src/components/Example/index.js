@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { InView } from 'react-intersection-observer'
 import ListDivider from "../ListDivider";
 
 export default function({ data, instance, isLast }) {
@@ -48,19 +47,9 @@ export default function({ data, instance, isLast }) {
           </div>
         </div>
 
-        <div>
-          <InView threshold={0} triggerOnce={true} rootMargin={"200px"}>
-            {({ inView, ref }) => (
-              <div ref={ref} className="overflow-hidden">
-                {inView && 
-                  <div
-                    dangerouslySetInnerHTML={{ __html: data.html }}
-                  ></div>
-                }
-              </div>
-            )}
-          </InView>
-        </div>
+        <div
+          dangerouslySetInnerHTML={{ __html: data.html }}
+        ></div>
       </div>
 
       {!isLast && 
