@@ -1,7 +1,6 @@
-
-@import "./fonts";
-
 @tailwind base;
+
+/* purgecss start ignore */
 
 @import "./prism-overrides";
 @import "./typography";
@@ -164,6 +163,8 @@ textarea {
 .purple-gradient {
     background-image: linear-gradient(to bottom right, theme('colors.purple.500'), theme('colors.purple.600'));
 }
+
+/* purgecss end ignore */
 
 @tailwind components;
 @tailwind utilities;

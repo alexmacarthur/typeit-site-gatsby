@@ -1,3 +1,4 @@
+
 p, 
 span, 
 li,
@@ -97,10 +98,6 @@ td, th {
   a {
     @apply font-semibold;
   }
-}
-
-ol {
-  @apply list-decimal;
 }
 
 .anchor.before {
