@@ -5,7 +5,10 @@
  */
 
 require("prismjs/themes/prism-okaidia.css");
-require("./src/scss/tailwind.scss");
+require("./src/scss/tailwind-base.scss");
+require("./src/scss/root.scss");
+require("./src/scss/tailwind-components.scss");
+require("./src/scss/tailwind-utilities.scss");
 
 exports.shouldUpdateScroll = ({
   routerProps, 
