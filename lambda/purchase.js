@@ -143,7 +143,7 @@ module.exports.Client = Client;
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, contributors, dependencies, deprecated, description, devDependencies, engines, gitHead, homepage, license, main, name, publishConfig, repository, tags, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_from\":\"@sendgrid/client@^6.5.0\",\"_id\":\"@sendgrid/client@6.5.0\",\"_inBundle\":false,\"_integrity\":\"sha512-gbA5GkZI5FWBJXgrtVPLHE2YV16WkjO0P2/jHt+m0CBQnfNV9FjGSXY/0r6ob+Ka9sw6Xj/N7gKtGLtrINCiBg==\",\"_location\":\"/@sendgrid/client\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"range\",\"registry\":true,\"raw\":\"@sendgrid/client@^6.5.0\",\"name\":\"@sendgrid/client\",\"escapedName\":\"@sendgrid%2fclient\",\"scope\":\"@sendgrid\",\"rawSpec\":\"^6.5.0\",\"saveSpec\":null,\"fetchSpec\":\"^6.5.0\"},\"_requiredBy\":[\"/@sendgrid/mail\"],\"_resolved\":\"https://registry.npmjs.org/@sendgrid/client/-/client-6.5.0.tgz\",\"_shasum\":\"d3c254738623fe43be8627e262ba698c5f3b9be7\",\"_spec\":\"@sendgrid/client@^6.5.0\",\"_where\":\"/Users/alex.macarthur/apps/typeit-site-gatsby/node_modules/@sendgrid/mail\",\"author\":{\"name\":\"Twilio SendGrid\",\"email\":\"dx@sendgrid.com\",\"url\":\"sendgrid.com\"},\"bugs\":{\"url\":\"https://github.com/sendgrid/sendgrid-nodejs/issues\"},\"bundleDependencies\":false,\"contributors\":[{\"name\":\"Kyle Partridge\",\"email\":\"kyle.partridge@sendgrid.com\"},{\"name\":\"David Tomberlin\",\"email\":\"david.tomberlin@sendgrid.com\"},{\"name\":\"Swift\",\"email\":\"swift@sendgrid.com\"},{\"name\":\"Brandon West\",\"email\":\"brandon.west@sendgrid.com\"},{\"name\":\"Scott Motte\",\"email\":\"scott.motte@sendgrid.com\"},{\"name\":\"Robert Acosta\",\"email\":\"robert.acosta@sendgrid.com\"},{\"name\":\"Elmer Thomas\",\"email\":\"elmer.thomas@sendgrid.com\"},{\"name\":\"Adam Reis\",\"email\":\"adam@reis.nz\"}],\"dependencies\":{\"@sendgrid/helpers\":\"^6.5.0\",\"request\":\"^2.88.0\"},\"deprecated\":false,\"description\":\"Twilio SendGrid NodeJS API client\",\"devDependencies\":{\"@types/request\":\"^2.0.3\"},\"engines\":{\"node\":\">=6.0.0\"},\"gitHead\":\"37473ad95a20258196d7cf256ea391508872d65e\",\"homepage\":\"https://sendgrid.com\",\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"@sendgrid/client\",\"publishConfig\":{\"access\":\"public\"},\"repository\":{\"type\":\"git\",\"url\":\"git://github.com/sendgrid/sendgrid-nodejs.git\"},\"tags\":[\"http\",\"rest\",\"api\",\"mail\",\"sendgrid\"],\"version\":\"6.5.0\"}");
+module.exports = JSON.parse("{\"_from\":\"@sendgrid/client@^6.5.1\",\"_id\":\"@sendgrid/client@6.5.1\",\"_inBundle\":false,\"_integrity\":\"sha512-OooZXSy8wWcUI5ppz7ugddfNdZC66baTHYF1Yz57O64cTjpfhw60+mNmPB0ISKxBchqnHcMiVNZ1SL70eAItlg==\",\"_location\":\"/@sendgrid/client\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"range\",\"registry\":true,\"raw\":\"@sendgrid/client@^6.5.1\",\"name\":\"@sendgrid/client\",\"escapedName\":\"@sendgrid%2fclient\",\"scope\":\"@sendgrid\",\"rawSpec\":\"^6.5.1\",\"saveSpec\":null,\"fetchSpec\":\"^6.5.1\"},\"_requiredBy\":[\"/@sendgrid/mail\"],\"_resolved\":\"https://registry.npmjs.org/@sendgrid/client/-/client-6.5.1.tgz\",\"_shasum\":\"2f777519a5355f70538bf29917bfc4306ef043a2\",\"_spec\":\"@sendgrid/client@^6.5.1\",\"_where\":\"/Users/alex.macarthur/apps/typeit-site-gatsby/node_modules/@sendgrid/mail\",\"author\":{\"name\":\"Twilio SendGrid\",\"email\":\"dx@sendgrid.com\",\"url\":\"sendgrid.com\"},\"bugs\":{\"url\":\"https://github.com/sendgrid/sendgrid-nodejs/issues\"},\"bundleDependencies\":false,\"contributors\":[{\"name\":\"Kyle Partridge\",\"email\":\"kyle.partridge@sendgrid.com\"},{\"name\":\"David Tomberlin\",\"email\":\"david.tomberlin@sendgrid.com\"},{\"name\":\"Swift\",\"email\":\"swift@sendgrid.com\"},{\"name\":\"Brandon West\",\"email\":\"brandon.west@sendgrid.com\"},{\"name\":\"Scott Motte\",\"email\":\"scott.motte@sendgrid.com\"},{\"name\":\"Robert Acosta\",\"email\":\"robert.acosta@sendgrid.com\"},{\"name\":\"Elmer Thomas\",\"email\":\"elmer.thomas@sendgrid.com\"},{\"name\":\"Adam Reis\",\"email\":\"adam@reis.nz\"}],\"dependencies\":{\"@sendgrid/helpers\":\"^6.5.1\",\"request\":\"^2.88.0\"},\"deprecated\":false,\"description\":\"Twilio SendGrid NodeJS API client\",\"devDependencies\":{\"@types/request\":\"^2.0.3\"},\"engines\":{\"node\":\">=6.0.0\"},\"gitHead\":\"064c27b67285ab0e51393afe06a45b52f05dae95\",\"homepage\":\"https://sendgrid.com\",\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"@sendgrid/client\",\"publishConfig\":{\"access\":\"public\"},\"repository\":{\"type\":\"git\",\"url\":\"git://github.com/sendgrid/sendgrid-nodejs.git\"},\"tags\":[\"http\",\"rest\",\"api\",\"mail\",\"sendgrid\"],\"version\":\"6.5.1\"}");
 
 /***/ }),
 
@@ -59797,7 +59797,7 @@ Sentry.init({
   dsn: process.env.SENTRY_DSN
 });
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-const REQUIRED_PROPERTIES = ["emailAddress", "token", "idempotencyKey", "slug"];
+const REQUIRED_PROPERTIES = ["emailAddress", "source", "idempotencyKey", "slug"];
 /**
  * Given an object, ensure that every required key exists on it.
  *
@@ -59846,13 +59846,18 @@ exports.handler = async function (event) {
   } = licenseData;
 
   try {
+    customer = await stripe.customers.create({
+      email: data.emailAddress,
+      source: data.source.id,
+      description: 'Purchased a license for TypeIt.'
+    });
     charge = await stripe.charges.create({
       amount: price,
       currency: "usd",
-      source: data.token.id,
       receipt_email: data.emailAddress,
       description: `TypeIt - ${simpleTitle}`,
-      statement_descriptor: "A. MacArthur - TypeIt"
+      statement_descriptor: "A. MacArthur - TypeIt",
+      customer: customer.id
     }, {
       idempotency_key: data.idempotencyKey
     });

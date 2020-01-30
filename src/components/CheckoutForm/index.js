@@ -18,10 +18,16 @@ const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData })
 
     setIsProcessing(true);
 
-    let { token } = await stripe.createToken();
     let emailAddress = document.forms["checkoutForm"].elements[
       "emailAddress"
     ].value.trim();
+
+    let { source } = await stripe.createSource({
+      type: 'card',
+      owner: {
+        email: emailAddress
+      }
+    });
 
     try {
       let response = await fetch(process.env.GATSBY_LAMBDA_ENDPOINT, {
@@ -32,7 +38,7 @@ const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData })
         body: JSON.stringify({
           slug: productData.slug,
           emailAddress,
-          token,
+          source,
           idempotencyKey
         })
       });

@@ -20,7 +20,7 @@ Sentry.init({
 });
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const REQUIRED_PROPERTIES = ["emailAddress", "token", "idempotencyKey", "slug"];
+const REQUIRED_PROPERTIES = ["emailAddress", "source", "idempotencyKey", "slug"];
 
 /**
  * Given an object, ensure that every required key exists on it.
@@ -72,14 +72,22 @@ exports.handler = async function(event) {
   } = licenseData;
 
   try {
+    customer = await stripe.customers.create(
+      {
+        email: data.emailAddress,
+        source: data.source.id,
+        description: 'Purchased a license for TypeIt.',
+      }
+    );
+
     charge = await stripe.charges.create(
       {
         amount: price,
         currency: "usd",
-        source: data.token.id,
         receipt_email: data.emailAddress,
         description: `TypeIt - ${simpleTitle}`,
-        statement_descriptor: "A. MacArthur - TypeIt"
+        statement_descriptor: "A. MacArthur - TypeIt", 
+        customer: customer.id
       },
       {
         idempotency_key: data.idempotencyKey
