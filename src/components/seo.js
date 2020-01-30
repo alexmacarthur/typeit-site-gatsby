@@ -10,6 +10,7 @@ function SEO({ description, lang, meta, keywords, title }) {
       site {
         ...allProductData
         siteMetadata {
+          publicUrl
           title
           description
           typeItVersion
@@ -83,7 +84,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         }, 
         {
           name: `og:image`, 
-          content: ogImage
+          content: `${data.publicUrl}${ogImage}`
         }
       ]
         .concat(

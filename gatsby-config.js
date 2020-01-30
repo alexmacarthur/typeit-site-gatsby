@@ -8,6 +8,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
+    publicUrl: "https://typeitjs.com",
     title: `TypeIt`,
     description: `The most versatile JavaScript animated typing utility on the planet.`,
     author: {
