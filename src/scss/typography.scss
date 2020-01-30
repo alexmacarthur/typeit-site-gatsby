@@ -52,6 +52,14 @@ h3 {
   @apply text-4xl font-thin;
 }
 
+h4 {
+  @apply text-2xl font-medium;
+}
+
+h5 {
+  @apply text-xl font-medium;
+}
+
 a {
   @apply no-underline text-purple-600 cursor-pointer;
 }
@@ -89,6 +97,10 @@ td, th {
   a {
     @apply font-semibold;
   }
+}
+
+ol {
+  @apply list-decimal;
 }
 
 .anchor.before {
