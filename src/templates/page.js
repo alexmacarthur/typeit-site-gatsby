@@ -33,7 +33,7 @@ export default props => {
   // I don't want to talk about this.
   html = html
     .replace(/(\r\n|\n|\r)/gm, " ")
-    .replace(/(<table(?:.*?)>(?:.+?)(?:\<\/table>))/g, (noBreaksTable) => {
+    .replace(/(<table(?:.*?)>(?:.+?)(?:<\/table>))/g, (noBreaksTable) => {
       return `
         <div class='tableWrapper'>
           <span class="md:hidden block mb-4 text-base text-gray-medium">To view all columns, you may need to scroll horizontally.</span>
