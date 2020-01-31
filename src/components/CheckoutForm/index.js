@@ -142,19 +142,9 @@ const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData })
                 <button className="link-button" onClick={(e) => {
                   e.preventDefault();
 
-                  sendGaEvent("purchase", {
-                    transaction_id: 'paypal',
-                    value: priceInDollars,
-                    currency: "USD",
-                    items: [
-                      {
-                        id: productData.slug,
-                        name: productData.simpleTitle,
-                        category: "javascript_license",
-                        quantity: 1,
-                        price: priceInDollars
-                      }
-                    ]
+                  sendGaEvent("click", {
+                    event_category: "purchase_cta_button",
+                    event_label: `paypal - ${productData.slug}`
                   });
 
                   window.open(`https://www.paypal.me/alexmacarthur/${priceInDollars}`, "_blank");
