@@ -29,6 +29,21 @@ function generateHashes(headings, pathToPrepend) {
 
 export default props => {
   let html = props.data.markdownRemark.html;
+
+  // I don't want to talk about this.
+  html = html
+    .replace(/(\r\n|\n|\r)/gm, " ")
+    .replace(/(<table(?:.*?)>(?:.+?)(?:\<\/table>))/g, (noBreaksTable) => {
+      return `
+        <div class='tableWrapper'>
+          <span class="md:hidden block mb-4 text-base text-gray-medium">To view all columns, you may need to scroll horizontally.</span>
+          <div class='tableWrapper-inner'>
+            ${noBreaksTable}
+          </div>
+        </div>
+      `;
+    });
+
   let headings = generateHashes(
     getHeadings(props.data.markdownRemark.headings),
     props.location.pathname
