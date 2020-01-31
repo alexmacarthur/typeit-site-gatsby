@@ -11,7 +11,8 @@ const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData })
   // It starts as "invalid" because there's no value in it yet.
   const [elementIsComplete, setElementIsComplete] = useState(false);
   const [elementHasError, setElementHasError] = useState(false);
-  const [idempotencyKey] = useState(uuid());
+  const [idempotencyKey] = useState(uuid()); 
+  const priceInDollars = productData.price / 100;
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -47,11 +48,9 @@ const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData })
       let chargeWasSuccessful = payload.chargeStatus && payload.chargeStatus === "succeeded";
 
       if (chargeWasSuccessful) {
-        let amountInDollars = payload.amount / 100;
-
         sendGaEvent("purchase", {
           transaction_id: payload.id,
-          value: amountInDollars,
+          value: priceInDollars,
           currency: "USD",
           items: [
             {
@@ -59,7 +58,7 @@ const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData })
               name: productData.simpleTitle,
               category: "javascript_license",
               quantity: 1,
-              price: amountInDollars
+              price: priceInDollars
             }
           ]
         });
@@ -128,13 +127,42 @@ const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData })
 
         <div className="mt-8">
           {!isProcessing && (
-            <button
-              className="button"
-              disabled={!elementIsComplete || elementHasError}
-              type="submit"
-            >
-              Complete Purchase
-            </button>
+            <>
+              <button
+                className="button mb-8"
+                disabled={!elementIsComplete || elementHasError}
+                type="submit"
+              >
+                Complete Purchase
+              </button>
+              
+              <p className="text-base">
+                <strong>Don't wanna pay with a card?</strong> Use my PayPal.me instead. Once I recieve payment, I'll email over license details and instructions on getting started. {" "}
+                
+                <button className="link-button" onClick={(e) => {
+                  e.preventDefault();
+
+                  sendGaEvent("purchase", {
+                    transaction_id: 'paypal',
+                    value: priceInDollars,
+                    currency: "USD",
+                    items: [
+                      {
+                        id: productData.slug,
+                        name: productData.simpleTitle,
+                        category: "javascript_license",
+                        quantity: 1,
+                        price: priceInDollars
+                      }
+                    ]
+                  });
+
+                  window.open(`https://www.paypal.me/alexmacarthur/${priceInDollars}`, "_blank");
+
+                  setPaymentState(PAYMENT_STATES.PAYPAL);
+                }}>Pay via PayPal</button>
+              </p>
+            </>            
           )}
 
           {isProcessing && (

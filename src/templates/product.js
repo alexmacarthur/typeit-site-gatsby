@@ -55,6 +55,24 @@ export default props => {
           </div>
         )}
 
+        {paymentState === PAYMENT_STATES.PAYPAL && (
+          <div className="px-5">
+            <h3>Thanks for purchasing with PayPal!</h3>
+
+            <p>
+              Once I see you've sent a payment, I'll send over an email with license information and instructions on getting started. But no need to wait! <a
+                href="https://github.com/alexmacarthur/typeit"
+                rel="noopener noreferrer"
+                target="_blank"
+              >You can get the source code right now on GitHub.</a>
+            </p>
+
+            <p dangerouslySetInnerHTML={
+              { __html: `In the meantime, don't be afraid to reach out with questions by emailing me at ${emailString}!` }
+            }></p>
+          </div>
+        )}
+
         {paymentState === PAYMENT_STATES.NOT_STARTED && (
           <>
             <div className="mb-10 px-5">
