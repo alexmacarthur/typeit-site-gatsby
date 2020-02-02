@@ -55,7 +55,7 @@ export default function({ data, instance, isLast, exampleSlug }) {
     // eslint-disable-next-line
   }, []);
 
-  const elementFontStyles = "text-xl md:text-2xl text-gray-medium font-semibold";
+  const elementFontStyles = "text-xl md:text-2xl text-gray-medium font-light";
 
   return (
     <div className="max-container mx-auto">
@@ -64,13 +64,18 @@ export default function({ data, instance, isLast, exampleSlug }) {
           <h3 className="font-light mb-3">{instance.title}</h3>
           <p>{instance.description}</p>
 
-          <div className="my-6 md:my-12">
+          <div className="my-6 md:my-12 bg-gray-light p-8">
             {instance.element === "input" && (
-              <input
-                className={elementFontStyles}
-                type="text"
-                ref={element}
-              />
+              <>
+                <label>
+                  Name: {"  "}
+                  <input
+                    className={elementFontStyles + " ml-2"}
+                    type="text"
+                    ref={element}
+                  />
+                </label>
+              </>
             )}
 
             {!instance.element && (

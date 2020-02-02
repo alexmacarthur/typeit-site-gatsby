@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 
 import MainLayout from "../components/layouts/MainLayout";
 import SEO from "../components/seo";
@@ -40,6 +40,7 @@ export default ({ data }) => {
         showTriangles={true}
       >
         <div className="max-w-5xl mx-auto">
+          <p className="text-center -mt-12 mb-16">For a full description of each option, <Link to="/docs#options">see here.</Link></p>
           <Demo />
         </div>
       </Slice>

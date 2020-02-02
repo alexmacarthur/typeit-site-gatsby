@@ -5,6 +5,7 @@ export default ({toggleMenu, menuIsOpen}) => {
         <button
             className="z-30 lg:hidden"
             aria-haspopup="true"
+            aria-label="toggle menu"
             aria-expanded={menuIsOpen ? "true" : "false"}
             onClick={toggleMenu}
         >

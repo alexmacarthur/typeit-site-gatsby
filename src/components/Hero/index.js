@@ -36,6 +36,7 @@ export default function(props) {
   return (
     <div className="relative max-w-3xl mx-auto pt-0 md:pt-20 px-3 z-10">
       <h1
+        aria-label="The most versatile animated typing utility on the planet."
         className="text-center mb-20 text-4xl md:text-5xl"
         ref={el => {
           element = el;
