@@ -21,25 +21,18 @@ exports.shouldUpdateScroll = ({
   // We have a hash! So, either pop to the top (for a different page), or stay at the current position (for the same page), and then smooth-scroll to the anchor.
   if(routerProps.location.hash) {
 
-    // When we're about to do a smooth-scroll, fire an event to make sure that lazy-loaded
-    // components are rendered, to avoid inaccurate scrolls.
-    //
-    // The timeout _should_ be long enough to allow the components to render before scrolling, 
-    // but we could set up a Promise to guarantee this.
-    window.dispatchEvent(window.expandLazyStuffEvent);
-    window.expandLazyStuffEvent_hasFired = true;
+    // When we're about to do a smooth-scroll, store that we should force
+    // lazy loaded items to render NOW, in order to avoid janky scroll issues.
+    window.ti_shouldExpandLazyLoadedContent = true;
 
     setTimeout(() => {
       document.querySelector(routerProps.location.hash).scrollIntoView({ behavior: "smooth" });
     }, 100);
+
     return isSamePage ? currentPosition : [0, 0];
   }
 
   return true;
-}
-
-exports.onClientEntry = () => {
-  window.expandLazyStuffEvent = new Event('expandLazyStuff');
 }
 
 exports.onRouteUpdate = () => {

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import SiteNav from "../SiteNav";
 import PageCover from "../PageCover";
 import PageCoverContext from "../../PageCoverContext";
+import GlobalEventContextProvider from "../GlobalEventContextProvider";
 
 const MainLayout = ({ children }) => {
   const pixelAnchorRef = useRef(null);
@@ -10,7 +11,7 @@ const MainLayout = ({ children }) => {
   const [cleanUp, setCleanUp] = useState(() => {});
 
   return (
-    <>
+    <GlobalEventContextProvider>
       <span
         id="pixelAnchor"
         className="absolute top-0 left-0"
@@ -51,7 +52,7 @@ const MainLayout = ({ children }) => {
           </span>
         </footer>
       </div>
-    </>
+    </GlobalEventContextProvider>
   );
 };
 
