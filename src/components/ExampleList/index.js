@@ -4,7 +4,9 @@ import Example from "../Example";
 
 export default ({examples}) => {
 
-    window.ti_exampleTimeouts = window.ti_exampleTimeouts || {};
+    if(typeof window !== "undefined") {
+        window.ti_exampleTimeouts = window.ti_exampleTimeouts || {};
+    }
 
     const exampleInstances = useMemo(() => {
         return getExamples((key, ti) => {
