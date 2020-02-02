@@ -2,17 +2,55 @@ import React, { useEffect, useRef, useState } from "react";
 import ListDivider from "../ListDivider";
 import LazyLoader from "../LazyLoader";
 
-export default function({ data, instance, isLast }) {
+export default function({ data, instance, isLast, exampleSlug }) {
   const element = useRef(null);
-  const [tiInstance, setTiInstnace] = useState(null);
+  const [tiInstance, setTiInstance] = useState(null);
+  const [isFrozen, setisFrozen] = useState(false);
+
+  /**
+   * Destroy the instance and clear arbitray timeouts.
+   */
   const resetInstance = () => {
-    if (tiInstance) {
-      tiInstance.reset().go();
+    if(!tiInstance) {
+      return;
     }
+
+    // Reset the instance itself. 
+    tiInstance.reset().go();
+
+    // Destroy any timeouts created by callbacks and 
+    // special instance methods. 
+    if (!window.ti_exampleTimeouts[exampleSlug]) {
+      return;
+    }
+
+    window.ti_exampleTimeouts[exampleSlug].forEach(item => {
+      clearTimeout(item);
+      return false;
+    }); 
+
+    window.ti_exampleTimeouts[exampleSlug] = [];
   };
 
+  /**
+   * Freeze and unfreeze the instance.
+   */
+  const toggleFreeze = () => {
+    if(!tiInstance) {
+      return;
+    }
+
+    if (tiInstance.is('frozen')) {
+      tiInstance.unfreeze();
+    } else {
+      tiInstance.freeze();
+    }
+
+    setisFrozen(!isFrozen);
+  }
+
   useEffect(() => {
-    setTiInstnace(instance.func(element.current));
+    setTiInstance(instance.func(element.current));
     
     // eslint-disable-next-line
   }, []);
@@ -46,6 +84,12 @@ export default function({ data, instance, isLast }) {
             <button onClick={resetInstance} className="button">
               Reset
             </button>
+
+            {instance.allowFreeze && 
+              <button onClick={toggleFreeze} className="button ml-2">
+                {isFrozen ? 'Unfreeze' : 'Freeze'}
+              </button>
+            }
           </div>
         </div>
 

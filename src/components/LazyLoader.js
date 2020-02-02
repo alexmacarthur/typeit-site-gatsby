@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 export default ({children}) => {
@@ -8,6 +8,8 @@ export default ({children}) => {
         setShouldForceRender(true);
     }
 
+    // @todo: Don't set up a new event listener for each instance. P
+    // Put it in a top-level context. 
     useEffect(() => {     
         window.addEventListener('expandLazyStuff', expandCodeSnippets);
 

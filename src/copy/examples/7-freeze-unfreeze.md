@@ -4,17 +4,16 @@
 
 ```javascript
 const instance = new TypeIt("#pauseResume", {
-  strings: [
-    "After two seconds, this string will be paused for three seconds, and then resume."
-  ],
+  strings: "Click the 'freeze' button to freeze and unfreeze this instance as much as you want.",
   waitUntilVisible: true
 }).go();
 
-setTimeout(() => {
-  instance.freeze();
-
-  setTimeout(() => {
+document.querySelector('#freezeButton').addEventListener('click', function (e) {
+  if(instance.is('frozen')) {
     instance.unfreeze();
-  }, 3000);
-}, 2000);
+    return;
+  }
+  
+  instance.freeze();
+});
 ```

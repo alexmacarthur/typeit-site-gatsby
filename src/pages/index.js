@@ -5,11 +5,10 @@ import MainLayout from "../components/layouts/MainLayout";
 import SEO from "../components/seo";
 import Hero from "../components/Hero";
 import Demo from "../components/Demo";
-import Example from "../components/Example";
+import ExampleList from "../components/ExampleList";
 import Perks from "../components/Perks";
 import PricingCards from "../components/PricingCards";
 import Slice from "../components/Slice";
-import exampleInstances from "../example-instances";
 
 export default ({ data }) => {
   let snippet = data.markdownRemark.html;
@@ -32,28 +31,7 @@ export default ({ data }) => {
       </div>
 
       <Slice heading="Unmatched Flexibility" id="examples">
-        <div className="md:px-8">
-          {data.examples.edges.map((edge, index) => {
-            let noExtension = edge.node.fileAbsolutePath
-              .split(".")
-              .slice(0, -1)
-              .join(".");
-            let fileName = noExtension
-              .split("/")
-              .reverse()[0]
-              .replace(/\d-/, "");
-            let isLast = index + 1 === data.examples.edges.length;
-
-            return (
-              <Example
-                data={edge.node}
-                instance={exampleInstances[fileName]}
-                isLast={isLast}
-                key={edge.node.id}
-              />
-            );
-          })}
-        </div>
+        <ExampleList examples={data.examples} />
       </Slice>
 
       <Slice 
