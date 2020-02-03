@@ -15,6 +15,7 @@ function getHeadings(headings) {
   });
 }
 
+// Ideally, this would be done before it gets to the component level.
 function generateHashes(headings, pathToPrepend) {
   return headings.map(heading => {
     // Convert to lowercase, make spaces hyphens.
@@ -28,21 +29,30 @@ function generateHashes(headings, pathToPrepend) {
 }
 
 export default props => {
-  let html = props.data.markdownRemark.html;
-
   // I don't want to talk about this.
-  html = html
-    .replace(/(\r\n|\n|\r)/gm, " ")
-    .replace(/(<table(?:.*?)>(?:.+?)(?:<\/table>))/g, (noBreaksTable) => {
-      return `
-        <div class='tableWrapper'>
-          <span class="md:hidden block mb-4 text-base text-gray-medium">To view all columns, you may need to scroll horizontally.</span>
-          <div class='tableWrapper-inner'>
-            ${noBreaksTable}
+  // Ideally, this should be done before we even get to this level. 
+  let parser = new DOMParser();
+  let doc = parser.parseFromString(props.data.markdownRemark.html, "text/html");
+
+  doc.querySelectorAll('table').forEach((table, index, all) => {
+    let rawHTML = table.outerHTML;
+    let formattedHTML = rawHTML
+      .replace(/(\r\n|\n|\r)/gm, " ")
+      .replace(/(<table(?:.*?)>(?:.+?)(?:<\/table>))/g, (match) => {
+        return `
+          <div class='tableWrapper'>
+            <span class="md:hidden block mb-4 text-base text-gray-medium">To view all columns, you may need to scroll horizontally.</span>
+            <div class='tableWrapper-inner'>
+              ${match}
+            </div>
           </div>
-        </div>
-      `;
-    });
+        `;
+      });
+    table.outerHTML = formattedHTML;
+  });
+
+  // Set HTML value to our new table-formatted version.
+  let html = doc.body.innerHTML;  
 
   let headings = generateHashes(
     getHeadings(props.data.markdownRemark.headings),

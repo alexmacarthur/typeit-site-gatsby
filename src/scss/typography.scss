@@ -82,7 +82,7 @@ td, th {
 .contentArea {
 
   h2 {
-    @apply text-4xl;
+    @apply inline-block text-4xl mt-4;
   }
 
   h3 {
@@ -104,16 +104,5 @@ td, th {
   width: 100%;
   height: 100%;
   transform: none;
-
-  svg {
-    top: 50%;
-    transform: translate(-2rem, -50%);
-    position: absolute;
-    height: 1.5rem;
-    width: 1.5rem;
-
-    path {
-      fill: theme('colors.gray.mediumLight');
-    }
-  }
+  position: absolute;
 }

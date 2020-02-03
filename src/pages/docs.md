@@ -242,25 +242,25 @@ new TypeIt("#element", {
 
   beforeStep: (step, queue, instance) => {
     // Will fire before each step in the queue.
-  },
+  },  
 
   beforeString: (step, queue, instance) => {
     // Will fire before each string in the queue.
-  },
+  },  
 
   afterStep: (step, queue, instance) => {
     // Will fire after each step in the queue.
-  },
+  }, 
 
   afterString: (step, queue, instance) => {
     // Will fire after each string in the queue,
     // including those added by the `.type()` instance method.
-  },
+  }, 
 
   afterComplete: (instance) => {
     // Will fire after the entire instance has completed typing.
     // NOTE: If "loop" is enabled, this will never fire.
-  }
+  } 
 });
 ```
 

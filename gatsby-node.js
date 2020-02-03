@@ -109,10 +109,7 @@ async function createMarkdownPages(graphql, createPage) {
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage, createRedirect } = actions;
-
-  // @todo create redirects
-
+  const { createPage } = actions;
   await createMarkdownPages(graphql, createPage);
   await createProductPages(graphql, createPage);
 };
