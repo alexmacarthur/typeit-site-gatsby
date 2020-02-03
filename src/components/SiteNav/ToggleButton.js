@@ -12,6 +12,7 @@ export default ({toggleMenu, menuIsOpen}) => {
             <ul
                 className={`
                         menuIcon 
+                        transition-all
                         ${menuIsOpen ? "is-open" : ""} 
                         flex 
                         flex-col 

@@ -4,7 +4,6 @@ import centsToDollars from "../helpers/centsToDollars";
 import PAYMENT_STATES from "../payment-states";
 import SEO from "../components/seo";
 import PageLayout from "../components/layouts/PageLayout";
-import CheckoutFormWrapper from "../components/CheckoutFormWrapper";
 
 const CheckoutForm = React.lazy(() => import("../components/CheckoutForm"));
 
@@ -94,25 +93,18 @@ export default props => {
             <div className="px-5">
               {!isSSR && (
                 <React.Suspense fallback={<div />}>
-                  <CheckoutFormWrapper render={
-                    (fireWhenRendered) => {
-                      return (
-                        <StripeProvider
-                          apiKey={process.env.GATSBY_STRIPE_PUBLISHABLE_KEY}
-                        >
-                          <Elements>
-                            <CheckoutForm
-                              fireWhenRendered={fireWhenRendered}
-                              paymentState={paymentState}
-                              setPaymentState={setPaymentState}
-                              setErrorMessage={setErrorMessage}
-                              productData={thisProductData}
-                            />
-                          </Elements>
-                        </StripeProvider>
-                      );
-                    }
-                  } />
+                  <StripeProvider
+                    apiKey={process.env.GATSBY_STRIPE_PUBLISHABLE_KEY}
+                  >
+                    <Elements>
+                      <CheckoutForm
+                        paymentState={paymentState}
+                        setPaymentState={setPaymentState}
+                        setErrorMessage={setErrorMessage}
+                        productData={thisProductData}
+                      />
+                    </Elements>
+                  </StripeProvider>
                 </React.Suspense>
               )}
             </div>
