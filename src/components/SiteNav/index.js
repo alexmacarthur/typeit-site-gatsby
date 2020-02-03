@@ -80,9 +80,9 @@ export default ({ pixelAnchorRef }) => {
   return (
     <nav
       ref={navRef}
-      className={`h-24 transition-all flex items-center absolute justify-between px-5 py-3 pb-4 z-20 top-0 w-full bg-white`}
+      className={`h-24 flex items-center absolute justify-between px-5 py-3 pb-4 z-20 top-0 w-full bg-white`}
     >
-      <span className="transition-all flex-initial text-5xl font-thin logo">
+      <span className="flex-initial text-5xl font-thin logo">
         <SelfClosingLink to="/" className="text-gray font-thin">
           TypeIt
         </SelfClosingLink>
@@ -102,7 +102,6 @@ export default ({ pixelAnchorRef }) => {
             h-full
             w-full
             bg-white
-            transition-all
             translate-left
             lg:translate-none
             overflow-auto
@@ -113,18 +112,18 @@ export default ({ pixelAnchorRef }) => {
           `}
         >
           <ul className="self-start mx-auto lg:-mx-3 lg:mt-0 block lg:flex mb-8 lg:mb-0">
-            <li className="flex px-5 font-light justify-center lg:mb-0 transition-all siteNavListItem lg:hidden">
+            <li className="flex px-5 font-light justify-center lg:mb-0 siteNavListItem lg:hidden">
               <h4 className="font-thin text-3xl">TypeIt</h4>
             </li>
             {links.map(link => {
               return (
                 <li
                   key={link.path}
-                  className={`flex px-5 font-light justify-center mb-5 lg:mb-0 transition-all siteNavListItem`}
+                  className={`flex px-5 font-light justify-center mb-5 lg:mb-0 siteNavListItem`}
                 >
                   <SelfClosingLink
                     to={link.path}
-                    className="siteNavLink self-center text-2xl text-gray-mediumLight hover:text-gray transition-all"
+                    className="siteNavLink self-center text-2xl text-gray-mediumLight hover:text-gray"
                   >
                     {link.title}
                   </SelfClosingLink>
