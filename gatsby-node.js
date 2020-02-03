@@ -1,5 +1,5 @@
 const path = require("path");
-// const { createFilePath } = require('gatsby-source-filesystem');
+const cheerio = require('cheerio');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -81,6 +81,7 @@ async function createMarkdownPages(graphql, createPage) {
       ) {
         edges {
           node {
+            html
             id
             fileAbsolutePath
             fields {
@@ -93,11 +94,36 @@ async function createMarkdownPages(graphql, createPage) {
   `);
 
   pageMarkdownData.data.allMarkdownRemark.edges.forEach(page => {
+
+    // Wrap each table with markup so we can implement horizontal scrolling.
+    const $ = cheerio.load(page.node.html);
+
+    $('table').each(function (i, elem) {
+      let rawHTML = $.html(elem);
+      let formattedHTML = rawHTML
+        .replace(/(\r\n|\n|\r)/gm, " ")
+        .replace(/(<table(?:.*?)>(?:.+?)(?:<\/table>))/g, (match) => {
+          return `
+          <div class='tableWrapper'>
+            <span class="md:hidden block mb-4 text-base text-gray-medium">To view all columns, you may need to scroll horizontally.</span>
+            <div class='tableWrapper-inner'>
+              ${match}
+            </div>
+          </div>
+        `;
+        });
+
+        $(elem).replaceWith(formattedHTML);
+    });
+
+    let html = $.html();
+    
     createPage({
       path: page.node.fields.slug,
       component: path.resolve("./src/templates/page.js"),
       context: {
-        slug: page.node.fields.slug
+        slug: page.node.fields.slug, 
+        html
       }
     });
   });

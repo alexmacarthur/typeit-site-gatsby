@@ -10,6 +10,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@sendgrid/mail": "^6.5.1",
     "@sentry/node": "^5.11.2",
+    "cheerio": "^1.0.0-rc.3",
     "develop": "^1.0.0",
     "ejs": "^3.0.1",
     "gatsby": "^2.19.10",

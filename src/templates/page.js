@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { graphql } from "gatsby";
 import PageLayout from "../components/layouts/PageLayout";
 import Sidebar from "../components/Sidebar";
@@ -29,37 +29,7 @@ function generateHashes(headings, pathToPrepend) {
 }
 
 export default props => {
-  // The hackiest hack in the history of the internet, but best fix for the short term. 
-  // Short version: Need to format HTML tables before they get to this component. 
-  let [html, setHTML] = useState("");
-
-  useEffect(() => {
-    let parser = new DOMParser();
-    let doc = parser.parseFromString(props.data.markdownRemark.html, "text/html");
-
-    doc.querySelectorAll('table').forEach((table, index, all) => {
-      let rawHTML = table.outerHTML;
-      let formattedHTML = rawHTML
-        .replace(/(\r\n|\n|\r)/gm, " ")
-        .replace(/(<table(?:.*?)>(?:.+?)(?:<\/table>))/g, (match) => {
-          return `
-          <div class='tableWrapper'>
-            <span class="md:hidden block mb-4 text-base text-gray-medium">To view all columns, you may need to scroll horizontally.</span>
-            <div class='tableWrapper-inner'>
-              ${match}
-            </div>
-          </div>
-        `;
-        });
-      table.outerHTML = formattedHTML;
-    });
-
-    // Set HTML value to our new table-formatted version.
-    setHTML(doc.body.innerHTML);
-
-    // eslint-disable-next-line
-  }, []);
-
+  let html = props.pageContext.html;
   let headings = generateHashes(
     getHeadings(props.data.markdownRemark.headings),
     props.location.pathname
