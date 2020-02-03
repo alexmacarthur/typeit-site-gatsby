@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StripeProvider, Elements } from "react-stripe-elements";
 import centsToDollars from "../helpers/centsToDollars";
 import PAYMENT_STATES from "../payment-states";
 import SEO from "../components/seo";
 import PageLayout from "../components/layouts/PageLayout";
-
-const CheckoutForm = React.lazy(() => import("../components/CheckoutForm"));
+import CheckoutFormWrapper from "../components/CheckoutFormWrapper";
+import CheckoutForm from "../components/CheckoutForm";
 
 export default props => {
-  const isSSR = typeof window === "undefined";
   const emailString = '<a href="mailto:alex@macarthur.me">alex@macarthur.me</a>';
   const errorMessageEnding = `<br><br>Please either refresh the page to try again, or email ${emailString} to get this all figured out.`;
   const { thisProductData } = props.pageContext;
   const [paymentState, setPaymentState] = useState(PAYMENT_STATES.NOT_STARTED);
   const [errorMessage, setErrorMessage] = useState(`Not exactly sure what wrong there.`);
+  const [shouldRenderForm, setShouldRenderForm] = useState(false);
+
+  useEffect(() => { 
+    setShouldRenderForm(true);
+  }, []);
 
   return (
     <PageLayout>
@@ -90,22 +94,27 @@ export default props => {
               </div>
             </div>
 
-            <div className="px-5">
-              {!isSSR && (
-                <React.Suspense fallback={<span className="block text-center">Loading...</span>}>
-                  <StripeProvider
-                    apiKey={process.env.GATSBY_STRIPE_PUBLISHABLE_KEY}
-                  >
-                    <Elements>
-                      <CheckoutForm
-                        paymentState={paymentState}
-                        setPaymentState={setPaymentState}
-                        setErrorMessage={setErrorMessage}
-                        productData={thisProductData}
-                      />
-                    </Elements>
-                  </StripeProvider>
-                </React.Suspense>
+            <div className="px-5">              
+              {shouldRenderForm && (
+                  <CheckoutFormWrapper render={
+                    (fireWhenRendered) => {
+                      return (
+                        <StripeProvider
+                          apiKey={process.env.GATSBY_STRIPE_PUBLISHABLE_KEY}
+                        >
+                          <Elements>
+                            <CheckoutForm
+                              fireWhenRendered={fireWhenRendered}
+                              paymentState={paymentState}
+                              setPaymentState={setPaymentState}
+                              setErrorMessage={setErrorMessage}
+                              productData={thisProductData}
+                            />
+                          </Elements>
+                        </StripeProvider>
+                      );
+                    }
+                  } />
               )}
             </div>
           </>

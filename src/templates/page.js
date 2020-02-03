@@ -56,6 +56,8 @@ export default props => {
 
     // Set HTML value to our new table-formatted version.
     setHTML(doc.body.innerHTML);
+
+    // eslint-disable-next-line
   }, []);
 
   let headings = generateHashes(

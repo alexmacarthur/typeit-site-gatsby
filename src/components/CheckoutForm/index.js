@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import uuid from "uuid/v4";
 import PAYMENT_STATES from "../../payment-states";
 import { sendGaEvent } from "../../utilities";
 
-const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData }) => {
+const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData, fireWhenRendered }) => {
   const formRef = useRef(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -13,6 +13,12 @@ const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData })
   const [elementHasError, setElementHasError] = useState(false);
   const [idempotencyKey] = useState(uuid()); 
   const priceInDollars = productData.price / 100;
+
+  useEffect(() => {
+    fireWhenRendered();
+    
+    // eslint-disable-next-line
+  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
