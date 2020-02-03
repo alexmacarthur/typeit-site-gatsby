@@ -92,7 +92,7 @@ export default props => {
 
             <div className="px-5">
               {!isSSR && (
-                <React.Suspense fallback={<div />}>
+                <React.Suspense fallback={<span className="block text-center">Loading...</span>}>
                   <StripeProvider
                     apiKey={process.env.GATSBY_STRIPE_PUBLISHABLE_KEY}
                   >
