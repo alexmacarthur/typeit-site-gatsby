@@ -17,7 +17,7 @@ const MainLayout = ({ children }) => {
         className="absolute top-0 left-0"
         ref={pixelAnchorRef}
       >
-        anchor!
+        &nbps;
       </span>
 
       {pageCoverContents && (
@@ -40,7 +40,7 @@ const MainLayout = ({ children }) => {
 
         <footer className="bg-gray text-white text-center p-12">
           <span className="text-white font-thin text-xl">
-            © {new Date().getFullYear()} | Created by{" "}
+            © {new Date().getFullYear()} | Designed & created by{" "}
             <a
               className="text-white font-bold"
               href="https://macarthur.me/"
