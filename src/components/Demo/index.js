@@ -1,12 +1,12 @@
-import React, { useState, useRef, useContext } from "react";
-import TypeIt from "typeit";
+import React, { useState, useContext } from "react";
+import TypeIt from "typeit-react";
 import defaultOptions from "./defaultOptions";
 import PageCoverContext from "../../PageCoverContext";
 import { sendGaEvent } from "../../utilities";
 
 export default function() {
-  const demoModalRef = useRef(null);
   const { setPageCoverContents } = useContext(PageCoverContext);
+  const [demoTimeout, setDemoTimeout] = useState(0);
   const [values, updateValues] = useState(
     defaultOptions.reduce((opts, opt) => {
       opts[opt.label] = opt.value;
@@ -16,6 +16,7 @@ export default function() {
 
   const submit = function(e) {
     e.preventDefault();
+    clearTimeout(demoTimeout);
 
     let valuesCopy = { ...values };
     document.body.classList.add("overflow-hidden");
@@ -26,16 +27,16 @@ export default function() {
         "You didn't set a string, so you get one that contains the word <em>butt.</em>";
     }
 
-    setTimeout(() => {
-      new TypeIt(demoModalRef.current, valuesCopy).go();
+    let to = setTimeout(() => {
+      setPageCoverContents(
+        <div className="text-center">
+          <h3 className="mb-6">Here's your example:</h3>
+          <TypeIt options={valuesCopy} />
+        </div>
+      );
     }, 50);
 
-    setPageCoverContents(
-      <div className="text-center">
-        <h3 className="mb-6">Here's your example:</h3>
-        <span ref={demoModalRef}></span>
-      </div>
-    );
+    setDemoTimeout(to);
   };
 
   const isNumeric = n => {

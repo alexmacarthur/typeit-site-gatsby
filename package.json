@@ -47,7 +47,7 @@
     "showdown": "^1.9.1",
     "stripe": "^7.14.0",
     "tailwindcss": "^1.2.0-canary.5",
-    "typeit": "^6.1.2",
+    "typeit": "^6.1.3",
     "typeit-react": "0.0.3",
     "uuid": "^3.3.3"
   },
