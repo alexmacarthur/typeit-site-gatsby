@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import ListDivider from "../ListDivider";
 import LazyLoader from "../LazyLoader";
+import TypeIt from 'typeit-react';
 
 export default function({ data, instance, isLast, exampleSlug }) {
-  const element = useRef(null);
   const [tiInstance, setTiInstance] = useState(null);
   const [isFrozen, setisFrozen] = useState(false);
 
@@ -49,12 +49,6 @@ export default function({ data, instance, isLast, exampleSlug }) {
     setisFrozen(!isFrozen);
   }
 
-  useEffect(() => {
-    setTiInstance(instance.func(element.current));
-    
-    // eslint-disable-next-line
-  }, []);
-
   const elementFontStyles = "text-xl md:text-2xl text-gray-medium font-light";
 
   return (
@@ -69,20 +63,35 @@ export default function({ data, instance, isLast, exampleSlug }) {
               <>
                 <label>
                   Name: {"  "}
-                  <input
-                    className={elementFontStyles + " ml-2"}
-                    type="text"
-                    ref={element}
+                  <TypeIt 
+                    element={"input"} 
+                    type="text" 
+                    options={instance.options}
+                    getBeforeInit={(tiInstance) => {
+                      return instance.getBeforeInit(tiInstance);
+                    }}
+                    getAfterInit={(instance) => {
+                      setTiInstance(instance);
+                      return instance;
+                    }}
+                    className={elementFontStyles + " ml-2"} 
                   />
                 </label>
               </>
             )}
 
             {!instance.element && (
-              <span
+              <TypeIt 
                 className={elementFontStyles}
-                ref={element}
-              ></span>
+                options={instance.options}
+                getBeforeInit={(tiInstance) => {
+                  return instance.getBeforeInit(tiInstance);
+                }}
+                getAfterInit={(instance) => {
+                  setTiInstance(instance);
+                  return instance;
+                }}
+              />
             )}
           </div>
           <div>
