@@ -310,11 +310,14 @@ You can load all of these yourself, or just use the following pre-made bundle fr
 
 It should also go without saying that it's wise to test any implementation of TypeIt (or anything else) in your target browsers.
 
+## TypeIt for React
+
+An official React component for TypeIt exist, [which you can find here](https://github.com/alexmacarthur/typeit-react).
+
 ## Examples
 
 I have a few CodePen examples that illustrate how to do some interesting things with TypeIt.
 
-- [TypeIt as a React Component](https://codepen.io/alexmacarthur/pen/gXNyBJ)
 - [Cute Rainbow Effect Using a Callback Method](https://codepen.io/alexmacarthur/pen/jzybpB)
 - [Chained Typing Animations](https://codepen.io/alexmacarthur/pen/MOPQvp)
 - ['Fill in the Blank' Effect](https://codepen.io/alexmacarthur/pen/pdXLRG)
