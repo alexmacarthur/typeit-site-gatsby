@@ -8,9 +8,20 @@ enable_sidebar: true
 
 ## Overview
 
-TypeIt is the most versatile JavaScript typewriter effect utility on the planet. With a straightforward configuration, it allows you to type single or multiple strings that break lines, delete & replace each other, and it even handles strings that contain HTML.
+TypeIt is the most versatile JavaScript tool for creating typewriter effects on the planet. With a straightforward configuration, it allows you to type single or multiple strings that break lines, delete & replace each other, and it even handles strings that contain complex HTML.
 
-For more advanced typing effects, instance methods are available that can be chained to control your typing down to a single character, enabling you to type an dynamic narrative, with complete reign over speed changes, line breaks, deletions, and pausing.
+For more advanced typing effects, instance methods are available that can be chained to control your typing down to a single character, enabling you to create a dynamic, life-like narrative, with complete reign over speed changes, deletions, and even cursor position.
+
+## v7 is Here!
+
+### Highlights
+* Over **25% slimmer** than v6. 
+* Introduces a [`.move()` method](#instance-methods) to move the cursor wherever you want during animation.
+* Allows you to [set a delay](#insert-delay-after-instance-method) to fire after each instance method
+
+### Breaking Changes
+* You can target only one element per TypeIt instance, rather than several at once. If a selector is passed that applies to multiple elements, the first will be used.
+* Callback method args now provide only the queue item that was just fired, and the instance itself.
 
 ## Get a License
 
@@ -46,7 +57,7 @@ Depending on your setup, you'll load TypeIt with a `script` tag , or an `import`
 import TypeIt from "typeit";
 ```
 
-Whatever the case, just be sure you load and instantiate TypeIt _after_ your markup as loaded on the page.
+Whatever the case, just be sure you load and instantiate TypeIt _after_ the script and your target element are loaded on the page.
 
 **3\. Create a Target Element**
 
@@ -58,22 +69,46 @@ You'll be able to designate a target element by tag name, class, ID, or anything
 
 If you want a fallback for users without JavaScript, you can put a string or strings right into this element. For more on that, see the [Defining Strings](#defining-strings) section. This will also be helpful if you're concerned about SEO.
 
+## Quick-Start Template
+
+If you're looking for a super simple template for how TypeIt should be loaded on an HTML page, here you go:
+
+```html
+<html>
+  <head></head>
+  <body>
+    <!-- A root element for TypeIt to target. --> 
+    <span id="myElement"></span>
+
+    <!-- The script itself, loaded AFTER your root element. -->
+    <script src="https://cdn.jsdelivr.net/npm/typeit@7.X.X/dist/typeit.min.js"></script>
+    <script>
+      new TypeIt('#myElement', {
+        strings: "This is what will be typed!"
+      }).go();
+    </script>
+  </body>
+</html>
+```
+
 ## Usage
 
 ### Basic Configuration
 
 A fresh instance of TypeIt accepts two arguments:
 
-- element: The element where text will be typed. This can be a DOM node, or a string reference to an element, class, ID, etc. For example, all of these are valid:
+- **element**: The element where text will be typed. This can be a DOM node or an element selector (class, ID, etc.). For example, all of the examples below are valid. 
 
 ```javascript
 new TypeIt('#myID', {...});
 new TypeIt('.my-class', {...});
-new TypeIt(document.querySelectorAll('h2'), {...});
-new TypeIt('[data-attribute="typeable"]', {...}).go();
+new TypeIt(document.querySelector('h2'), {...});
+new TypeIt('[data-attribute="typeable"]', {...});
 ```
 
-- options: An object that determines how the instance will behave. This is often where you'll define what strings will be typed, by passing them into the `strings` option:
+Note: If a selector that applies to several elements on the page (like a class), the _first_ element found will be targeted. Targeting multiple elements at once is not supported.
+
+- **options**: An object that determines how the instance will behave. This is often where you'll define what strings will be typed, by passing them into the `strings` option:
 
 ```javascript
 new TypeIt("#myElement", {
@@ -103,7 +138,7 @@ myTypeItInstance.go();
 
 You can define strings to be typed in a variety of ways.
 
-- Define them in your options as a string **_or_** an array of strings.
+- **Option #1**: Define them in your options as a string **_or_** an array of strings.
 
 ```javascript
 new TypeIt("#myElement", {
@@ -117,21 +152,23 @@ new TypeIt("#myElement", {
 }).go();
 ```
 
-- Hard-code them in your target element.
+- **Option #2**: Hard-code them in your target element.
 
-This is a great option for those looking to optimize SEO. Include your string in your target element, and you're good to go.
+This is a good option for those looking to optimize SEO. Include your string in your target element, and you're good to go. 
 
 ```html
 <span id="myElement">This string will be typed on page load.</span>
 ```
 
-- It's also possible to define _multiple_ strings by separating them with a `<br>` tag.
+It's also possible to define _multiple_ strings by separating them with a `<br>` tag.
 
 ```html
 <span id="myElement">My first string.<br />And my second string!</span>
 ```
 
-- Define them with instance methods.
+Note: This approach may cause a flash of text before the instance is started. This is because the text will already be rendered on the page before TypeIt has a chance to parse it for the animation.
+
+- **Option #3**: Define them with instance methods.
 
 To define your strings more manually, use the `type()` instance method, and customize the effect even further by combining these with the other methods, described more below.
 
@@ -145,7 +182,7 @@ new TypeIt("#myElement")
 
 #### Typing in Form Elements
 
-As of v6, TypeIt supports typing into form elements like inputs and textareas. No added configuration is needed to do this. However, due to the nature of these elements, some functionality maybe limited, like the use of a blinking cursor.
+TypeIt supports typing into form elements like text inputs and textareas. However, due to the nature of these elements, some functionality maybe limited, like the use of a blinking cursor.
 
 ## Instance Methods
 
@@ -153,38 +190,73 @@ TypeIt includes a handful of chainable and non-chainable instance methods you ca
 
 ### Chainable Instance Methods
 
-Method                       | Description                                                                                                                                                                                                                                             
----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
-`.type(strings: string)`        | Type the string that's passed.                                                                                                                                                                                                                          
-`.delete(numCharacters?: number`        | Delete the number characters passed. If left empty, everything that's typed will be deleted.                                                                                                                                                                                       
-`.pause(ms?: number)`       | Pause the number (in milliseconds) passed. If left blank, the `nextStringDelay` value will be used.                                                                                                                                                                                                                                                        
-`.break()`        | Insert a `<br>` tag.                                                                                                                                                                                                             | `void`
-`.options(opts: object)`        | Update options on the fly. This will only impact options that are actively used during queue execution, which currently includes `speed`, `lifeLike`, and `html`.                                                                        
-`.empty()`        | Instantly wipe out the contents of the target element.                                                                                                                                                               | `void`
-`.destroy(removeCursor?: boolean)`        | Cancel all timeouts attached to the instance, update the status of instance to `destroyed`, and, remove cursor from DOM. If `false` is passed, the cursor will _not_ be removed.                                                                         
-`.exec(func: object)`       | Fire any arbitrary function wherever this is placed in the queue. This method is asyncronous, so you may configure it to completely pause the queue's execution until a returned Promise is made to resolve. See directly below for a terrible example. `
-
-#### Quick Example Usage of the `exec()` Method
-
-The `.exec()` instance method allows you to fire code at any part of the queue. It's also asynchronous, meaning you can leverage stuff like `async/await` to pause queue execution until a returned Promise resolves. I'm sure you can think of more realistic, useful examples, but here's one anyway:
+These methods must be used _before_ the `.go()` method is called on your instance. For example: 
 
 ```javascript
-new TypeIt("#someID")
-  .type("Hold up!")
-  .exec(async () => {
-    await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        return resolve();
-      }, 2000);
-    });
-  })
-  .type(" OK, now go.")
+// This will work! 
+new TypeIt("#element", {
+  speed: 50
+})
+  .type("Helo!")
+  .pause(500)
+  .move(-2)
+  .type("l")
+  .go();
+
+// This will NOT work! 
+const instance = new TypeIt("#element", {
+  speed: 50
+})
+  .type("Helo!")
+  .go();
+
+instance.pause(500).move(-2).type("l");
+```
+
+#### Method Descriptions
+
+Method                       | Description + Example               
+---------------------------- | ------------------------- 
+`.type(string [, options])`       | Type the string that's passed. As the second parameter, you can pass an options object that will only effect this particular step in the queue. For example, if you want to change the speed of typing only for this string, specify this like below: <br><br>`instance.type("My string!", {speed: 300})...go();`                                                                                                                               
+`.delete(numberOfCharacters [, options])` | Delete the number characters passed. If left empty (or `null`), everything that's typed will be deleted. As the second parameter, you can pass an options object that will only effect this particular step in the queue. For example, if you want to change the speed of deletion only for this string, specify this like below: <br><br>`instance.delete(5)...go();`                                                                                                                                                                                      
+`.pause(milliseconds [, options])`       | Pause the number (in milliseconds) passed. If left blank, the `nextStringDelay` value will be used. <br><br>`instance.pause(400)...go();`                                                                                                                                                                                                                                                       
+`.break(options)`        | Insert a `<br>` tag.<br><br>`instance.break()...go();`
+`.options(opts [, otherOptions])` | Update options on the fly. This will only impact options that are actively used during queue execution, which currently includes `speed`, `lifeLike`, and `html`. <br><br>`instance.options({speed: 500, lifeLike: false})...go();`            
+`.empty()`        | Instantly wipe out the contents of the target element.<br><br>`instance.empty()...go();`                                                                                                                                                              | 
+`.move(numberOfSteps [, options])`| Move the cursor backward or forward the given number of characters. Passing "START" will cause the cursor to move to the beginning of what's been typed, and "END" will cause it to move to the end. As the second parameter, you can pass an options object that will only effect this particular step in the queue. For example, if you want to change the speed of cursor movement for this string, specify this like below: <br><br>`instance.move(-5, {speed: 55})...go();`                                                                       
+`.exec(func [, options])`       | Fire any arbitrary function wherever this is placed in the queue. This method is asyncronous, so you may configure it to completely pause the queue's execution until a returned Promise is made to resolve. See directly below for a terrible example. <br><br>`instance.exec(async () => await doSomethingAsync())...go();`
+
+#### Insert Delay After Instance Method
+
+Instead of inserting `.pause()` after each action, you can set a `delay` after any given action is fired. For example: 
+
+```javascript
+// This will work! 
+new TypeIt("#element", {
+  speed: 50
+})
+  .type("Hello!", {delay: 2000})
+  .delete(null, {delay: 1000})
+  .type("Goodbye!")
   .go();
 ```
 
 ### Non-Chainable Instance Methods
 
 The following methods are intended to be used _after_ an instance has been initialized and kicked off with `go()`: 
+
+#### Destroying an Instance
+
+Use the `.destroy()` method to cancel all timeouts attached to the instance, update the status of instance to `destroyed`, and, remove cursor from DOM. If `false` is passed, the cursor will not be removed.
+
+
+```javascript
+const instance = new TypeIt("#myElement", {
+  strings: "This will be destroyed."
+}).go();
+
+instance.destroy();
+```
 
 #### Resetting an Instance
 
@@ -234,30 +306,29 @@ instance.is('destroyed');
 Included in the options are five callback methods available for use at certain times during the execution of a queue.
 
 - `step` : The relevant step in the queue being handled when each callback fires.
-- `queue` : The entire queue of steps used by the instance. Each queue will contain a `waiting` property storing steps yet to be processed, as well as an `executed` property storing the ones that have already been executed.
 - `instance` : This is the `TypeIt` instance itself, should you need it.
 
 ```javascript
 new TypeIt("#element", {
 
-  beforeStep: (step, queue, instance) => {
+  beforeStep: async (step, instance) => {
     // Will fire before each step in the queue.
   },  
 
-  beforeString: (step, queue, instance) => {
+  beforeString: async (step, instance) => {
     // Will fire before each string in the queue.
   },  
 
-  afterStep: (step, queue, instance) => {
+  afterStep: async (step, instance) => {
     // Will fire after each step in the queue.
   }, 
 
-  afterString: (step, queue, instance) => {
+  afterString: async (step, instance) => {
     // Will fire after each string in the queue,
     // including those added by the `.type()` instance method.
   }, 
 
-  afterComplete: (instance) => {
+  afterComplete: async (step, instance) => {
     // Will fire after the entire instance has completed typing.
     // NOTE: If "loop" is enabled, this will never fire.
   } 
@@ -297,23 +368,24 @@ new TypeIt("#element", {
 In the compiled source code, two types of bundles exist -- one for browsers that support ES2015+ (which accounts for a [very strong majority](https://caniuse.com/#feat=es6-class) of users), as well as for those that do not. If you're using IE11 or older, you'll also need the following polyfills:
 
 - `Array.prototype.fill`
+- `Array.prototype.find`
 - `Array.from`
 - `IntersectionObserver`
+- `Math.sign`
 - `Object.assign`
 - `Promise`
 
 You can load all of these yourself, or just use the following pre-made bundle from [Polyfill.io](https://polyfill.io):
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CIntersectionObserver%2CObject.assign%2CPromise%2CArray.from"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CIntersectionObserver%2CObject.assign%2CPromise%2CArray.from%2CArray.prototype.find%2CMath.sign"></script>
 ```
-
 
 It should also go without saying that it's wise to test any implementation of TypeIt (or anything else) in your target browsers.
 
 ## TypeIt for React
 
-An official React component for TypeIt exist, [which you can find here](https://github.com/alexmacarthur/typeit-react).
+If you're looking for documentation for TypeIt's official React component, [you'll find it here](/docs/react).
 
 ## Examples
 

@@ -10,6 +10,10 @@ code[class*="language-"], pre[class*="language-"] {
     display: inline-block #{!important};
 }
 
+.language-javascript {
+    color: white;
+}
+
 .gatsby-highlight {
     overflow: auto;
     @apply mt-6 mb-6;

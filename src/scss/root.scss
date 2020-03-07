@@ -5,10 +5,7 @@
 @import "./components/hoverableLink";
 @import "./components/perkIcon";
 @import "./components/closeLink";
-
-.my-dumb-class {
-    display: block;
-}
+@import "./components/siteNav";
 
 * {
     transition: all .15s;
@@ -31,6 +28,7 @@ html {
 }
 
 .tableWrapper {
+    margin-bottom: 1rem;
 
     &-inner {
         overflow: auto;
@@ -52,6 +50,10 @@ td {
 @responsive {
     .transform-up {
         transform: translateY(-100%);
+    }
+
+    .transform-down {
+        transform: translateY(100%);
     }
     
     .translate-left {
@@ -146,33 +148,6 @@ textarea {
     height: .5rem;
     background: theme('colors.gray.light');
     transform: skew(45deg);
-}
-
-.isSticky {
-    @apply shadow-md h-20 #{!important};
-    position: fixed #{!important};
-
-    .logo {
-        @apply text-3xl;
-    }
-  
-    .menuIcon {
-        transform: scale(.65);
-    }
-
-    @screen lg {    
-        .siteNavLink {
-            @apply text-xl;
-        }
-
-        .siteNavListItem {
-            @apply px-4;
-
-            .button {
-                @apply py-2;
-            }
-        }
-    }
 }
 
 .purple-gradient {

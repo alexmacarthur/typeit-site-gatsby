@@ -7,9 +7,11 @@ import toggleOverflow from "../../helpers/toggleOverflow";
 
 export default ({ pixelAnchorRef }) => {
   const headingCtx = useContext(PageHeadingContext);
+  const navItemRef = useRef(null);
   const pageHeadings = headingCtx.headings ? headingCtx.headings : [];
   const pageTitle = headingCtx.title;
   const hasPageHeadings = pageHeadings.length > 0;
+  const [subNavTopPadding, setSubNavTopPadding] = useState(0);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const navRef = useRef(null);
 
@@ -29,7 +31,17 @@ export default ({ pixelAnchorRef }) => {
     },
     {
       title: "Documentation",
-      path: "/docs"
+      path: "/docs", 
+      nested: [
+        {
+          title: "Main Docs", 
+          path: "/docs"
+        },
+        {
+          title: "TypeIt for React", 
+          path: "/docs/react"
+        }
+      ]
     }
   ];
 
@@ -55,6 +67,10 @@ export default ({ pixelAnchorRef }) => {
   };
 
   useEffect(() => {
+
+    let padding = `${navItemRef.current.getBoundingClientRect().height}`;
+    setSubNavTopPadding(padding);
+
     const observer = new IntersectionObserver(
       ([e]) => {
         if (navRef.current) {
@@ -104,29 +120,48 @@ export default ({ pixelAnchorRef }) => {
             bg-white
             translate-left
             lg:translate-none
-            overflow-auto
-            lg:overflow-hidden
-            pt-10
-            lg:pt-0
+            overflow-scroll
+            lg:overflow-visible
+            pt-8
+            md:p-0
             ${menuIsOpen ? "translate-none" : ""}
           `}
         >
           <ul className="self-start mx-auto lg:-mx-3 lg:mt-0 block lg:flex mb-8 lg:mb-0">
-            <li className="flex px-5 font-light justify-center lg:mb-0 siteNavListItem lg:hidden">
-              <h4 className="font-thin text-3xl">TypeIt</h4>
-            </li>
+
             {links.map(link => {
               return (
                 <li
                   key={link.path}
-                  className={`flex px-5 font-light justify-center mb-5 lg:mb-0 siteNavListItem`}
+                  ref={navItemRef}
+                  className={`siteNavListItem flex px-5 flex-col lg:flex-row items-center font-light justify-center mb-5 lg:mb-0 relative`}
                 >
                   <SelfClosingLink
                     to={link.path}
-                    className="siteNavLink self-center text-2xl text-gray-mediumLight hover:text-gray"
+                    className="siteNavLink self-center text-2xl text-gray-mediumLight hover:text-gray z-10 relative"
                   >
                     {link.title}
                   </SelfClosingLink>
+
+                  {link.nested &&
+                    <ul 
+                      className="siteSubNav relative lg:absolute bg-white lg:shadow py-10 px-4 pb-6 rounded-sm lg:hidden" 
+                      style={{ paddingTop: `calc(${subNavTopPadding}px + 1rem)`, top: `-5px`}}
+                    >
+                      {link.nested.map(l => {
+                        return (
+                          <li key={l.path} className="text-center py-2">
+                            <SelfClosingLink
+                              to={l.path}
+                              className="text-gray-mediumLight hover:text-gray"
+                            >
+                              {l.title}
+                            </SelfClosingLink>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  }
                 </li>
               );
             })}

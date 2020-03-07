@@ -12,7 +12,12 @@ module.exports = {
         }
       },
       boxShadow: {
+        default: '0 0px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, .06)',
         outline: "0 0 0 3px rgb(244, 244, 244)"
+      }, 
+      variants: {
+        textColor: ["hover"],
+        padding: ["first", "last"]
       }
     },
     fontSize: {
@@ -35,9 +40,6 @@ module.exports = {
       "1": "1rem",
       "50": "50%"
     }
-  },
-  variants: {
-    textColor: ["hover"]
   },
   plugins: []
 };

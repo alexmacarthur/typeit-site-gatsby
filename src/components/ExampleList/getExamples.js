@@ -38,26 +38,32 @@ export default (addToTimeoutStore) => {
         "companion-methods": {
             title: "Type dynamic, life-like effects.",
             description:
-                "Use the included companion methods to control an effect down to the smallest detail.",
+                "Use the included instance methods to control the smallest details, including speed, deletions, pausing, and even cursor movement.",
             options: {
-                speed: 200,
+                speed: 50,
                 waitUntilVisible: true
             },
+            //Never let yesterday use up too much of today.
             getBeforeInit: instance => {
-                return instance.type("THe")
-                    .pause(200)
+                instance
+                    .type("Nvver", {delay: 300})
+                    .move(-3)
+                    .delete(1)
+                    .type('e')
+                    .move('END')
+                    .type(' let yees')
+                    .pause(300)
                     .delete(2)
-                    .type("he, ")
-                    .pause(1000)
-                    .type("possibilities are...")
-                    .break()
-                    .pause(750)
-                    .options({ speed: 50 })
-                    .type(" totally endlss!")
-                    .pause(750)
-                    .delete(3)
-                    .pause(200)
-                    .type("ess!");
+                    .type('sterday use up to muc')
+                    .move(-4)
+                    .type('o')
+                    .move('END')
+                    .type('h of today.')
+                    .pause(500)
+                    .break({delay: 500})
+                    .break({delay: 500})
+                    .type('<em>- Will Rogers</em>');
+                return instance;
             }
         },
         "freeze-unfreeze": {
@@ -76,13 +82,13 @@ export default (addToTimeoutStore) => {
                 "Callback methods are available for before and after each string or character is typed, as well as after the entire instance is finished.",
             options: {
                 strings: ["Look, it's rainbow text!"],
-                afterStep: function (step, queue, instance) {
+                afterStep: function (step, instance) {
                     let letters = "0123456789ABCDEF";
                     let color = "#";
                     for (var i = 0; i < 6; i++) {
                         color += letters[Math.floor(Math.random() * 16)];
                     }
-                    instance.instances[0].$e.style.color = color;
+                    instance.getElement().style.color = color;
                 }
             },
             getBeforeInit: instance => instance

@@ -3,7 +3,7 @@ import React from "react";
 export default ({ headings, classList, style }) => {
   return (
     <aside className={classList} style={style}>
-      <div style={{ position: "sticky", top: "7rem" }}>
+      <div style={{ position: "sticky", top: "7rem", height: "calc(100vh - 10rem)" }} className={"overflow-auto"}>
         <ul>
           {headings.map(heading => {
             return (

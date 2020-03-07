@@ -23,7 +23,7 @@ module.exports = {
     typeItVersion: packageLock.dependencies.typeit.version,
     perks: [
       {
-        text: "under 5kb gzipped",
+        text: "~4kb gzipped",
         component: "Feather"
       },
       {

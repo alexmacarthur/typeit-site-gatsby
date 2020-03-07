@@ -4,22 +4,25 @@
 
 ```javascript
 new TypeIt("#companionMethods", {
-  speed: 200,
+  speed: 50,
   waitUntilVisible: true
 })
-  .type("THe")
-  .pause(200)
+  .type("Nvver", {delay: 300})
+  .move(-3)
+  .delete(1)
+  .type('e')
+  .move('END')
+  .type(' let yees')
+  .pause(300)
   .delete(2)
-  .type("he, ")
-  .pause(1000)
-  .type("possibilities are...")
-  .break()
-  .pause(750)
-  .options({ speed: 50 })
-  .type(" totally endlss!")
-  .pause(750)
-  .delete(3)
-  .pause(200)
-  .type("ess!")
+  .type('sterday use up to muc')
+  .move(-4)
+  .type('o')
+  .move('END')
+  .type('h of today.')
+  .pause(500)
+  .break({delay: 500})
+  .break({delay: 500})
+  .type('<em>- Will Rogers</em>')
   .go();
 ```

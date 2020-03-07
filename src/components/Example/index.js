@@ -74,7 +74,7 @@ export default function({ data, instance, isLast, exampleSlug }) {
                       setTiInstance(instance);
                       return instance;
                     }}
-                    className={elementFontStyles + " ml-2"} 
+                    className={elementFontStyles} 
                   />
                 </label>
               </>

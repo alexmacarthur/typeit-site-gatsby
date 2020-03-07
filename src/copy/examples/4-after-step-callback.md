@@ -3,12 +3,10 @@
 ```
 
 ```javascript
-const element = document.getElementById("callback");
-
-const instance = new TypeIt(element, {
+const instance = new TypeIt('#callback', {
   strings: ["Look, it's rainbow text!"],
-  afterStep: function(step, queue, instance) {
-    element.style.color = getRandomColor();
+  afterStep: function(step, instance) {
+    instance.getElement().style.color = getRandomColor();
   }
 }).go();
 ```

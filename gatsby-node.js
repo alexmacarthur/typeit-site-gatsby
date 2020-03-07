@@ -8,10 +8,24 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     // If this node was source from the "posts" directory, slap a prefix onto the slug,
     // so that the resulting path is formatted correctly.
     let fileNode = getNode(node.parent);
-    let slug = fileNode.absolutePath
-      .split("/")
-      .reverse()[0]
-      .split(".")[0];
+    let isPage = fileNode.absolutePath.includes('/pages/');
+    let slug = "";
+    
+    if(isPage) {
+      let parts = fileNode.absolutePath.split('/').reverse();
+      let snippingIndex = parts.findIndex(p => p === 'pages');
+      slug = parts
+        .slice(0, snippingIndex)
+        .filter(i => !i.includes('index.'))
+        .reverse()
+        .join('/')
+        .replace('.md', '');
+    } else {
+      slug = fileNode.absolutePath
+        .split("/")
+        .reverse()[0]
+        .split(".")[0];
+    }
 
     createNodeField({
       name: `slug`,
@@ -117,6 +131,9 @@ async function createMarkdownPages(graphql, createPage) {
     });
 
     let html = $.html();
+
+    // console.log("HERE");
+    // console.log(page.node.fields.slug);
     
     createPage({
       path: page.node.fields.slug,
