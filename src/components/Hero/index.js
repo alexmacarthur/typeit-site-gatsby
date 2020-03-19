@@ -28,12 +28,13 @@ export default function({snippet}) {
             .move(-4)
             .type('i')
             .move('END')
-            .type(' on the internet')
+            .type(' on the internet', {delay: 400})
             .delete(8, {delay: 600})
             .type('<em><strong>planet.</strong></em>');
         }}
       />
-      <div dangerouslySetInnerHTML={{ __html: snippet }} />
+
+      <div dangerouslySetInnerHTML={{ __html: snippet }} style={{marginTop: '50rem'}}/>
     </div>
   );
 }
