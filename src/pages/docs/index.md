@@ -17,7 +17,7 @@ For more advanced typing effects, instance methods are available that can be cha
 ### Highlights
 * Over **25% slimmer** than v6. 
 * Introduces a [`.move()` method](#instance-methods) to move the cursor wherever you want during animation.
-* Allows you to [set a delay](#insert-delay-after-instance-method) to fire after each instance method
+* Allows you to [set a delay](#insert-delay-after-instance-method) to fire after each instance method.
 
 ### Breaking Changes
 * You can target only one element per TypeIt instance, rather than several at once. If a selector is passed that applies to multiple elements, the first will be used.
