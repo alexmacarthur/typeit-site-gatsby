@@ -383,6 +383,33 @@ You can load all of these yourself, or just use the following pre-made bundle fr
 
 It should also go without saying that it's wise to test any implementation of TypeIt (or anything else) in your target browsers.
 
+## Use on Squarespace
+
+To use TypeIt on a Squarespace, you'll need to find the features that allow you to inject custom HTML and JavaScript. Here are the high-level steps to do that: 
+
+**1. Open up the page you want the effect to appear and add a new [code block](https://support.squarespace.com/hc/en-us/articles/205815928-Adding-custom-HTML-CSS-and-JavaScript#toc-adding-code).**
+
+In that block, create an empty element that will serve as the anchor for TypeIt. For example: 
+
+```html
+<h3 id="myElement"></h3>
+```
+
+**2. Navigate to the Advanced Settings section to find where you can [inject code](https://support.squarespace.com/hc/en-us/articles/205815908-Using-Code-Injection) into the footer of every page.**
+
+In that textarea, paste the following code that will load the TypeIt source script and initialize your instance. 
+
+Note: If you don't want to load the script on every page, you could also paste this snippet below the element you created in the first step.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/typeit@7.0.1/dist/typeit.min.js"></script>
+<script>
+  new TypeIt('#element', {
+    strings: ['This is my string!']
+  }).go();
+</script>
+```
+
 ## TypeIt for React
 
 If you're looking for documentation for TypeIt's official React component, [you'll find it here](/docs/react).
