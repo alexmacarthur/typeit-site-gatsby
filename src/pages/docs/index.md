@@ -402,7 +402,7 @@ In that textarea, paste the following code that will load the TypeIt source scri
 Note: If you don't want to load the script on every page, you could also paste this snippet below the element you created in the first step.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/typeit@7.0.1/dist/typeit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script>
 <script>
   new TypeIt('#element', {
     strings: ['This is my string!']
