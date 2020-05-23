@@ -7,7 +7,7 @@ module.exports = {
         gray: {
           default: "#242424",
           light: "#f4f4f4",
-          mediumLight: "#7d7c7c",
+          mediumLight: "#6b6969",
           medium: "#575757"
         }
       },
@@ -17,7 +17,8 @@ module.exports = {
       }, 
       variants: {
         textColor: ["hover"],
-        padding: ["first", "last"]
+        padding: ["first", "last"], 
+        margin: ["last"]
       }
     },
     fontSize: {

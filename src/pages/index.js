@@ -1,5 +1,7 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
+
+import template from "../helpers/template";
 
 import MainLayout from "../components/layouts/MainLayout";
 import SEO from "../components/seo";
@@ -9,10 +11,13 @@ import ExampleList from "../components/ExampleList";
 import Perks from "../components/Perks";
 import PricingCards from "../components/PricingCards";
 import Slice from "../components/Slice";
+import FlavorCards from "../components/FlavorCards";
 
 export default ({ data }) => {
   let snippet = data.markdownRemark.html;
   let productData = data.allProductData.siteMetadata.licenseOptions;
+  let { typeItVersion } = data.allProductData.siteMetadata;
+  let { homeSlices } = data.allProductData.siteMetadata;
 
   return (
     <MainLayout>
@@ -36,11 +41,11 @@ export default ({ data }) => {
 
       <Slice 
         heading="Every Option You Might Need" 
+        description={"For a full description of each option, <a href='/docs#options'>see here.</a>"}
         bgClasses="bg-gray-light"
         showTriangles={true}
       >
         <div className="max-w-5xl mx-auto">
-          <p className="text-center -mt-12 mb-16">For a full description of each option, <Link to="/docs#options">see here.</Link></p>
           <Demo />
         </div>
       </Slice>
@@ -60,7 +65,7 @@ export default ({ data }) => {
                     </div>
                   </div>
                   <div
-                    dangerouslySetInnerHTML={{ __html: step.node.html }}
+                    dangerouslySetInnerHTML={{ __html: template(step.node.html, { typeItVersion }) }}
                   ></div>
                 </div>
               );
@@ -70,12 +75,19 @@ export default ({ data }) => {
       </Slice>
 
       <Slice
-        heading="Pricing"
+        heading="Available in Multiple Flavors"
         bgClasses="bg-gray-light"
-        outerClasses="-mb-20"
+        id="flavors"
+        showTriangles={true}
+        description={homeSlices.flavors.description}
+      >
+        <FlavorCards />
+      </Slice>
+
+      <Slice
+        heading="Pricing"
         id="pricing"
         isLast={true}
-        showTriangles={true}
       >
         <PricingCards productData={productData} />
       </Slice>
@@ -87,6 +99,15 @@ export default ({ data }) => {
 export const query = graphql`
   fragment allProductData on Site {
     siteMetadata {
+      typeItVersion
+      homeSlices {
+        pricing {
+          description
+        }
+        flavors {
+          description
+        }
+      }
       licenseOptions {
         slug
         price

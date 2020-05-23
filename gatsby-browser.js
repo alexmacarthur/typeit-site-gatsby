@@ -26,7 +26,8 @@ exports.shouldUpdateScroll = ({
     window.ti_shouldExpandLazyLoadedContent = true;
 
     setTimeout(() => {
-      document.querySelector(routerProps.location.hash).scrollIntoView({ behavior: "smooth" });
+      let targetEl = document.querySelector(routerProps.location.hash);
+      window.scrollTo(0, targetEl.offsetTop - 105);
     }, 100);
 
     return isSamePage ? currentPosition : [0, 0];

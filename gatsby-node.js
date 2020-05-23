@@ -1,12 +1,11 @@
 const path = require("path");
 const cheerio = require('cheerio');
+const { parseHeadings } = require('./node-helpers');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    // If this node was source from the "posts" directory, slap a prefix onto the slug,
-    // so that the resulting path is formatted correctly.
     let fileNode = getNode(node.parent);
     let isPage = fileNode.absolutePath.includes('/pages/');
     let slug = "";
@@ -101,6 +100,10 @@ async function createMarkdownPages(graphql, createPage) {
             fields {
               slug
             }
+            headings {
+              value
+              depth
+            }
           }
         }
       }
@@ -132,15 +135,13 @@ async function createMarkdownPages(graphql, createPage) {
 
     let html = $.html();
 
-    // console.log("HERE");
-    // console.log(page.node.fields.slug);
-    
     createPage({
       path: page.node.fields.slug,
       component: path.resolve("./src/templates/page.js"),
       context: {
         slug: page.node.fields.slug, 
-        html
+        html, 
+        headings: parseHeadings(page.node.headings, page.node.fields.slug)
       }
     });
   });

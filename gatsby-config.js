@@ -39,9 +39,18 @@ module.exports = {
         component: "Signs"
       }
     ],
-    licenseOptions
+    licenseOptions,
+    homeSlices: {
+      flavors: {
+        description: `For easy usage in a wide variety of projects, TypeIt's ready to go in multiple different packages. Purchase a license, and you get to choose which implementation is best for your needs.`
+      },
+      pricing: {
+        description: ``
+      }
+    }
   },
   plugins: [
+    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-gtag`,
       options: {
@@ -62,7 +71,7 @@ module.exports = {
         fonts: [
           {
             family: `Source Sans Pro`,
-            variants: [`300`, `400`]
+            variants: [`300`, `400`, `600`, `700`]
           },
         ],
       },
@@ -108,12 +117,27 @@ module.exports = {
         name: "pages"
       }
     },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /\.inline\.svg$/
+        }
+      }
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+              linkImagesToOriginal: false
+            }
+          },
           `gatsby-remark-prismjs`,
           {
             resolve: `gatsby-remark-autolink-headers`,
