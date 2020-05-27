@@ -9,6 +9,6 @@ module.exports = [
     },
     {
         fromPath: "/download/wordpress",
-        toPath: "https://github.com/alexmacarthur/wp-typeit/archive/master.zip"
+        toPath: "https://wp-plugin-update.now.sh/zips/wp-typeit.zip"
     },
 ];
