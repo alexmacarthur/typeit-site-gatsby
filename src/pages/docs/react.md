@@ -157,10 +157,6 @@ export default () => {
 };
 ```
 
-## Looking for Vanilla? 
-
-If you're not working with a React application but would like to use TypeIt, check out the [core vanilla JS library](/docs). It's what this React component is build on!
-
 ## Need Help?
 
 If you're working with a custom implementation of TypeIt and would like some help, I'm available for hire. [Get in touch!](https://macarthur.me/contact)

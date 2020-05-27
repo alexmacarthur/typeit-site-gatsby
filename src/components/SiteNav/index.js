@@ -9,6 +9,7 @@ export default ({ pixelAnchorRef }) => {
   const headingCtx = useContext(PageHeadingContext);
   const navItemRef = useRef(null);
   const pageHeadings = headingCtx.headings ? headingCtx.headings : [];
+  console.log(pageHeadings);
   const pageTitle = headingCtx.title;
   const hasPageHeadings = pageHeadings.length > 0;
   const [subNavTopPadding, setSubNavTopPadding] = useState(0);
@@ -34,12 +35,16 @@ export default ({ pixelAnchorRef }) => {
       path: "/docs", 
       nested: [
         {
-          title: "Main Docs", 
+          title: "JavaScript Library", 
           path: "/docs"
         },
         {
-          title: "TypeIt for React", 
+          title: "React Component", 
           path: "/docs/react"
+        }, 
+        {
+          title: "WordPress Plugin", 
+          path: "/docs/wordpress"
         }
       ]
     }
@@ -67,7 +72,6 @@ export default ({ pixelAnchorRef }) => {
   };
 
   useEffect(() => {
-
     let padding = `${navItemRef.current.getBoundingClientRect().height}`;
     setSubNavTopPadding(padding);
 
@@ -145,15 +149,15 @@ export default ({ pixelAnchorRef }) => {
 
                   {link.nested &&
                     <ul 
-                      className="siteSubNav relative lg:absolute bg-white lg:shadow py-10 px-4 pb-6 rounded-sm lg:hidden" 
+                      className="siteSubNav relative lg:absolute bg-white lg:shadow py-10 px-2 pb-6 rounded-sm lg:hidden" 
                       style={{ paddingTop: `calc(${subNavTopPadding}px + 1rem)`, top: `-5px`}}
                     >
                       {link.nested.map(l => {
                         return (
-                          <li key={l.path} className="text-center py-2">
+                          <li key={l.path} className="text-center py-1">
                             <SelfClosingLink
                               to={l.path}
-                              className="text-gray-mediumLight hover:text-gray"
+                              className="text-xl text-gray-mediumLight hover:text-gray"
                             >
                               {l.title}
                             </SelfClosingLink>
@@ -193,7 +197,7 @@ export default ({ pixelAnchorRef }) => {
                 return (
                   <li
                     key={heading.hash}
-                    className="flex px-5 font-light justify-center mb-5 lg:mb-0"
+                    className="px-5 font-light justify-center mb-5 lg:mb-0 text-center"
                   >
                     <SelfClosingLink
                       to={heading.hash}
@@ -201,6 +205,23 @@ export default ({ pixelAnchorRef }) => {
                     >
                       {heading.value}
                     </SelfClosingLink>
+
+                    {heading.subHeadings && 
+                      <ul className="block">
+                        {heading.subHeadings.map(subHeading => {
+                          return (
+                            <li className="py-1">
+                              <SelfClosingLink
+                                to={subHeading.hash}
+                                className="text-xl text-gray-mediumLight hover:text-gray"
+                              >
+                                {subHeading.value}
+                              </SelfClosingLink>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    }
                   </li>
                 );
               })}

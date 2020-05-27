@@ -12,17 +12,6 @@ TypeIt is the most versatile JavaScript tool for creating typewriter effects on 
 
 For more advanced typing effects, instance methods are available that can be chained to control your typing down to a single character, enabling you to create a dynamic, life-like narrative, with complete reign over speed changes, deletions, and even cursor position.
 
-## v7 is Here!
-
-### Highlights
-* Over **25% slimmer** than v6. 
-* Introduces a [`.move()` method](#instance-methods) to move the cursor wherever you want during animation.
-* Allows you to [set a delay](#insert-delay-after-instance-method) to fire after each instance method.
-
-### Breaking Changes
-* You can target only one element per TypeIt instance, rather than several at once. If a selector is passed that applies to multiple elements, the first will be used.
-* Callback method args now provide only the queue item that was just fired, and the instance itself.
-
 ## Get a License
 
 Using TypeIt for an open source or personal project is completely free. To use it in any commercial project, however, a license is required.
@@ -38,7 +27,7 @@ Using TypeIt for an open source or personal project is completely free. To use i
 - [CDN](https://www.jsdelivr.com/package/npm/typeit) - Include the source on your page. Be sure to specify a version number.
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/typeit@VERSION_NUMBER/dist/typeit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
   ```
 
 - [npm / yarn](https://www.npmjs.com/package/typeit) - Install with `npm install typeit` or `yarn add typeit`.
@@ -81,7 +70,7 @@ If you're looking for a super simple template for how TypeIt should be loaded on
     <span id="myElement"></span>
 
     <!-- The script itself, loaded AFTER your root element. -->
-    <script src="https://cdn.jsdelivr.net/npm/typeit@7.X.X/dist/typeit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
     <script>
       new TypeIt('#myElement', {
         strings: "This is what will be typed!"
@@ -402,17 +391,13 @@ In that textarea, paste the following code that will load the TypeIt source scri
 Note: If you don't want to load the script on every page, you could also paste this snippet below the element you created in the first step.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
 <script>
   new TypeIt('#element', {
     strings: ['This is my string!']
   }).go();
 </script>
 ```
-
-## TypeIt for React
-
-If you're looking for documentation for TypeIt's official React component, [you'll find it here](/docs/react).
 
 ## Examples
 
