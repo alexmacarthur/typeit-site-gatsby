@@ -1,6 +1,7 @@
 const path = require("path");
 const cheerio = require('cheerio');
 const { parseHeadings } = require('./node-helpers');
+const redirects = require('./redirects');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -153,7 +154,10 @@ async function createMarkdownPages(graphql, createPage) {
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
+
+  redirects.forEach(redirect => createRedirect(redirect));
+
   await createMarkdownPages(graphql, createPage);
   await createProductPages(graphql, createPage);
 };
