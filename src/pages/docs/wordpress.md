@@ -1,5 +1,5 @@
 ---
-title: WP TypeIt
+title: TypeIt for WordPress
 subtitle: >-
   The official WordPress plugin for the most versatile animated typing utility
   on the planet.
