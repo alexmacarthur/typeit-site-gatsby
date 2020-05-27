@@ -43,6 +43,7 @@ export default ({ data }) => {
         heading="Every Option You Might Need" 
         description={"For a full description of each option, <a href='/docs#options'>see here.</a>"}
         bgClasses="bg-gray-light"
+        id="options"
         showTriangles={true}
       >
         <div className="max-w-5xl mx-auto">

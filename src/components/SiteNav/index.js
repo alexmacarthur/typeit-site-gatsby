@@ -31,6 +31,10 @@ export default ({ pixelAnchorRef }) => {
       path: "/#examples"
     },
     {
+      title: "Flavors",
+      path: "/#flavors"
+    },
+    {
       title: "Documentation",
       path: "/docs", 
       nested: [
