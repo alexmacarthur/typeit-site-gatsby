@@ -372,7 +372,9 @@ You can load all of these yourself, or just use the following pre-made bundle fr
 
 It should also go without saying that it's wise to test any implementation of TypeIt (or anything else) in your target browsers.
 
-## Use on Squarespace
+## Use in Website Builders
+
+### Squarespace
 
 To use TypeIt on a Squarespace, you'll need to find the features that allow you to inject custom HTML and JavaScript. Here are the high-level steps to do that: 
 
@@ -399,6 +401,39 @@ Note: If you don't want to load the script on every page, you could also paste t
 </script>
 ```
 
+### Wix
+
+Again, in order to use TypeIt with Wix, you'll need to locate where you can inject custom HTML and JavaScript into your site. Wix has a "Dev Mode" that allows you to get fairly involved, but a simpler approach will look like the following: 
+
+**1. In the website editor, hover over the "plus" icon, select "Embed," and choose "HTML iframe."**
+
+![HTML Embed Block](./images/wix-html-embed.png)
+
+**2. Click "Enter Code" above the box that appears, and paste the HTML, source `<script>` tag, and your initialization inside the textarea.** 
+
+<div style="margin: 0 auto 1rem; max-width: 300px;">
+  <img src="./images/wix-embed-code.png" alt="HTML Embed Code">
+</div>
+
+What you paste into that box must look something like this: 
+
+```html
+<span id="myElement"></span>
+
+<script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
+<script>
+  new TypeIt('#myElement', {
+    strings: "This is what will be typed!"
+  }).go();
+</script>
+```
+
+For more information on this, dig into Wix's documentation on [adding custom code to your site.](https://support.wix.com/en/article/adding-code-to-your-site) 
+
+### WordPress
+
+For use within a WordPress site, it's recommended that you leverage the [WordPress plugin for TypeIt](/docs/wordpress).
+
 ## Examples
 
 I have a few CodePen examples that illustrate how to do some interesting things with TypeIt.
@@ -406,6 +441,8 @@ I have a few CodePen examples that illustrate how to do some interesting things 
 - [Cute Rainbow Effect Using a Callback Method](https://codepen.io/alexmacarthur/pen/jzybpB)
 - [Chained Typing Animations](https://codepen.io/alexmacarthur/pen/MOPQvp)
 - ['Fill in the Blank' Effect](https://codepen.io/alexmacarthur/pen/pdXLRG)
+- [Movable Cursor](https://codepen.io/alexmacarthur/pen/rNVMXaV)
+- [Remove Cursor After Completion](https://codepen.io/alexmacarthur/pen/WzVqeM)
 
 ## Need Help?
 
