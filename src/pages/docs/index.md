@@ -395,7 +395,7 @@ Note: If you don't want to load the script on every page, you could also paste t
 ```html
 <script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', (event) => {
+  document.addEventListener('DOMContentLoaded', function() {
     new TypeIt('#element', {
       strings: ['This is my string!']
     }).go();
