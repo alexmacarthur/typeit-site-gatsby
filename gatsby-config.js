@@ -30,10 +30,6 @@ module.exports = {
         path: "/#installation",
       },
       {
-        title: "Examples",
-        path: "/#examples",
-      },
-      {
         title: "Flavors",
         path: "/#flavors",
       },
@@ -81,7 +77,7 @@ module.exports = {
         description: `For easy usage in a wide variety of projects, TypeIt's ready to go in multiple different packages. Purchase a license, and you get to choose which implementation is best for your needs.`,
       },
       pricing: {
-        description: ``,
+        description: `It's <strong>free</strong> for use in any personal or open source project (check out the code on <a href="https://github.com/alexmacarthur/typeit">GitHub!</a>). For a less restrictive commercial license, choose one of the following: `,
       },
     },
   },

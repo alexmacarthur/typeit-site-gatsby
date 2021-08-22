@@ -5,6 +5,7 @@ import ToggleButton from "./ToggleButton";
 import { sendGaEvent } from "../../utilities";
 import toggleOverflow from "../../helpers/toggleOverflow";
 import Search from "../Search";
+import GitHubButton from "react-github-btn";
 
 const Up = () => {
   return (
@@ -202,6 +203,18 @@ export default ({ pixelAnchorRef }) => {
                 >
                   <span className="inline-block siteNavLink">Search</span>
                 </button>
+              </li>
+
+              <li className="siteNavListItem justify-center siteNavListItem mt-10 md:mt-0">
+                <GitHubButton
+                  href="https://github.com/alexmacarthur/typeit"
+                  data-color-scheme="no-preference: dark; light: dark; dark: dark;"
+                  data-icon="octicon-star"
+                  data-size="large"
+                  aria-label="Star =TypeIt on GitHub"
+                >
+                  Star
+                </GitHubButton>
               </li>
 
               <li className="siteNavListItem justify-center siteNavListItem mt-10 md:mt-0">

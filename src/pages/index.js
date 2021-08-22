@@ -86,7 +86,12 @@ const IndexPage = ({ data }) => {
         <FlavorCards />
       </Slice>
 
-      <Slice heading="Pricing" id="pricing" isLast={true}>
+      <Slice
+        heading="Pricing"
+        id="pricing"
+        isLast={true}
+        description={homeSlices.pricing.description}
+      >
         <PricingCards productData={productData} />
       </Slice>
     </MainLayout>

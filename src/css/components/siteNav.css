@@ -33,7 +33,7 @@
   }
 
   @screen xl {
-    @apply px-5
+    @apply px-5;
   }
 
   &:hover {
@@ -41,11 +41,18 @@
       display: block;
     }
   }
+
+  > span {
+    display: flex;
+
+    > span {
+      display: flex;
+    }
+  }
 }
 
 .siteNavLink {
   @apply text-xl text-gray-mediumLight z-10 relative font-light;
-
 
   @screen xl {
     @apply items-center text-2xl;
