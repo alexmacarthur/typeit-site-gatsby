@@ -6,7 +6,7 @@ export default ({
   children,
   isFullWidth = false,
   headings = [],
-  title = ""
+  title = "",
 }) => {
   return (
     <PageHeadingContext.Provider value={{ headigs: headings.headings, title }}>

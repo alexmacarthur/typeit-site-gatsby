@@ -1,7 +1,13 @@
 const path = require("path");
-const cheerio = require('cheerio');
-const { saveSearchDocuments, generateDocuments, deleteFile, formatSlug, parseHeadings } = require('./node-helpers');
-const processSidebarHeadings = require('./process-sidebar-headings');
+const cheerio = require("cheerio");
+const {
+  saveSearchDocuments,
+  generateDocuments,
+  deleteFile,
+  formatSlug,
+  parseHeadings,
+} = require("./node-helpers");
+const processSidebarHeadings = require("./process-sidebar-headings");
 const searchDocumentFile = `${process.cwd()}/search-documents.json`;
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -9,29 +15,26 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   if (node.internal.type === `MarkdownRemark`) {
     let fileNode = getNode(node.parent);
-    let isPage = fileNode.absolutePath.includes('/pages/');
+    let isPage = fileNode.absolutePath.includes("/pages/");
     let slug = "";
 
     if (isPage) {
-      let parts = fileNode.absolutePath.split('/').reverse();
-      let snippingIndex = parts.findIndex(p => p === 'pages');
+      let parts = fileNode.absolutePath.split("/").reverse();
+      let snippingIndex = parts.findIndex((p) => p === "pages");
       slug = parts
         .slice(0, snippingIndex)
-        .filter(i => !i.includes('index.'))
+        .filter((i) => !i.includes("index."))
         .reverse()
-        .join('/')
-        .replace('.md', '');
+        .join("/")
+        .replace(".md", "");
     } else {
-      slug = fileNode.absolutePath
-        .split("/")
-        .reverse()[0]
-        .split(".")[0];
+      slug = fileNode.absolutePath.split("/").reverse()[0].split(".")[0];
     }
 
     createNodeField({
       name: `slug`,
       node,
-      value: slug
+      value: slug,
     });
   }
 };
@@ -64,19 +67,19 @@ async function createProductPages(graphql, createPage) {
   const allProductData = rawProductData.data.site.siteMetadata.licenseOptions;
   const objectifiedProductData = {};
 
-  allProductData.forEach(product => {
+  allProductData.forEach((product) => {
     objectifiedProductData[product.slug] = product;
   });
 
-  allProductData.forEach(thisProductData => {
+  allProductData.forEach((thisProductData) => {
     createPage({
       path: `/checkout/${thisProductData.slug}`,
       component: path.resolve("./src/templates/product.js"),
       context: {
         thisProductData,
         allProductData, // probably don't need to pass this anymore.
-        objectifiedProductData // or this.
-      }
+        objectifiedProductData, // or this.
+      },
     });
   });
 }
@@ -92,7 +95,7 @@ async function createMarkdownPages({
   createPage,
   pattern,
   simpleSidebarHeadings = false,
-  shouldMakeSearchable = true
+  shouldMakeSearchable = true,
 } = {}) {
   const pageMarkdownData = await graphql(`
     {
@@ -128,7 +131,7 @@ async function createMarkdownPages({
     headings = processSidebarHeadings(edges);
   }
 
-  edges.forEach(edge => {
+  edges.forEach((edge) => {
     const formattedSlug = formatSlug(edge);
 
     if (simpleSidebarHeadings) {
@@ -141,15 +144,15 @@ async function createMarkdownPages({
         documents: generateDocuments({
           html: edge.node.html,
           path: formattedSlug,
-          title: edge.node.frontmatter?.title || ""
-        })
+          title: edge.node.frontmatter?.title || "",
+        }),
       });
     }
 
     // Wrap each table with markup so we can implement horizontal scrolling.
     const $ = cheerio.load(edge.node.html);
 
-    $('table').each(function (i, elem) {
+    $("table").each(function (i, elem) {
       let rawHTML = $.html(elem);
       let formattedHTML = rawHTML
         .replace(/(\r\n|\n|\r)/gm, " ")
@@ -175,8 +178,8 @@ async function createMarkdownPages({
       context: {
         slug: edge.node.fields.slug, // MUST be the original, unformatted slug.
         html,
-        headings
-      }
+        headings,
+      },
     });
   });
 }
@@ -196,14 +199,14 @@ exports.createPages = async ({ graphql, actions }) => {
     graphql,
     createPage,
     pattern: "docs/v([0-9]+)/(.*)",
-    shouldMakeSearchable: false
+    shouldMakeSearchable: false,
   });
 
   // Current documentation pages.
   await createMarkdownPages({
     graphql,
     createPage,
-    pattern: "docs/CURRENT/(.*)"
+    pattern: "docs/CURRENT/(.*)",
   });
 
   // Every other page.
@@ -211,7 +214,7 @@ exports.createPages = async ({ graphql, actions }) => {
     graphql,
     createPage,
     simpleSidebarHeadings: true,
-    pattern: "((?!docs/).*)"
+    pattern: "((?!docs/).*)",
   });
 
   await createProductPages(graphql, createPage);

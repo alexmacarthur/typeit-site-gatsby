@@ -4,7 +4,7 @@
 
 ```javascript
 new TypeIt("#asyncExec", {
-  waitUntilVisible: true
+  waitUntilVisible: true,
 })
   .type("Hold up!")
   .exec(async () => {

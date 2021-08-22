@@ -4,18 +4,18 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const hasRequiredProperties = require("./src/util/hasRequiredProperties");
 const getLicenseData = require("./src/util/getLicenseData");
 const sendEmails = require("./src/util/sendEmails");
-const Sentry = require('@sentry/node');
+const Sentry = require("@sentry/node");
 
 const isProduction = process.env.NODE_ENV === "production";
 
 const statusCode = 200;
 const headers = {
   "Access-Control-Allow-Origin": isProduction ? "https://typeitjs.com" : "*",
-  "Access-Control-Allow-Headers": "Content-Type"
+  "Access-Control-Allow-Headers": "Content-Type",
 };
 
 Sentry.init({
-  dsn: process.env.SENTRY_DSN
+  dsn: process.env.SENTRY_DSN,
 });
 
 exports.handler = async function (event) {
@@ -24,8 +24,8 @@ exports.handler = async function (event) {
       statusCode,
       headers,
       body: JSON.stringify({
-        message: "Not a valid request!"
-      })
+        message: "Not a valid request!",
+      }),
     };
   }
 
@@ -39,27 +39,22 @@ exports.handler = async function (event) {
       statusCode,
       headers,
       body: JSON.stringify({
-        message: "The request is missing data."
-      })
+        message: "The request is missing data.",
+      }),
     };
   }
 
   // Get the data for the particular license being purchased.
   const licenseData = getLicenseData(data.slug);
 
-  const {
-    simpleTitle,
-    price
-  } = licenseData;
+  const { simpleTitle, price } = licenseData;
 
   try {
-    const customer = await stripe.customers.create(
-      {
-        email: data.emailAddress,
-        source: data.source.id,
-        description: 'Purchased a license for TypeIt.',
-      }
-    );
+    const customer = await stripe.customers.create({
+      email: data.emailAddress,
+      source: data.source.id,
+      description: "Purchased a license for TypeIt.",
+    });
 
     charge = await stripe.charges.create(
       {
@@ -68,10 +63,10 @@ exports.handler = async function (event) {
         receipt_email: data.emailAddress,
         description: `TypeIt - ${simpleTitle}`,
         statement_descriptor: "A. MacArthur - TypeIt",
-        customer: customer.id
+        customer: customer.id,
       },
       {
-        idempotencyKey: data.idempotencyKey
+        idempotencyKey: data.idempotencyKey,
       }
     );
   } catch (e) {
@@ -82,8 +77,8 @@ exports.handler = async function (event) {
       statusCode,
       headers,
       body: JSON.stringify({
-        message: e.message
-      })
+        message: e.message,
+      }),
     };
   }
 
@@ -96,7 +91,7 @@ exports.handler = async function (event) {
       id: charge.id,
       chargeStatus: charge.status,
       amount: price,
-      message: "Request complete."
-    })
+      message: "Request complete.",
+    }),
   };
 };

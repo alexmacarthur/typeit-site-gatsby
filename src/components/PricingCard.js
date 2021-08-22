@@ -7,7 +7,7 @@ import { sendGaEvent } from "../utilities";
 export default ({
   isLight = false,
   isOnDarkBackground = false,
-  optionData
+  optionData,
 }) => {
   return (
     <Card
@@ -41,7 +41,7 @@ export default ({
             onClick={() => {
               sendGaEvent("click", {
                 event_category: "purchase_cta_button",
-                event_label: optionData.slug
+                event_label: optionData.slug,
               });
             }}
           >

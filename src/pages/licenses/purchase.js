@@ -17,7 +17,7 @@ const Licenses = () => {
   const allProductData = data.site.siteMetadata.licenseOptions;
   const objectifiedProductData = {};
 
-  allProductData.forEach(product => {
+  allProductData.forEach((product) => {
     objectifiedProductData[product.slug] = product;
   });
 
@@ -29,7 +29,8 @@ const Licenses = () => {
         <h1>Purchase a License</h1>
 
         <p>
-          Choose an option, submit payment, and you'll be all set to start using TypeIt on your project.
+          Choose an option, submit payment, and you'll be all set to start using
+          TypeIt on your project.
         </p>
       </div>
 

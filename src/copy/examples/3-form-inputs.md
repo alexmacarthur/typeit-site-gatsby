@@ -8,6 +8,6 @@
 ```javascript
 new TypeIt("#formElement", {
   strings: "Alex MacArthur",
-  waitUntilVisible: true
+  waitUntilVisible: true,
 }).go();
 ```

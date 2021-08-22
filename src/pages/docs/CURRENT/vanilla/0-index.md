@@ -36,9 +36,9 @@ Whatever the case, just be sure you load and instantiate TypeIt _after_ the scri
 <script src="<https://unpkg.com/typeit@%typeItVersion%/dist/index.umd.js>"></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    new TypeIt('#element', {
-      strings: ['This is my string!']
+  document.addEventListener("DOMContentLoaded", function () {
+    new TypeIt("#element", {
+      strings: ["This is my string!"],
     }).go();
   });
 </script>
@@ -68,8 +68,8 @@ If you're looking for a super simple template for how TypeIt would ideally be lo
     <!-- The script itself, loaded AFTER your root element. -->
     <script src="<https://unpkg.com/typeit@%typeItVersion%/dist/index.umd.js>"></script>
     <script>
-      new TypeIt('#myElement', {
-        strings: "This is what will be typed!"
+      new TypeIt("#myElement", {
+        strings: "This is what will be typed!",
       }).go();
     </script>
   </body>

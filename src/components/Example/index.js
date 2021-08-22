@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ListDivider from "../ListDivider";
 import LazyLoader from "../LazyLoader";
-import TypeIt from 'typeit-react';
+import TypeIt from "typeit-react";
 
-export default function({ data, instance, isLast, exampleSlug }) {
+export default function ({ data, instance, isLast, exampleSlug }) {
   const [tiInstance, setTiInstance] = useState(null);
   const [isFrozen, setisFrozen] = useState(false);
 
@@ -11,23 +11,23 @@ export default function({ data, instance, isLast, exampleSlug }) {
    * Destroy the instance and clear arbitray timeouts.
    */
   const resetInstance = () => {
-    if(!tiInstance) {
+    if (!tiInstance) {
       return;
     }
 
-    // Reset the instance itself. 
+    // Reset the instance itself.
     tiInstance.reset().go();
 
-    // Destroy any timeouts created by callbacks and 
-    // special instance methods. 
+    // Destroy any timeouts created by callbacks and
+    // special instance methods.
     if (!window.ti_exampleTimeouts[exampleSlug]) {
       return;
     }
 
-    window.ti_exampleTimeouts[exampleSlug].forEach(item => {
+    window.ti_exampleTimeouts[exampleSlug].forEach((item) => {
       clearTimeout(item);
       return false;
-    }); 
+    });
 
     window.ti_exampleTimeouts[exampleSlug] = [];
   };
@@ -36,18 +36,18 @@ export default function({ data, instance, isLast, exampleSlug }) {
    * Freeze and unfreeze the instance.
    */
   const toggleFreeze = () => {
-    if(!tiInstance) {
+    if (!tiInstance) {
       return;
     }
 
-    if (tiInstance.is('frozen')) {
+    if (tiInstance.is("frozen")) {
       tiInstance.unfreeze();
     } else {
       tiInstance.freeze();
     }
 
     setisFrozen(!isFrozen);
-  }
+  };
 
   const elementFontStyles = "text-xl md:text-2xl text-gray-medium font-light";
 
@@ -63,9 +63,9 @@ export default function({ data, instance, isLast, exampleSlug }) {
               <>
                 <label>
                   Name: {"  "}
-                  <TypeIt 
-                    as={"input"} 
-                    type="text" 
+                  <TypeIt
+                    as={"input"}
+                    type="text"
                     options={instance.options}
                     getBeforeInit={(tiInstance) => {
                       return instance.getBeforeInit(tiInstance);
@@ -74,14 +74,14 @@ export default function({ data, instance, isLast, exampleSlug }) {
                       setTiInstance(instance);
                       return instance;
                     }}
-                    className={elementFontStyles} 
+                    className={elementFontStyles}
                   />
                 </label>
               </>
             )}
 
             {!instance.element && (
-              <TypeIt 
+              <TypeIt
                 className={elementFontStyles}
                 options={instance.options}
                 getBeforeInit={(tiInstance) => {
@@ -99,24 +99,20 @@ export default function({ data, instance, isLast, exampleSlug }) {
               Reset
             </button>
 
-            {instance.allowFreeze && 
+            {instance.allowFreeze && (
               <button onClick={toggleFreeze} className="button">
-                {isFrozen ? 'Unfreeze' : 'Freeze'}
+                {isFrozen ? "Unfreeze" : "Freeze"}
               </button>
-            }
+            )}
           </div>
         </div>
 
-          <LazyLoader>
-            <div
-              dangerouslySetInnerHTML={{ __html: data.html }}
-            ></div>
-          </LazyLoader>
+        <LazyLoader>
+          <div dangerouslySetInnerHTML={{ __html: data.html }}></div>
+        </LazyLoader>
       </div>
 
-      {!isLast && 
-        <ListDivider className="my-10 md:my-24" />
-      }
+      {!isLast && <ListDivider className="my-10 md:my-24" />}
     </div>
   );
 }

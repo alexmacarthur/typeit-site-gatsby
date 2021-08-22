@@ -6,6 +6,7 @@ enable_sidebar: true
 ---
 
 The official React component for the most versatile JavaScript animated typing utility on the planet. You can use it to bring dynamic typewriter effects to your React applications.
+
 ## Installation
 
 `npm install typeit-react`
@@ -65,7 +66,7 @@ export default () => {
         options={{
           strings: ["This will be typed!"],
           speed: 10,
-          waitUntilVisible: true
+          waitUntilVisible: true,
         }}
       />
     </div>
@@ -97,13 +98,8 @@ TypeIt comes with a set of [special methods](https://typeitjs.com/docs#instance-
 import TypeIt from "typeit-react";
 
 <TypeIt
-  getBeforeInit={instance => {
-    instance
-      .type("Hi, I'm Alxe")
-      .pause(750)
-      .delete(2)
-      .pause(500)
-      .type("ex!");
+  getBeforeInit={(instance) => {
+    instance.type("Hi, I'm Alxe").pause(750).delete(2).pause(500).type("ex!");
 
     // Remember to return it!
     return instance;
@@ -137,7 +133,7 @@ export default () => {
 
       <TypeIt
         options={{ loop: true }}
-        getAfterInit={instance => {
+        getAfterInit={(instance) => {
           setInstance(instance);
           return instance;
         }}

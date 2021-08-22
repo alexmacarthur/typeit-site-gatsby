@@ -1,4 +1,9 @@
-const REQUIRED_PROPERTIES = ["emailAddress", "source", "idempotencyKey", "slug"];
+const REQUIRED_PROPERTIES = [
+  "emailAddress",
+  "source",
+  "idempotencyKey",
+  "slug",
+];
 
 /**
  * Given an object, ensure that every required key exists on it.
@@ -6,8 +11,8 @@ const REQUIRED_PROPERTIES = ["emailAddress", "source", "idempotencyKey", "slug"]
  * @param {object} data
  * @return {boolean}
  */
-module.exports = data => {
-    return REQUIRED_PROPERTIES.every(property => {
-        return data[property] !== undefined;
-    });
+module.exports = (data) => {
+  return REQUIRED_PROPERTIES.every((property) => {
+    return data[property] !== undefined;
+  });
 };

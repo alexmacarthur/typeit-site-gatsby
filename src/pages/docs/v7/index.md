@@ -73,8 +73,8 @@ If you're looking for a super simple template for how TypeIt should be loaded on
     <!-- The script itself, loaded AFTER your root element. -->
     <script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
     <script>
-      new TypeIt('#myElement', {
-        strings: "This is what will be typed!"
+      new TypeIt("#myElement", {
+        strings: "This is what will be typed!",
       }).go();
     </script>
   </body>
@@ -102,7 +102,7 @@ Note: If a selector that applies to several elements on the page (like a class),
 
 ```javascript
 new TypeIt("#myElement", {
-  strings: "This will be typed!"
+  strings: "This will be typed!",
 }).go();
 ```
 
@@ -112,13 +112,13 @@ Declaring a new instance of TypeIt only gives you an inert instance with a ready
 
 ```javascript
 new TypeIt("#myElement", {
-  strings: "This will be typed!"
+  strings: "This will be typed!",
 }).go(); // <!-- This will make it `go`.
 
 // Or!
 
 let myTypeItInstance = new TypeIt("#myElement", {
-  strings: "This will be typed!"
+  strings: "This will be typed!",
 });
 
 myTypeItInstance.go();
@@ -132,13 +132,13 @@ You can define strings to be typed in a variety of ways.
 
 ```javascript
 new TypeIt("#myElement", {
-  strings: "This will be typed!"
+  strings: "This will be typed!",
 }).go();
 
 // Or!
 
 new TypeIt("#myElement", {
-  strings: ["This will be typed!", "And this will be typed too."]
+  strings: ["This will be typed!", "And this will be typed too."],
 }).go();
 ```
 
@@ -185,7 +185,7 @@ These methods must be used _before_ the `.go()` method is called on your instanc
 ```javascript
 // This will work!
 new TypeIt("#element", {
-  speed: 50
+  speed: 50,
 })
   .type("Helo!")
   .pause(500)
@@ -195,7 +195,7 @@ new TypeIt("#element", {
 
 // This will NOT work!
 const instance = new TypeIt("#element", {
-  speed: 50
+  speed: 50,
 })
   .type("Helo!")
   .go();
@@ -205,16 +205,16 @@ instance.pause(500).move(-2).type("l");
 
 ### Method Descriptions
 
-Method                                    | Description + Example
------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`.type(string [, options])` | Type the string that's passed. As the second parameter, you can pass an options object that will only effect this particular step in the queue. For example, if you want to change the speed of typing only for this string, specify this like below:<br><br> `instance.type("My string!", {speed: 300})...go();` |
-`.delete(numberOfCharacters [, options])` | Delete the number characters passed. If left empty (or `null`), everything that's typed will be deleted. As the second parameter, you can pass an options object that will only effect this particular step in the queue. For example, if you want to change the speed of deletion only for this string, specify this like below:<br><br> `instance.delete(5)...go();` |
-`.pause(milliseconds [, options])`        | Pause the number (in milliseconds) passed. If left blank, the `nextStringDelay` value will be used.<br><br>`instance.pause(400)...go();` |
-`.break(options)`                         | Insert a `<br>` tag.<br><br> `instance.break()...go();` |
-`.options(opts [, otherOptions])`         | Update options on the fly. This will only impact options that are actively used during queue execution, which currently includes `speed`, `lifeLike`, and `html`.<br><br> `instance.options({speed: 500, lifeLike: false})...go();` |
-`.empty()`                                | Instantly wipe out the contents of the target element.<br><br>`instance.empty()...go();` |                                                                                                                                                     
-`.move(numberOfSteps [, options])`        | Move the cursor backward or forward the given number of characters. Passing "START" will cause the cursor to move to the beginning of what's been typed, and "END" will cause it to move to the end. As the second parameter, you can pass an options object that will only effect this particular step in the queue. For example, if you want to change the speed of cursor movement for this string, specify this like below:<br><br>`instance.move(-5, {speed: 55})...go();` |
-`.exec(func [, options])`                 | Fire any arbitrary function wherever this is placed in the queue. This method is asyncronous, so you may configure it to completely pause the queue's execution until a returned Promise is made to resolve. See directly below for a terrible example.<br><br>`instance.exec(async () => await doSomethingAsync())...go();`
+| Method                                    | Description + Example                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.type(string [, options])`               | Type the string that's passed. As the second parameter, you can pass an options object that will only effect this particular step in the queue. For example, if you want to change the speed of typing only for this string, specify this like below:<br><br> `instance.type("My string!", {speed: 300})...go();`                                                                                                                                                               |
+| `.delete(numberOfCharacters [, options])` | Delete the number characters passed. If left empty (or `null`), everything that's typed will be deleted. As the second parameter, you can pass an options object that will only effect this particular step in the queue. For example, if you want to change the speed of deletion only for this string, specify this like below:<br><br> `instance.delete(5)...go();`                                                                                                          |
+| `.pause(milliseconds [, options])`        | Pause the number (in milliseconds) passed. If left blank, the `nextStringDelay` value will be used.<br><br>`instance.pause(400)...go();`                                                                                                                                                                                                                                                                                                                                        |
+| `.break(options)`                         | Insert a `<br>` tag.<br><br> `instance.break()...go();`                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `.options(opts [, otherOptions])`         | Update options on the fly. This will only impact options that are actively used during queue execution, which currently includes `speed`, `lifeLike`, and `html`.<br><br> `instance.options({speed: 500, lifeLike: false})...go();`                                                                                                                                                                                                                                             |
+| `.empty()`                                | Instantly wipe out the contents of the target element.<br><br>`instance.empty()...go();`                                                                                                                                                                                                                                                                                                                                                                                        |
+| `.move(numberOfSteps [, options])`        | Move the cursor backward or forward the given number of characters. Passing "START" will cause the cursor to move to the beginning of what's been typed, and "END" will cause it to move to the end. As the second parameter, you can pass an options object that will only effect this particular step in the queue. For example, if you want to change the speed of cursor movement for this string, specify this like below:<br><br>`instance.move(-5, {speed: 55})...go();` |
+| `.exec(func [, options])`                 | Fire any arbitrary function wherever this is placed in the queue. This method is asyncronous, so you may configure it to completely pause the queue's execution until a returned Promise is made to resolve. See directly below for a terrible example.<br><br>`instance.exec(async () => await doSomethingAsync())...go();`                                                                                                                                                    |
 
 ### Insert Delay After Instance Method
 
@@ -223,10 +223,10 @@ Instead of inserting `.pause()` after each action, you can set a `delay` after a
 ```javascript
 // This will work!
 new TypeIt("#element", {
-  speed: 50
+  speed: 50,
 })
-  .type("Hello!", {delay: 2000})
-  .delete(null, {delay: 1000})
+  .type("Hello!", { delay: 2000 })
+  .delete(null, { delay: 1000 })
   .type("Goodbye!")
   .go();
 ```
@@ -241,7 +241,7 @@ Use the `.destroy()` method to cancel all timeouts attached to the instance, upd
 
 ```javascript
 const instance = new TypeIt("#myElement", {
-  strings: "This will be destroyed."
+  strings: "This will be destroyed.",
 }).go();
 
 instance.destroy();
@@ -253,7 +253,7 @@ Use the `.reset()` method to reset an active instance to a brand new state.
 
 ```javascript
 const instance = new TypeIt("#myElement", {
-  strings: "Some strings and stuff."
+  strings: "Some strings and stuff.",
 }).go();
 
 instance.reset();
@@ -265,7 +265,7 @@ Use the `.freeze()` and `.unfreeze()` methods on a active instance to pause its 
 
 ```javascript
 new TypeIt("#myElement", {
-  strings: "After 500ms, pause for 3 seconds and resume."
+  strings: "After 500ms, pause for 3 seconds and resume.",
 }).go();
 
 setTimeout(() => {
@@ -299,7 +299,6 @@ Included in the options are five callback methods available for use at certain t
 
 ```javascript
 new TypeIt("#element", {
-
   beforeStep: async (step, instance) => {
     // Will fire before each step in the queue.
   },
@@ -320,7 +319,7 @@ new TypeIt("#element", {
   afterComplete: async (step, instance) => {
     // Will fire after the entire instance has completed typing.
     // NOTE: If "loop" is enabled, this will never fire.
-  }
+  },
 });
 ```
 
@@ -334,23 +333,23 @@ new TypeIt("#element", {
 }).go();
 ```
 
-**Name & Default Value**  | **Description**
-------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`strings: []`             | `[string \| array]` String(s) of text to be typed.
-`speed: 100`              | `[number]` Typing speed, measured in milliseconds between each step.
-`deleteSpeed: null`       | `[number \| null]` Deletion speed. If left null, will be 1/3 of the type speed.
-`lifeLike: true`          | `[boolean]` Makes the typing pace irregular, as if a real person is doing it.
-`cursor: true`            | `[boolean]` Show a blinking cursor at the end of the string(s).
-`cursorSpeed: 1000`       | `[number]` The blinking speed of the cursor, measured in milliseconds.
-`cursorChar: \|`           | `[string]` The character used for the cursor. HTML works too!
-`breakLines: true`        | `[boolean]` Controls whether multiple strings are printed on top of each other (`breakLines: true`), or if they're deleted and replaced by each other (`breakLines: false`).
-`nextStringDelay: 750`    | `[number \| array]` The amount of time (in milliseconds) between typing multiple strings. If an array is passed, the first value will be used as the delay before a new string starts, and the second value will be used as the delay after a string has just ended. For example, passing `[1000, 2000]` will tell TypeIt to pause for 1000ms before typing a new string, and wait for 2000ms after a string has just completed. If a number is passed, that value will be halved.
-`waitUntilVisible: false` | `[boolean]` Determines if the instance will begin typing automatically on `.go()`, or only when the target element becomes visible in the viewport. If you don't want instances far down on the page to begin until they're visible, set this option to `true`.
-`startDelete: false`      | `[boolean]` Whether to begin instance by deleting strings inside element, and then typing what strings are defined via JSON or companion functions. Obviously, if this is set to `true`, you should have strings defined hard-coded in your target element.
-`startDelay: 250`         | `[number]` The amount of time before the plugin begins typing after being initialized.
-`loop: false`             | `[boolean]` Whether your strings will continuously loop after completing.
-`loopDelay: null`         | `[number \| array]`The amount of time between looping over a string or set of strings again. This option behaves identically to`nextStringDelay`. If an array is passed, the first value will be the time before typing begins again (after the set of strings has been deleted), and the second value will be the time immediately after the set of strings has finished typing, before they're deleted to restart. If left undefined, the`nextStringDelay` option will be used.
-`html: true`              | `[boolean]` Controls whether strings are parsed as HTML, or handled literally. If your target element is a form input or textarea, this value will automatically be overridden to `false`.
+| **Name & Default Value**  | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `strings: []`             | `[string \| array]` String(s) of text to be typed.                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `speed: 100`              | `[number]` Typing speed, measured in milliseconds between each step.                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `deleteSpeed: null`       | `[number \| null]` Deletion speed. If left null, will be 1/3 of the type speed.                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `lifeLike: true`          | `[boolean]` Makes the typing pace irregular, as if a real person is doing it.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `cursor: true`            | `[boolean]` Show a blinking cursor at the end of the string(s).                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `cursorSpeed: 1000`       | `[number]` The blinking speed of the cursor, measured in milliseconds.                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `cursorChar: \|`          | `[string]` The character used for the cursor. HTML works too!                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `breakLines: true`        | `[boolean]` Controls whether multiple strings are printed on top of each other (`breakLines: true`), or if they're deleted and replaced by each other (`breakLines: false`).                                                                                                                                                                                                                                                                                                       |
+| `nextStringDelay: 750`    | `[number \| array]` The amount of time (in milliseconds) between typing multiple strings. If an array is passed, the first value will be used as the delay before a new string starts, and the second value will be used as the delay after a string has just ended. For example, passing `[1000, 2000]` will tell TypeIt to pause for 1000ms before typing a new string, and wait for 2000ms after a string has just completed. If a number is passed, that value will be halved. |
+| `waitUntilVisible: false` | `[boolean]` Determines if the instance will begin typing automatically on `.go()`, or only when the target element becomes visible in the viewport. If you don't want instances far down on the page to begin until they're visible, set this option to `true`.                                                                                                                                                                                                                    |
+| `startDelete: false`      | `[boolean]` Whether to begin instance by deleting strings inside element, and then typing what strings are defined via JSON or companion functions. Obviously, if this is set to `true`, you should have strings defined hard-coded in your target element.                                                                                                                                                                                                                        |
+| `startDelay: 250`         | `[number]` The amount of time before the plugin begins typing after being initialized.                                                                                                                                                                                                                                                                                                                                                                                             |
+| `loop: false`             | `[boolean]` Whether your strings will continuously loop after completing.                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `loopDelay: null`         | `[number \| array]`The amount of time between looping over a string or set of strings again. This option behaves identically to`nextStringDelay`. If an array is passed, the first value will be the time before typing begins again (after the set of strings has been deleted), and the second value will be the time immediately after the set of strings has finished typing, before they're deleted to restart. If left undefined, the`nextStringDelay` option will be used.  |
+| `html: true`              | `[boolean]` Controls whether strings are parsed as HTML, or handled literally. If your target element is a form input or textarea, this value will automatically be overridden to `false`.                                                                                                                                                                                                                                                                                         |
 
 # Browser Support
 
@@ -395,9 +394,9 @@ Note: If you don't want to load the script on every page, you could also paste t
 ```html
 <script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    new TypeIt('#element', {
-      strings: ['This is my string!']
+  document.addEventListener("DOMContentLoaded", function () {
+    new TypeIt("#element", {
+      strings: ["This is my string!"],
     }).go();
   });
 </script>
@@ -424,8 +423,8 @@ What you paste into that box must look something like this:
 
 <script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
 <script>
-  new TypeIt('#myElement', {
-    strings: "This is what will be typed!"
+  new TypeIt("#myElement", {
+    strings: "This is what will be typed!",
   }).go();
 </script>
 ```

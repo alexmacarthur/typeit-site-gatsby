@@ -4,7 +4,7 @@ import defaultOptions from "./defaultOptions";
 import PageCoverContext from "../../PageCoverContext";
 import { sendGaEvent } from "../../utilities";
 
-export default function() {
+export default function () {
   const { setPageCoverContents } = useContext(PageCoverContext);
   const [demoTimeout, setDemoTimeout] = useState(0);
   const [values, updateValues] = useState(
@@ -14,7 +14,7 @@ export default function() {
     }, {})
   );
 
-  const submit = function(e) {
+  const submit = function (e) {
     e.preventDefault();
     clearTimeout(demoTimeout);
 
@@ -39,11 +39,11 @@ export default function() {
     setDemoTimeout(to);
   };
 
-  const isNumeric = n => {
+  const isNumeric = (n) => {
     return !isNaN(parseFloat(n)) && isFinite(n);
   };
 
-  const formatValueTypes = values => {
+  const formatValueTypes = (values) => {
     for (let key in values) {
       if (key !== "strings") {
         let value = values[key];
@@ -59,7 +59,7 @@ export default function() {
     return values;
   };
 
-  const updateInput = event => {
+  const updateInput = (event) => {
     let updatedValues = { ...values };
     let inputValue = event.target.value;
 
@@ -75,7 +75,7 @@ export default function() {
   return (
     <div className="max-w-6xl m-auto relative">
       <form className="flex flex-wrap -mx-4 -my-3" onSubmit={submit}>
-        {defaultOptions.map(option => {
+        {defaultOptions.map((option) => {
           return (
             <div
               className={`px-4 py-3 ${
@@ -129,7 +129,7 @@ export default function() {
             onClick={() => {
               sendGaEvent("submit", {
                 event_category: "demo_form",
-                event_label: values.strings
+                event_label: values.strings,
               });
             }}
           >

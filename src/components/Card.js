@@ -1,6 +1,6 @@
 import React from "react";
 
-export default props => {
+export default (props) => {
   let { children, className, onDarkBackground, ...otherProps } = props;
   let outerPadding = onDarkBackground ? "p-0 md:p-0" : "p-3 md:p-3";
   let innerPadding = onDarkBackground ? "p-2 md:p-7" : "p-3 md:p-10";
@@ -10,7 +10,9 @@ export default props => {
       className={`rounded bg-white text-center ${outerPadding} ${className}`}
       {...otherProps}
     >
-      <div className={`rounded border-4 border-gray-light h-full ${innerPadding}`}>
+      <div
+        className={`rounded border-4 border-gray-light h-full ${innerPadding}`}
+      >
         {children}
       </div>
     </div>

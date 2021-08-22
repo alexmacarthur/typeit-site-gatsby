@@ -25,9 +25,9 @@ Note: If you don't want to load the script on every page, you could also paste t
 ```html
 <script src="https://unpkg.com/typeit@%typeItVersion%/dist/index.umd.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    new TypeIt('#element', {
-      strings: ['This is my string!']
+  document.addEventListener("DOMContentLoaded", function () {
+    new TypeIt("#element", {
+      strings: ["This is my string!"],
     }).go();
   });
 </script>
@@ -54,8 +54,8 @@ What you paste into that box must look something like this:
 
 <script src="https://unpkg.com/typeit@%typeItVersion%/dist/index.umd.js"></script>
 <script>
-  new TypeIt('#myElement', {
-    strings: "This is what will be typed!"
+  new TypeIt("#myElement", {
+    strings: "This is what will be typed!",
   }).go();
 </script>
 ```

@@ -32,9 +32,8 @@ const MainLayout = ({ children }) => {
       <SiteNav pixelAnchorRef={pixelAnchorRef} />
 
       <div className="relative h-full flex flex-col">
-
         <PageCoverContext.Provider value={{ setPageCoverContents, setCleanUp }}>
-          <main style={{marginTop: 'var(--ti-nav-height)'}}>{children}</main>
+          <main style={{ marginTop: "var(--ti-nav-height)" }}>{children}</main>
         </PageCoverContext.Provider>
 
         <footer className="bg-gray-default text-white text-center p-8">

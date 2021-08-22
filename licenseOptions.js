@@ -9,8 +9,7 @@ module.exports = [
       "Use TypeIt on a single commercial project. Includes lifetime updates.",
     permissionDescription:
       "You are now eligible to use TypeIt for a single commercial project.",
-    licenseLink:
-      "https://typeitjs.com/licenses/download/limited-commercial"
+    licenseLink: "https://typeitjs.com/licenses/download/limited-commercial",
   },
   {
     slug: "unlimited",
@@ -22,7 +21,6 @@ module.exports = [
       "Unlimited use on any commercial project. Includes lifetime updates.",
     permissionDescription:
       "You are now eligible to use TypeIt commercially for an unlimited number of projects.",
-    licenseLink:
-      "https://typeitjs.com/licenses/download/unlimited-commercial"
-  }
+    licenseLink: "https://typeitjs.com/licenses/download/unlimited-commercial",
+  },
 ];

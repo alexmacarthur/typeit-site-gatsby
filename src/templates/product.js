@@ -7,12 +7,15 @@ import PageLayout from "../components/layouts/PageLayout";
 import CheckoutFormWrapper from "../components/CheckoutFormWrapper";
 import CheckoutForm from "../components/CheckoutForm";
 
-const ProductTemplate = props => {
-  const emailString = '<a href="mailto:alex@macarthur.me">alex@macarthur.me</a>';
+const ProductTemplate = (props) => {
+  const emailString =
+    '<a href="mailto:alex@macarthur.me">alex@macarthur.me</a>';
   const errorMessageEnding = `<br><br>Please either refresh the page to try again, or email ${emailString} to get this all figured out.`;
   const { thisProductData } = props.pageContext;
   const [paymentState, setPaymentState] = useState(PAYMENT_STATES.NOT_STARTED);
-  const [errorMessage, setErrorMessage] = useState(`Not exactly sure what wrong there.`);
+  const [errorMessage, setErrorMessage] = useState(
+    `Not exactly sure what wrong there.`
+  );
   const [shouldRenderForm, setShouldRenderForm] = useState(false);
 
   useEffect(() => {
@@ -24,7 +27,6 @@ const ProductTemplate = props => {
       <SEO title={thisProductData.simpleTitle} />
 
       <div className="container-top-padding container-bottom-padding">
-
         <div className="text-center">
           <h1
             className="mb-3"
@@ -37,7 +39,11 @@ const ProductTemplate = props => {
           {paymentState === PAYMENT_STATES.FAILED && (
             <div className="px-5">
               <h3>Sorry, something went wrong!</h3>
-              <p dangerouslySetInnerHTML={{ __html: errorMessage + errorMessageEnding }} />
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: errorMessage + errorMessageEnding,
+                }}
+              />
             </div>
           )}
 
@@ -45,8 +51,8 @@ const ProductTemplate = props => {
             <div className="px-5">
               <h3>Thanks for purchasing!</h3>
               <p>
-                You should be getting an email containing license information and
-                instructions on getting started.
+                You should be getting an email containing license information
+                and instructions on getting started.
               </p>
               <p>
                 If you don't mind, I'd greatly appreciate a{" "}
@@ -66,16 +72,23 @@ const ProductTemplate = props => {
               <h3>Thanks for purchasing with PayPal!</h3>
 
               <p>
-                Once I see you've sent a payment, I'll send over an email with license information and instructions on getting started. But no need to wait! <a
+                Once I see you've sent a payment, I'll send over an email with
+                license information and instructions on getting started. But no
+                need to wait!{" "}
+                <a
                   href="https://github.com/alexmacarthur/typeit"
                   rel="noopener noreferrer"
                   target="_blank"
-                >You can get the source code right now on GitHub.</a>
+                >
+                  You can get the source code right now on GitHub.
+                </a>
               </p>
 
-              <p dangerouslySetInnerHTML={
-                { __html: `In the meantime, don't be afraid to reach out with questions by emailing me at ${emailString}!` }
-              }></p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: `In the meantime, don't be afraid to reach out with questions by emailing me at ${emailString}!`,
+                }}
+              ></p>
             </div>
           )}
 
@@ -98,8 +111,8 @@ const ProductTemplate = props => {
 
               <div className="px-5">
                 {shouldRenderForm && (
-                  <CheckoutFormWrapper render={
-                    (fireWhenRendered) => {
+                  <CheckoutFormWrapper
+                    render={(fireWhenRendered) => {
                       return (
                         <StripeProvider
                           apiKey={process.env.GATSBY_STRIPE_PUBLISHABLE_KEY}
@@ -115,8 +128,8 @@ const ProductTemplate = props => {
                           </Elements>
                         </StripeProvider>
                       );
-                    }
-                  } />
+                    }}
+                  />
                 )}
               </div>
             </>

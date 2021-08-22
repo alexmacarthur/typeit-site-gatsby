@@ -1,15 +1,15 @@
 const ejs = require("ejs");
 const emailTemplate = require("../email");
 const showdown = require("showdown");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 const markdownConverter = new showdown.Converter();
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
     user: process.env.MY_EMAIL_ADDRESS,
-    pass: process.env.GMAIL_APP_PASSWORD
-  }
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
 });
 
 const transport = (options) => {
@@ -22,22 +22,17 @@ const transport = (options) => {
       return resolve(info.response);
     });
   });
-}
+};
 
 module.exports = async ({ data, licenseData, charge }) => {
-
-  let {
-    simpleTitle,
-    permissionDescription,
-    licenseLink
-  } = licenseData;
+  let { simpleTitle, permissionDescription, licenseLink } = licenseData;
 
   let emailContent = ejs.render(
     emailTemplate,
     {
       simpleTitle,
       permissionDescription,
-      licenseLink
+      licenseLink,
     },
     {}
   );
@@ -49,7 +44,7 @@ module.exports = async ({ data, licenseData, charge }) => {
       to: data.emailAddress,
       from: process.env.MY_EMAIL_ADDRESS,
       subject: "TypeIt - License & Instructions",
-      html: emailContent
+      html: emailContent,
     });
 
     const personalEmailPromise = transport({
@@ -60,7 +55,7 @@ module.exports = async ({ data, licenseData, charge }) => {
         Email Address: ${data.emailAddress}
         <br>
         Stripe Link: https://dashboard.stripe.com/payments/${charge.id}
-      `
+      `,
     });
 
     await Promise.all([clientEmailPromise, personalEmailPromise]);
@@ -68,4 +63,4 @@ module.exports = async ({ data, licenseData, charge }) => {
     console.error(e.message);
     Sentry.captureException(e);
   }
-}
+};

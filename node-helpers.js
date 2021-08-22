@@ -1,9 +1,11 @@
-const fs = require('fs');
-const GithubSlugger = require('github-slugger');
+const fs = require("fs");
+const GithubSlugger = require("github-slugger");
 
 const trimWords = (text, max) => {
-  return text && text.length > max ? text.slice(0, max).split(' ').slice(0, -1).join(' ') : text;
-}
+  return text && text.length > max
+    ? text.slice(0, max).split(" ").slice(0, -1).join(" ")
+    : text;
+};
 
 /**
  * Format headings for the sidebar.
@@ -13,7 +15,6 @@ const trimWords = (text, max) => {
  */
 function organizeHeadings(headings, level = 2) {
   const withSubHeadings = headings.map((heading, index) => {
-
     if (heading.depth > level) return heading;
     let subHeadings = [];
 
@@ -24,12 +25,14 @@ function organizeHeadings(headings, level = 2) {
     }
 
     // Only include the subHeadings one later deeper.
-    heading.subHeadings = subHeadings.filter(h => h.depth === heading.depth + 1);
+    heading.subHeadings = subHeadings.filter(
+      (h) => h.depth === heading.depth + 1
+    );
 
     return heading;
   });
 
-  return withSubHeadings.filter(heading => {
+  return withSubHeadings.filter((heading) => {
     return heading.depth === level;
   });
 }
@@ -38,7 +41,7 @@ function organizeHeadings(headings, level = 2) {
 function generateHashes(headings, pathToPrepend) {
   const slugger = new GithubSlugger();
 
-  return headings.map(heading => {
+  return headings.map((heading) => {
     const hash = slugger.slug(heading.value);
 
     // Prepend the hash so Gatsby doesn't take us to the home page.
@@ -58,33 +61,36 @@ const formatSlug = (edge) => {
     .replace(/CURRENT(\/?)/, "") // remove 'CURRENT'
     .replace(/\/$/, "") // remove trailing slash
     .replace(/\/([0-9]+)-/, "/"); // remove order prefix
-}
+};
 
 const parseHeadings = function (headings, pathToPrepend = "", level = 2) {
   let organizedHeadings = organizeHeadings(headings, level);
-  let withPagePath = organizedHeadings.map(heading => {
+  let withPagePath = organizedHeadings.map((heading) => {
     heading.path = pathToPrepend;
 
     return heading;
   });
   return generateHashes(withPagePath, pathToPrepend);
-}
+};
 
 const headingPattern = /(<h[1-6] (?:.*)>(?:.*)<\/h[1-6]>)/;
 
 const removeTags = (content) => {
-  return content.replace(/(<([^>]+)>)/gi, "").replace(/\r?\n|\r/g, " ").trim();
-}
+  return content
+    .replace(/(<([^>]+)>)/gi, "")
+    .replace(/\r?\n|\r/g, " ")
+    .trim();
+};
 
 const deleteFile = (name) => {
   try {
     fs.unlinkSync(name);
   } catch (err) {
-    console.error("Could not delete file. Did it exist to begin with?");
+    console.log("Could not delete file. Did it exist to begin with?");
   }
-}
+};
 
-const generateDocuments = ({html, path, title}) => {
+const generateDocuments = ({ html, path, title }) => {
   const splitByHeadings = html.split(headingPattern);
   const documents = [];
   const slugger = new GithubSlugger();
@@ -94,7 +100,7 @@ const generateDocuments = ({html, path, title}) => {
       documents.push({
         path,
         heading: title,
-        content: removeTags(item)
+        content: removeTags(item),
       });
     }
 
@@ -104,7 +110,9 @@ const generateDocuments = ({html, path, title}) => {
       documents.push({
         path: `/${path}#${slugger.slug(heading)}`,
         heading,
-        content: splitByHeadings[index + 1] ? removeTags(splitByHeadings[index + 1]) : ''
+        content: splitByHeadings[index + 1]
+          ? removeTags(splitByHeadings[index + 1])
+          : "",
       });
     }
   });
@@ -115,18 +123,25 @@ const generateDocuments = ({html, path, title}) => {
 const saveSearchDocuments = ({ documentPath, documents } = {}) => {
   const readOrCreate = () => {
     if (fs.existsSync(documentPath)) {
-      return JSON.parse(fs.readFileSync(documentPath, 'utf-8') || '[]');
+      return JSON.parse(fs.readFileSync(documentPath, "utf-8") || "[]");
     }
 
-    fs.writeFileSync(documentPath, '');
+    fs.writeFileSync(documentPath, "");
     return [];
-  }
+  };
 
   let contents = readOrCreate();
 
   contents = contents.concat(documents);
 
   fs.writeFileSync(documentPath, JSON.stringify(contents));
-}
+};
 
-module.exports = { formatSlug, parseHeadings, generateDocuments, saveSearchDocuments, deleteFile, trimWords };
+module.exports = {
+  formatSlug,
+  parseHeadings,
+  generateDocuments,
+  saveSearchDocuments,
+  deleteFile,
+  trimWords,
+};

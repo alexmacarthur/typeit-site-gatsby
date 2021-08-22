@@ -7,13 +7,13 @@ There are two forms of licenses available for TypeIt -- an open source license, 
 
 ## Open Source License
 
-An open source license exists as [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html), and permits you to use TypeIt in any open source or personal project. Along with many other details, the GPLv3 license requires that any publicly released code using TypeIt be licensed under the GPLv3 as well. 
+An open source license exists as [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html), and permits you to use TypeIt in any open source or personal project. Along with many other details, the GPLv3 license requires that any publicly released code using TypeIt be licensed under the GPLv3 as well.
 
 ## Limited Commercial License
 
 [View Full Limited Commercial License](/licenses/limited-commercial)
 
-A limited commercial license permits you to use TypeIt in any _single_ commercial product or application. It doesn't live under any of the requirements of the GPLv3, and also doesn't require you to license your code in any particular way. It's yours with which you can do what you want. 
+A limited commercial license permits you to use TypeIt in any _single_ commercial product or application. It doesn't live under any of the requirements of the GPLv3, and also doesn't require you to license your code in any particular way. It's yours with which you can do what you want.
 
 ## Unlimited Commercial License
 

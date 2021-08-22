@@ -12,17 +12,18 @@ TypeIt is the most versatile JavaScript tool for creating typewriter effects on 
 
 For more advanced typing effects, instance methods are available that can be chained to control your typing down to a single character, enabling you to create a dynamic, life-like narrative, with complete reign over speed changes, deletions, and even cursor position.
 
-## Documentation 
+## Documentation
 
-See the documentation menu for digging into a specific flavor of TypeIt: 
+See the documentation menu for digging into a specific flavor of TypeIt:
 
-* [Vanilla JavaScript](/docs/vanilla)
-* [WordPress](/docs/wordpress)
-* [React](/docs/react)
+- [Vanilla JavaScript](/docs/vanilla)
+- [WordPress](/docs/wordpress)
+- [React](/docs/react)
 
 ## Looking for v7's Documentation?
 
 [Find it here.](/docs/v7)
+
 ## Examples
 
 I have a few CodePen examples that illustrate how to do some interesting things with TypeIt.

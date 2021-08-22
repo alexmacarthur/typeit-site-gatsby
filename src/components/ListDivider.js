@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-export default ({className}) => {
-    return (
-        <div className={`${className}`}>       
-            <div className="list-divider mx-auto"></div>    
-        </div>
-    );
-}
+export default ({ className }) => {
+  return (
+    <div className={`${className}`}>
+      <div className="list-divider mx-auto"></div>
+    </div>
+  );
+};

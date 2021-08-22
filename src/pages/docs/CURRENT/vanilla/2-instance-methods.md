@@ -13,7 +13,7 @@ These methods must be used _before_ the `.go()` method is called on your instanc
 ```javascript
 // This will work!
 new TypeIt("#element", {
-  speed: 50
+  speed: 50,
 })
   .type("Helo!")
   .pause(500)
@@ -23,7 +23,7 @@ new TypeIt("#element", {
 
 // This will NOT work!
 const instance = new TypeIt("#element", {
-  speed: 50
+  speed: 50,
 })
   .type("Helo!")
   .go();
@@ -73,14 +73,20 @@ Alternatively, you can pass a CSS selector to determine how far a deletion will 
 
 ```javascript
 // Delete up until the <strong> element is deleted.
-instance.type('Jack and <strong class="name">Jill</strong> went up the hill').delete('.name').go();
+instance
+  .type('Jack and <strong class="name">Jill</strong> went up the hill')
+  .delete(".name")
+  .go();
 ```
 
 By default, passing a selector will delete until the "start" of the target element. To only delete up until the end of the target element, pass `END` in the `to` option.
 
 ```javascript
 // Delete up until right before the <strong> element.
-instance.type('Jack and <strong class="name">Jill</strong> went up the hill').delete('.name', {to: 'END'}).go();
+instance
+  .type('Jack and <strong class="name">Jill</strong> went up the hill')
+  .delete(".name", { to: "END" })
+  .go();
 ```
 
 ### .pause()
@@ -113,7 +119,7 @@ Insert a `<br>` tag.
 
 ```javascript
 // A <br> will be inserted.
-instance.type('A').break().type('B').go();
+instance.type("A").break().type("B").go();
 ```
 
 ### .options()
@@ -125,7 +131,7 @@ instance.options(options: Options, actionOptions?: ActionOptions);
 Update options on the fly. This will only impact options that are actively used during queue execution, which currently includes `speed`, `lifeLike`, and `html`.
 
 ```javascript
-instance.options({speed: 500, lifeLike: false}).go();
+instance.options({ speed: 500, lifeLike: false }).go();
 ```
 
 ### .empty()
@@ -163,21 +169,24 @@ Alternatively, you can pass a CSS selector to move the cursor to a particular ty
 
 ```javascript
 // Move the cursor to the beginning of the <strong> element.
-instance.type('Jack and <strong>Jill</strong> went up the hill').move(-5).go();
+instance.type("Jack and <strong>Jill</strong> went up the hill").move(-5).go();
 ```
 
 By default, passing a selector will move the cursor to the "start" of the target element. To move it to the end of the element, pass `END` in the `to` option.
 
 ```javascript
 // Move the cursor to the END of the <strong> element.
-instance.type('Jack and <strong>Jill</strong> went up the hill').move(-5, {to: 'END'}).go();
+instance
+  .type("Jack and <strong>Jill</strong> went up the hill")
+  .move(-5, { to: "END" })
+  .go();
 ```
 
 If `null` or no argument is passed, the cursor will be moved to the beginning of the element, unless changed with the `to` option.
 
 ```javascript
 // Move the cursor to the start of the element.
-instance.type('Hello.').move().go();
+instance.type("Hello.").move().go();
 ```
 
 ### .exec()
@@ -203,10 +212,10 @@ Instead of inserting `.pause()` after each action, you can set a `delay` after a
 ```javascript
 // This will work!
 new TypeIt("#element", {
-  speed: 50
+  speed: 50,
 })
-  .type("Hello!", {delay: 2000})
-  .delete(null, {delay: 1000})
+  .type("Hello!", { delay: 2000 })
+  .delete(null, { delay: 1000 })
   .type("Goodbye!")
   .go();
 ```
@@ -218,12 +227,12 @@ The `type()`, `delete()`, and `move()` methods accept an `instant` option that w
 ```javascript
 // This will work!
 new TypeIt("#element", {
-  speed: 50
+  speed: 50,
 })
-  .type("Hello!", {instant: true}) // Type instantly.
-  .delete(null, {instant: true}) // Delete everything instantly.
+  .type("Hello!", { instant: true }) // Type instantly.
+  .delete(null, { instant: true }) // Delete everything instantly.
   .type("Hi, again!")
-  .move(null, { instant: true}) // Move instantly to the beginning.
+  .move(null, { instant: true }) // Move instantly to the beginning.
   .go();
 ```
 
@@ -241,7 +250,7 @@ Use the `.destroy()` method to cancel all timeouts and destroy an instance. Runn
 
 ```javascript
 const instance = new TypeIt("#myElement", {
-  strings: "This will be destroyed."
+  strings: "This will be destroyed.",
 }).go();
 
 instance.destroy();
@@ -257,7 +266,7 @@ Use the `.reset()` method to reset an active instance to a brand new state.
 
 ```javascript
 const instance = new TypeIt("#myElement", {
-  strings: "Some strings and stuff."
+  strings: "Some strings and stuff.",
 }).go();
 
 instance.reset();
@@ -273,7 +282,7 @@ Use the `.freeze()` and `.unfreeze()` methods on a active instance to pause and 
 
 ```javascript
 new TypeIt("#myElement", {
-  strings: "After 500ms, pause for 3 seconds and resume."
+  strings: "After 500ms, pause for 3 seconds and resume.",
 }).go();
 
 setTimeout(() => {

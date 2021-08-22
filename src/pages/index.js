@@ -41,7 +41,9 @@ const IndexPage = ({ data }) => {
 
       <Slice
         heading="Every Option You Might Need"
-        description={"For a full description of each option, <a href='/docs#options'>see here.</a>"}
+        description={
+          "For a full description of each option, <a href='/docs#options'>see here.</a>"
+        }
         bgClasses="bg-gray-light"
         id="options"
         showTriangles={true}
@@ -51,10 +53,7 @@ const IndexPage = ({ data }) => {
         </div>
       </Slice>
 
-      <Slice
-        heading="Easy Setup &amp; Installation"
-        id="installation"
-      >
+      <Slice heading="Easy Setup &amp; Installation" id="installation">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
             {data.installationSteps.edges.map((step, index) => {
@@ -66,7 +65,9 @@ const IndexPage = ({ data }) => {
                     </div>
                   </div>
                   <div
-                    dangerouslySetInnerHTML={{ __html: template(step.node.html, { typeItVersion }) }}
+                    dangerouslySetInnerHTML={{
+                      __html: template(step.node.html, { typeItVersion }),
+                    }}
                   ></div>
                 </div>
               );
@@ -85,14 +86,9 @@ const IndexPage = ({ data }) => {
         <FlavorCards />
       </Slice>
 
-      <Slice
-        heading="Pricing"
-        id="pricing"
-        isLast={true}
-      >
+      <Slice heading="Pricing" id="pricing" isLast={true}>
         <PricingCards productData={productData} />
       </Slice>
-
     </MainLayout>
   );
 };

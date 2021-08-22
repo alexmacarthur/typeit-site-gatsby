@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
-import ogImage from '../images/open-graph.jpg';
+import ogImage from "../images/open-graph.jpg";
 
 function SEO({ description, lang, meta, keywords, title }) {
   const data = useStaticQuery(graphql`
@@ -25,7 +25,7 @@ function SEO({ description, lang, meta, keywords, title }) {
 
   const metaDescription = description || data.description;
 
-  const offers = data.licenseOptions.map(option => {
+  const offers = data.licenseOptions.map((option) => {
     return {
       "@type": "Offer",
       priceCurrency: "USD",
@@ -33,8 +33,8 @@ function SEO({ description, lang, meta, keywords, title }) {
       seller: {
         "@type": "Person",
         name: data.author.name,
-        sameAs: data.author.social
-      }
+        sameAs: data.author.social,
+      },
     };
   });
 
@@ -45,52 +45,52 @@ function SEO({ description, lang, meta, keywords, title }) {
   return (
     <Helmet
       htmlAttributes={{
-        lang
+        lang,
       }}
       title={formattedTitle}
       meta={[
         {
           name: `description`,
-          content: metaDescription
+          content: metaDescription,
         },
         {
           property: `og:title`,
-          content: formattedTitle
+          content: formattedTitle,
         },
         {
           property: `og:description`,
-          content: metaDescription
+          content: metaDescription,
         },
         {
           property: `og:type`,
-          content: `website`
+          content: `website`,
         },
         {
           name: `twitter:card`,
-          content: `summary`
+          content: `summary`,
         },
         {
           name: `twitter:creator`,
-          content: data.author.twitterHandle
+          content: data.author.twitterHandle,
         },
         {
           name: `twitter:title`,
-          content: formattedTitle
+          content: formattedTitle,
         },
         {
           name: `twitter:description`,
-          content: metaDescription
+          content: metaDescription,
         },
         {
           name: `og:image`,
-          content: `${data.publicUrl}${ogImage}`
-        }
+          content: `${data.publicUrl}${ogImage}`,
+        },
       ]
         .concat(
           keywords.length > 0
             ? {
                 name: `keywords`,
-                content: keywords.join(`, `)
+                content: keywords.join(`, `),
               }
             : []
         )
@@ -115,7 +115,7 @@ function SEO({ description, lang, meta, keywords, title }) {
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
-  keywords: []
+  keywords: [],
 };
 
 export default SEO;
