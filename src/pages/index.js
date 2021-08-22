@@ -42,7 +42,7 @@ const IndexPage = ({ data }) => {
       <Slice
         heading="Every Option You Might Need"
         description={
-          "For a full description of each option, <a href='/docs#options'>see here.</a>"
+          "For a full description of each option, <a href='/docs/vanilla/usage#configuration-options'>see here.</a>"
         }
         bgClasses="bg-gray-light"
         id="options"

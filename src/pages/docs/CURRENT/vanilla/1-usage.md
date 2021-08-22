@@ -54,7 +54,7 @@ myTypeItInstance.go();
 
 You can define strings to be typed in a variety of ways.
 
-### Configuration Options
+### Options
 
 You can define them in your options as a string **_or_** an array of strings.
 
