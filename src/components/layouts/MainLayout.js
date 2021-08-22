@@ -41,7 +41,7 @@ const MainLayout = ({ children }) => {
             © {new Date().getFullYear()} | designed & created by{" "}
             <a
               className="text-white font-bold"
-              href="https://macarthur.me/"
+              href="https://macarthur.me"
               target="_blank"
               rel="noopener noreferrer"
             >
