@@ -4,6 +4,11 @@ description: A description of what each new version of TypeIt carries with it.
 enable_sidebar: true
 ---
 
+## v8.0.1
+
+FIX: Callback methods were not passing correct arguments as seen in documentation.
+FIX: Callback methods were firing at the incorrect time.
+
 ## v8.0.0
 
 - BREAKING: Remove support for legacy browsers (primarily Internet Explorer).
