@@ -5,13 +5,15 @@ import { createClient } from "@supabase/supabase-js";
 import documents from "../search-documents.json";
 import { trimWords } from "../node-helpers";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_KEY
 );
 
 const headers = {
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": isProduction ? "https://typeitjs.com" : "*",
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
