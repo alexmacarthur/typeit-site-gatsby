@@ -1,11 +1,11 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 
-import SEO from "../components/seo";
-import PageLayout from "../components/layouts/PageLayout";
-import PricingCards from "../components/PricingCards";
+import SEO from "../../components/seo";
+import PageLayout from "../../components/layouts/PageLayout";
+import PricingCards from "../../components/PricingCards";
 
-export default props => {
+const Licenses = () => {
   const data = useStaticQuery(graphql`
     query ProductDataQuery {
       site {
@@ -25,7 +25,7 @@ export default props => {
     <PageLayout>
       <SEO title={"Purchase a License for TypeIt"} />
 
-      <div className="text-center mb-12">
+      <div className="text-center mb-12 container-top-padding">
         <h1>Purchase a License</h1>
 
         <p>
@@ -33,7 +33,7 @@ export default props => {
         </p>
       </div>
 
-      <div>
+      <div className="container-bottom-padding">
         <PricingCards
           productData={allProductData}
           isOnDarkBackground={false}
@@ -43,3 +43,5 @@ export default props => {
     </PageLayout>
   );
 };
+
+export default Licenses;

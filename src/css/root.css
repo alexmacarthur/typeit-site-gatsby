@@ -1,0 +1,226 @@
+@import "./tailwind-base";
+@import "./tailwind-components";
+@import "./tailwind-utilities";
+
+@import "./prism-overrides";
+@import "./typography";
+@import "./components/menuIcon";
+@import "./components/perkIcon";
+@import "./components/closeLink";
+@import "./components/siteNav";
+
+* {
+  transition: all 0.15s;
+}
+
+:root {
+  --ti-nav-height: 100px;
+}
+
+.highlight {
+  @apply relative pl-6 my-10;
+
+  p {
+    @apply font-semibold;
+  }
+
+  &:after {
+    @apply bg-purple-400 rounded-sm;
+    content: '';
+    display: block;
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.container-top-padding {
+  @apply pt-14 lg:pt-12;
+}
+
+.container-bottom-padding {
+  @apply pb-14;
+}
+
+.sidebar-container {
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-scrollbar:vertical {
+    width: theme("width.3");
+  }
+
+  &::-webkit-scrollbar:horizontal {
+    height: theme("width.3");
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+html,
+body,
+#___gatsby,
+#gatsby-focus-wrapper {
+  height: 100%;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+html {
+  font-size: 16px;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.tableWrapper {
+  margin-bottom: 1rem;
+
+  &--inner {
+    overflow: auto;
+  }
+}
+
+td {
+  min-width: 250px;
+}
+
+.gatsby-resp-image-wrapper {
+  margin-top: 1.25rem;
+}
+
+.max-container {
+  max-width: 1800px;
+}
+
+.medium-max-container {
+  max-width: 1000px;
+}
+
+@responsive {
+  .transform-up {
+    transform: translateY(-100%);
+  }
+
+  .transform-down {
+    transform: translateY(100%);
+  }
+
+  .translate-left {
+    transform: translateX(-100%);
+  }
+
+  .translate-half {
+    transform: translateX(-50%);
+  }
+
+  .translate-none {
+    transform: translate(0);
+  }
+}
+
+.button {
+  @apply rounded text-white text-center font-light font-medium py-3 px-5 cursor-pointer text-xl purple-gradient;
+  @apply ring-4 ring-purple-600;
+
+  &.slim {
+    @apply py-2 px-4;
+  }
+
+  &:hover:not(:disabled) {
+    @apply text-purple-600 bg-white;
+    background-image: none;
+
+    svg {
+      @apply text-white;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.naked {
+    @apply bg-none text-purple-600;
+
+    &:hover:not(:disabled) {
+      @apply bg-purple-600 text-white;
+    }
+  }
+}
+
+.link-button {
+  @apply font-medium text-purple-600;
+}
+
+input,
+select,
+textarea,
+.StripeElement {
+  @apply px-3 bg-white rounded text-xl rounded ring-4 ring-gray-100 focus:ring-gray-300;
+  min-height: 48px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  @apply border-gray-medium outline-none;
+}
+
+label {
+  @apply text-2xl block font-thin;
+}
+
+select {
+  height: 48px;
+}
+
+textarea {
+  @apply p-3;
+}
+
+.triangle-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -100%);
+  border-style: solid;
+  border-width: 0 100vw 2rem 0;
+  border-color: transparent transparent theme("colors.gray.light") transparent;
+
+  @screen md {
+    border-width: 0 100vw 3.5rem 0;
+  }
+}
+
+.triangle-bottom {
+  top: auto;
+  bottom: 0;
+  transform: translate(-50%, 100%) rotate(180deg);
+}
+
+.list-divider {
+  border: 0;
+  display: block;
+  width: 500px;
+  max-width: 100%;
+  height: 0.5rem;
+  background: theme("colors.gray.light");
+  transform: skew(45deg);
+}
+
+@layer utilities {
+  .purple-gradient {
+    background-image: linear-gradient(to bottom right, theme("colors.purple.500"), theme("colors.purple.600"));
+  }
+}

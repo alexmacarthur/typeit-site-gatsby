@@ -10,7 +10,7 @@ module.exports = [
     permissionDescription:
       "You are now eligible to use TypeIt for a single commercial project.",
     licenseLink:
-      "https://drive.google.com/file/d/14Zu-Vg8jq3fpNytud4P-A8m7qDcJfANP/view?usp=sharing"
+      "https://typeitjs.com/licenses/download/limited-commercial"
   },
   {
     slug: "unlimited",
@@ -23,6 +23,6 @@ module.exports = [
     permissionDescription:
       "You are now eligible to use TypeIt commercially for an unlimited number of projects.",
     licenseLink:
-      "https://drive.google.com/file/d/16GOFnT-PLcIh1StdQFewG6i99To9_sVn/view?usp=sharing"
+      "https://typeitjs.com/licenses/download/unlimited-commercial"
   }
 ];

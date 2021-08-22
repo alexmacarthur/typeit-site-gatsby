@@ -14,7 +14,7 @@ export default ({ render, setPageCoverContents }) => {
   return (
     <div
       className={`
-                    h-full 
+                    h-full
                     w-full
                     bg-white
                     left-0
@@ -23,7 +23,7 @@ export default ({ render, setPageCoverContents }) => {
                     z-50
                     flex
                     justify-center
-                    overflow-auto
+                    lg:overflow-auto
                     items-center
                 `}
     >

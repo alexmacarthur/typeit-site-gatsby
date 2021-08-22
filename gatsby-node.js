@@ -1,7 +1,8 @@
 const path = require("path");
 const cheerio = require('cheerio');
-const { parseHeadings } = require('./node-helpers');
-const redirects = require('./redirects');
+const { saveSearchDocuments, generateDocuments, deleteFile, formatSlug, parseHeadings } = require('./node-helpers');
+const processSidebarHeadings = require('./process-sidebar-headings');
+const searchDocumentFile = `${process.cwd()}/search-documents.json`;
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -10,8 +11,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     let fileNode = getNode(node.parent);
     let isPage = fileNode.absolutePath.includes('/pages/');
     let slug = "";
-    
-    if(isPage) {
+
+    if (isPage) {
       let parts = fileNode.absolutePath.split('/').reverse();
       let snippingIndex = parts.findIndex(p => p === 'pages');
       slug = parts
@@ -86,11 +87,17 @@ async function createProductPages(graphql, createPage) {
  * @param {object} graphql
  * @param {object} createPage
  */
-async function createMarkdownPages(graphql, createPage) {
+async function createMarkdownPages({
+  graphql,
+  createPage,
+  pattern,
+  simpleSidebarHeadings = false,
+  shouldMakeSearchable = true
+} = {}) {
   const pageMarkdownData = await graphql(`
     {
       allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "//pages/(.*).md$/" } }
+        filter: { fileAbsolutePath: { regex: "//pages/${pattern}.md$/" } }
         sort: { fields: [fileAbsolutePath] }
       ) {
         edges {
@@ -98,6 +105,9 @@ async function createMarkdownPages(graphql, createPage) {
             html
             id
             fileAbsolutePath
+            frontmatter {
+              title
+            }
             fields {
               slug
             }
@@ -111,10 +121,33 @@ async function createMarkdownPages(graphql, createPage) {
     }
   `);
 
-  pageMarkdownData.data.allMarkdownRemark.edges.forEach(page => {
+  const { edges } = pageMarkdownData.data.allMarkdownRemark;
+  let headings = [];
+
+  if (!simpleSidebarHeadings) {
+    headings = processSidebarHeadings(edges);
+  }
+
+  edges.forEach(edge => {
+    const formattedSlug = formatSlug(edge);
+
+    if (simpleSidebarHeadings) {
+      headings = parseHeadings(edge.node.headings, formattedSlug);
+    }
+
+    if (shouldMakeSearchable) {
+      saveSearchDocuments({
+        documentPath: searchDocumentFile,
+        documents: generateDocuments({
+          html: edge.node.html,
+          path: formattedSlug,
+          title: edge.node.frontmatter?.title || ""
+        })
+      });
+    }
 
     // Wrap each table with markup so we can implement horizontal scrolling.
-    const $ = cheerio.load(page.node.html);
+    const $ = cheerio.load(edge.node.html);
 
     $('table').each(function (i, elem) {
       let rawHTML = $.html(elem);
@@ -131,18 +164,18 @@ async function createMarkdownPages(graphql, createPage) {
         `;
         });
 
-        $(elem).replaceWith(formattedHTML);
+      $(elem).replaceWith(formattedHTML);
     });
 
     let html = $.html();
 
     createPage({
-      path: page.node.fields.slug,
+      path: formattedSlug,
       component: path.resolve("./src/templates/page.js"),
       context: {
-        slug: page.node.fields.slug, 
-        html, 
-        headings: parseHeadings(page.node.headings, page.node.fields.slug)
+        slug: edge.node.fields.slug, // MUST be the original, unformatted slug.
+        html,
+        headings
       }
     });
   });
@@ -154,10 +187,32 @@ async function createMarkdownPages(graphql, createPage) {
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage, createRedirect } = actions;
+  const { createPage } = actions;
 
-  redirects.forEach(redirect => createRedirect(redirect));
+  deleteFile(searchDocumentFile);
 
-  await createMarkdownPages(graphql, createPage);
+  // Old documentation pages.
+  await createMarkdownPages({
+    graphql,
+    createPage,
+    pattern: "docs/v([0-9]+)/(.*)",
+    shouldMakeSearchable: false
+  });
+
+  // Current documentation pages.
+  await createMarkdownPages({
+    graphql,
+    createPage,
+    pattern: "docs/CURRENT/(.*)"
+  });
+
+  // Every other page.
+  await createMarkdownPages({
+    graphql,
+    createPage,
+    simpleSidebarHeadings: true,
+    pattern: "((?!docs/).*)"
+  });
+
   await createProductPages(graphql, createPage);
 };

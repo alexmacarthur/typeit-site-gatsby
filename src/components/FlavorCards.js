@@ -9,14 +9,17 @@ export default () => {
     const flavors = [
         {
             name: "Vanilla JS", 
+            path: "vanilla",
             logo: JavaScriptLogo
         }, 
         {
             name: "WordPress", 
+            path: "wordpress",
             logo: WordPressLogo
         }, 
         {
             name: "React", 
+            path: "react",
             logo: ReactLogo
         }
     ];  
@@ -31,7 +34,7 @@ export default () => {
                             <div className="w-24 h-24 mx-auto mb-6">
                                 <flavor.logo style={{maxWidth: "100%"}}/>
                             </div>
-                            <Link to={`/docs/${flavor.name.toLowerCase()}`} className="text-gray text-base">
+                            <Link to={`/docs/${flavor.path}`} className="text-gray-medium text-base">
                                 View the Docs
                             </Link>
                         </li>

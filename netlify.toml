@@ -1,7 +1,31 @@
 [build]
   publish = "public"
   command = "npm run build"
-  functions = "lambda"
+  functions = "functions"
+  node_bundler = "esbuild"
 
-[context.production.environment]
-  NODE_VERSION = "v10.15.3"
+[build.environment]
+  NODE_VERSION = "v14.15.0"
+
+[[redirects]]
+  from = "/download/javascript"
+  to = "https://github.com/alexmacarthur/typeit/archive/master.zip"
+  status = 301
+
+[[redirects]]
+  from = "/download/react"
+  to = "https://github.com/alexmacarthur/typeit-react/archive/master.zip"
+  status = 301
+
+[[redirects]]
+  from = "/download/wordpress"
+  to = "https://wp-plugin-update.now.sh/zips/wp-typeit.zip"
+  status = 301
+
+[[redirects]]
+  from = "/licenses/download/limited-commercial"
+  to = "https://docs.google.com/document/d/1Vwa3vAUelzP6GqS0mzMSyvPqtAc7F-KI5qBDjNvxgHY/edit?usp=sharing"
+
+[[redirects]]
+  from = "/licenses/download/unlimited-commercial"
+  to = "https://docs.google.com/document/d/1hkusQ5JSoXj7KcJ6pTS5frN3PTehuYCjePgGrjKeknA/edit?usp=sharing"

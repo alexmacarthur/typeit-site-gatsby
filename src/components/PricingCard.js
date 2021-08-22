@@ -15,12 +15,12 @@ export default ({
       onDarkBackground={isOnDarkBackground}
       key={optionData.slug}
     >
-      <div className="bg-white py-10 h-full">
+      <div className="bg-white py-10 h-full flex flex-col">
         <div className={`${isLight ? "mb-6" : ""}`}>
           <h3
             className={`${
               isLight
-                ? "text-center pl-4 leading-none text-3xl self-center flex-grow"
+                ? "text-center leading-none text-3xl self-center flex-grow"
                 : ""
             }`}
             dangerouslySetInnerHTML={{ __html: optionData.htmlTitle }}
@@ -30,22 +30,24 @@ export default ({
           </h4>
         </div>
 
-        <p className="mt-4 mb-8 text-center text-gray-mediumLight">
+        <p className="mt-0 mb-12 text-center text-gray-mediumLight">
           {optionData.description}
         </p>
 
-        <Link
-          to={`/checkout/${optionData.slug}`}
-          className="button"
-          onClick={() => {
-            sendGaEvent("click", {
-              event_category: "purchase_cta_button",
-              event_label: optionData.slug
-            });
-          }}
-        >
-          Purchase License
-        </Link>
+        <div className="mt-auto">
+          <Link
+            to={`/checkout/${optionData.slug}`}
+            className="button"
+            onClick={() => {
+              sendGaEvent("click", {
+                event_category: "purchase_cta_button",
+                event_label: optionData.slug
+              });
+            }}
+          >
+            Purchase License
+          </Link>
+        </div>
       </div>
     </Card>
   );

@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
 import SiteNav from "../SiteNav";
 import PageCover from "../PageCover";
 import PageCoverContext from "../../PageCoverContext";
@@ -35,12 +34,12 @@ const MainLayout = ({ children }) => {
       <div className="relative h-full flex flex-col">
 
         <PageCoverContext.Provider value={{ setPageCoverContents, setCleanUp }}>
-          <main className="mt-16 md:mt-24 py-20">{children}</main>
+          <main style={{marginTop: 'var(--ti-nav-height)'}}>{children}</main>
         </PageCoverContext.Provider>
 
-        <footer className="bg-gray text-white text-center p-12">
+        <footer className="bg-gray-default text-white text-center p-8">
           <span className="text-white font-thin text-xl">
-            © {new Date().getFullYear()} | Designed & created by{" "}
+            © {new Date().getFullYear()} | designed & created by{" "}
             <a
               className="text-white font-bold"
               href="https://macarthur.me/"
@@ -54,10 +53,6 @@ const MainLayout = ({ children }) => {
       </div>
     </GlobalEventContextProvider>
   );
-};
-
-MainLayout.propTypes = {
-  children: PropTypes.node.isRequired
 };
 
 export default MainLayout;

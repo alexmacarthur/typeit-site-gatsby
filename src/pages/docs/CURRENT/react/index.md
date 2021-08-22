@@ -6,14 +6,6 @@ enable_sidebar: true
 ---
 
 The official React component for the most versatile JavaScript animated typing utility on the planet. You can use it to bring dynamic typewriter effects to your React applications.
-
-## License Options
-
-Use this component in an open source or personal project for free. For commercial projects, the following licenses are available. A single license will cover use of this component, as well as TypeItJS itself.
-
-- Single Commercial License - [Purchase Here](/checkout/limited)
-- Extended Commercial License - [Purchase Here](/checkout/unlimited)
-
 ## Installation
 
 `npm install typeit-react`
@@ -156,11 +148,3 @@ export default () => {
   );
 };
 ```
-
-## Need Help?
-
-If you're working with a custom implementation of TypeIt and would like some help, I'm available for hire. [Get in touch!](https://macarthur.me/contact)
-
-## License
-
-[GPL-2.0](https://github.com/alexmacarthur/typeit/blob/master/LICENSE) © Alex MacArthur

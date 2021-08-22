@@ -1,4 +1,8 @@
 module.exports = {
+  mode: 'jit',
+  purge: {
+    content: ['./src/**/*.{js,jsx,ts,tsx,md}']
+  },
   theme: {
     extend: {
       colors: {
@@ -14,10 +18,10 @@ module.exports = {
       boxShadow: {
         default: '0 0px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, .06)',
         outline: "0 0 0 3px rgb(244, 244, 244)"
-      }, 
+      },
       variants: {
         textColor: ["hover"],
-        padding: ["first", "last"], 
+        padding: ["first", "last"],
         margin: ["last"]
       }
     },

@@ -1,0 +1,53 @@
+.isSticky {
+  @apply shadow-md !important;
+  position: fixed !important;
+
+  .logo {
+    @apply text-3xl;
+  }
+
+  .menuIcon {
+    transform: scale(0.65);
+  }
+
+  @screen md {
+    .siteNavLink {
+      @apply text-xl;
+    }
+
+    .siteNavListItem {
+      @apply px-4;
+
+      .button {
+        @apply py-2;
+      }
+    }
+  }
+}
+
+.siteNavListItem {
+  @apply flex px-4;
+
+  @screen lg {
+    @apply items-center;
+  }
+
+  @screen xl {
+    @apply px-5
+  }
+
+  &:hover {
+    .siteSubNav {
+      display: block;
+    }
+  }
+}
+
+.siteNavLink {
+  @apply text-xl text-gray-mediumLight z-10 relative font-light;
+
+
+  @screen xl {
+    @apply items-center text-2xl;
+  }
+}

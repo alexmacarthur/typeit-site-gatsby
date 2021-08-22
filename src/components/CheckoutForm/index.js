@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
+import { Link } from "gatsby";
 import PAYMENT_STATES from "../../payment-states";
 import { sendGaEvent } from "../../utilities";
 
@@ -11,12 +12,12 @@ const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData, f
   // It starts as "invalid" because there's no value in it yet.
   const [elementIsComplete, setElementIsComplete] = useState(false);
   const [elementHasError, setElementHasError] = useState(false);
-  const [idempotencyKey] = useState(uuid()); 
+  const [idempotencyKey] = useState(uuid());
   const priceInDollars = productData.price / 100;
 
   useEffect(() => {
     fireWhenRendered();
-    
+
     // eslint-disable-next-line
   }, []);
 
@@ -135,16 +136,20 @@ const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData, f
           {!isProcessing && (
             <>
               <button
-                className="button mb-8"
+                className="button mb-4"
                 disabled={!elementIsComplete || elementHasError}
                 type="submit"
               >
                 Complete Purchase
               </button>
-              
+
+              <span className="text-base block mb-6 italic">
+                Payments processed with <Link target="_blank" to="https://stripe.com">Stripe.</Link>
+              </span>
+
               <p className="text-base">
                 <strong>Don't wanna pay with a card?</strong> Use my PayPal.me instead. Once I recieve payment, I'll email over license details and instructions on getting started. {" "}
-                
+
                 <button className="link-button" onClick={(e) => {
                   e.preventDefault();
 
@@ -158,7 +163,7 @@ const CheckoutForm = ({ stripe, setPaymentState, setErrorMessage, productData, f
                   setPaymentState(PAYMENT_STATES.PAYPAL);
                 }}>Pay via PayPal</button>
               </p>
-            </>            
+            </>
           )}
 
           {isProcessing && (

@@ -15,7 +15,7 @@ The following packages are available for usage with your license. Depending on y
 * CDN: https://www.jsdelivr.com/package/npm/typeit
 * npm: https://www.npmjs.com/package/typeit
 
-**Documentation:** https://typeitjs.com/docs
+**Documentation:** https://typeitjs.com/docs/vanilla
 
 ### WordPress Plugin
 

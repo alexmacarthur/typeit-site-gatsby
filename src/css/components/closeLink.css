@@ -1,0 +1,11 @@
+.closeLink {
+  &:hover {
+    span {
+      @apply text-purple-600;
+    }
+
+    path {
+      fill: theme("colors.purple.600");
+    }
+  }
+}

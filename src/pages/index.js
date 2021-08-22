@@ -13,7 +13,7 @@ import PricingCards from "../components/PricingCards";
 import Slice from "../components/Slice";
 import FlavorCards from "../components/FlavorCards";
 
-export default ({ data }) => {
+const IndexPage = ({ data }) => {
   let snippet = data.markdownRemark.html;
   let productData = data.allProductData.siteMetadata.licenseOptions;
   let { typeItVersion } = data.allProductData.siteMetadata;
@@ -39,8 +39,8 @@ export default ({ data }) => {
         <ExampleList examples={data.examples} />
       </Slice>
 
-      <Slice 
-        heading="Every Option You Might Need" 
+      <Slice
+        heading="Every Option You Might Need"
         description={"For a full description of each option, <a href='/docs#options'>see here.</a>"}
         bgClasses="bg-gray-light"
         id="options"
@@ -51,8 +51,8 @@ export default ({ data }) => {
         </div>
       </Slice>
 
-      <Slice 
-        heading="Easy Setup &amp; Installation" 
+      <Slice
+        heading="Easy Setup &amp; Installation"
         id="installation"
       >
         <div className="max-w-5xl mx-auto">
@@ -153,3 +153,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default IndexPage;

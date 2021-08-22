@@ -10,7 +10,7 @@ module.exports = {
   siteMetadata: {
     publicUrl: "https://typeitjs.com",
     title: `TypeIt`,
-    description: `The most versatile JavaScript animated typing utility on the planet.`,
+    description: `The most capable JavaScript animated typing utility on the planet.`,
     author: {
       name: "Alex MacArthur",
       twitterHandle: "@amacarthur",
@@ -20,6 +20,42 @@ module.exports = {
         "https://github.com/alexmacarthur"
       ]
     },
+    navItems: [
+      {
+        title: "Pricing",
+        path: "/#pricing"
+      },
+      {
+        title: "Installation",
+        path: "/#installation"
+      },
+      {
+        title: "Examples",
+        path: "/#examples"
+      },
+      {
+        title: "Flavors",
+        path: "/#flavors"
+      },
+      {
+        title: "Documentation",
+        path: "/docs",
+        nested: [
+          {
+            title: "Vanilla JavaScript",
+            path: "/docs"
+          },
+          {
+            title: "React Component",
+            path: "/docs/react"
+          },
+          {
+            title: "WordPress Plugin",
+            path: "/docs/wordpress"
+          }
+        ]
+      }
+    ],
     typeItVersion: packageLock.dependencies.typeit.version,
     perks: [
       {
@@ -50,7 +86,6 @@ module.exports = {
     }
   },
   plugins: [
-    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-gtag`,
       options: {
@@ -60,32 +95,17 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-plugin-preact`,
     {
-      resolve: `gatsby-plugin-sass`,
+      resolve: 'gatsby-plugin-webfonts',
       options: {
-        postCssPlugins: [require("tailwindcss")]
-      }
-    },
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Source Sans Pro`,
-            variants: [`300`, `400`, `600`, `700`]
-          },
-        ],
+        fonts: {
+          google: [
+            {
+              family: `Source Sans Pro`,
+              variants: [`300`, `400`, `600`, `700`]
+            },
+          ],
+        },
       },
-    },
-    {
-      resolve: `gatsby-plugin-purgecss`,
-      options: {
-        printRejected: true, // Print removed selectors and processed file names
-        develop: false, // Enable while using `gatsby develop`
-        tailwind: true, // Enable tailwindcss support
-        whitelist: ['StripeElement'], // Don't remove this selector
-        ignore: ["prismjs/", "/src/scss/root.scss"] // Ignore files/folders
-        // purgeOnly : ['components/', '/main.css', 'bootstrap/'], // Purge only these files/folders
-      }
     },
     {
       resolve: "gatsby-plugin-react-svg",
@@ -143,8 +163,8 @@ module.exports = {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
               offsetY: `50`,
-              removeAccents: true, 
-              icon: ``,
+              removeAccents: true,
+              icon: false,
             }
           },
           {
@@ -153,7 +173,8 @@ module.exports = {
               target: "_blank",
               rel: "noopener noreferrer"
             }
-          }
+          },
+          // `gatsby-plugin-markdown-search`
         ]
       }
     },

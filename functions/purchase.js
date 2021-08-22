@@ -6,23 +6,26 @@ const getLicenseData = require("./src/util/getLicenseData");
 const sendEmails = require("./src/util/sendEmails");
 const Sentry = require('@sentry/node');
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const statusCode = 200;
 const headers = {
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": isProduction ? "https://typeitjs.com" : "*",
   "Access-Control-Allow-Headers": "Content-Type"
 };
 
-Sentry.init({ 
+Sentry.init({
   dsn: process.env.SENTRY_DSN
 });
 
-exports.handler = async function(event) {
-  
+exports.handler = async function (event) {
   if (event.httpMethod !== "POST" || !event.body) {
     return {
       statusCode,
       headers,
-      body: ""
+      body: JSON.stringify({
+        message: "Not a valid request!"
+      })
     };
   }
 
@@ -50,7 +53,7 @@ exports.handler = async function(event) {
   } = licenseData;
 
   try {
-    customer = await stripe.customers.create(
+    const customer = await stripe.customers.create(
       {
         email: data.emailAddress,
         source: data.source.id,
@@ -64,11 +67,11 @@ exports.handler = async function(event) {
         currency: "usd",
         receipt_email: data.emailAddress,
         description: `TypeIt - ${simpleTitle}`,
-        statement_descriptor: "A. MacArthur - TypeIt", 
+        statement_descriptor: "A. MacArthur - TypeIt",
         customer: customer.id
       },
       {
-        idempotency_key: data.idempotencyKey
+        idempotencyKey: data.idempotencyKey
       }
     );
   } catch (e) {
@@ -84,7 +87,7 @@ exports.handler = async function(event) {
     };
   }
 
-  await sendEmails({data, licenseData, charge});
+  await sendEmails({ data, licenseData, charge });
 
   return {
     statusCode,

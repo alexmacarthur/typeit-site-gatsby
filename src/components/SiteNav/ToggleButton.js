@@ -11,10 +11,10 @@ export default ({toggleMenu, menuIsOpen}) => {
         >
             <ul
                 className={`
-                        menuIcon 
-                        ${menuIsOpen ? "is-open" : ""} 
-                        flex 
-                        flex-col 
+                        menuIcon
+                        ${menuIsOpen ? "is-open" : ""}
+                        flex
+                        flex-col
                         justify-between
                         `}
             >

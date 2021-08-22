@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 import ogImage from '../images/open-graph.jpg';
@@ -81,9 +80,9 @@ function SEO({ description, lang, meta, keywords, title }) {
         {
           name: `twitter:description`,
           content: metaDescription
-        }, 
+        },
         {
-          name: `og:image`, 
+          name: `og:image`,
           content: `${data.publicUrl}${ogImage}`
         }
       ]
@@ -117,14 +116,6 @@ SEO.defaultProps = {
   lang: `en`,
   meta: [],
   keywords: []
-};
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.array,
-  keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired
 };
 
 export default SEO;

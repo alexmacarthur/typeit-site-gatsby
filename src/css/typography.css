@@ -1,22 +1,21 @@
-
-p, 
-span, 
+p,
+span,
 li,
-td, 
+td,
 th,
 blockquote {
   @apply text-xl;
 }
 
 a,
-span, 
-li, 
-blockquote, 
+span,
+li,
+blockquote,
 p,
-td, 
+td,
 th,
 h1, h2, h3, h4, h5, h6 {
-  @apply text-gray font-light;
+  @apply text-gray-default font-light;
   line-height: 1.55;
 }
 
@@ -81,8 +80,12 @@ td, th {
 
 .contentArea {
 
+  h2, h3, h4 {
+    @apply mb-2 mt-6;
+  }
+
   h2 {
-    @apply inline-block text-4xl mt-4;
+    @apply inline-block text-4xl;
   }
 
   h3 {
@@ -90,7 +93,7 @@ td, th {
   }
 
   h4 {
-    @apply text-2xl;
+    @apply text-2xl font-semibold mt-12;
   }
 
   ol {
@@ -103,7 +106,7 @@ td, th {
     list-style: disc;
     padding-left: 1.65rem;
   }
-  
+
   a {
     @apply font-semibold;
   }

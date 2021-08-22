@@ -64,7 +64,7 @@ export default function({ data, instance, isLast, exampleSlug }) {
                 <label>
                   Name: {"  "}
                   <TypeIt 
-                    element={"input"} 
+                    as={"input"} 
                     type="text" 
                     options={instance.options}
                     getBeforeInit={(tiInstance) => {
@@ -94,13 +94,13 @@ export default function({ data, instance, isLast, exampleSlug }) {
               />
             )}
           </div>
-          <div>
+          <div className="flex items-center gap-6">
             <button onClick={resetInstance} className="button">
               Reset
             </button>
 
             {instance.allowFreeze && 
-              <button onClick={toggleFreeze} className="button ml-2">
+              <button onClick={toggleFreeze} className="button">
                 {isFrozen ? 'Unfreeze' : 'Freeze'}
               </button>
             }
