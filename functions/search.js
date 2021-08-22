@@ -27,15 +27,18 @@ const idx = lunr(function () {
 });
 
 exports.handler = async function (event) {
-  if (event.httpMethod !== "GET" || !event.body) {
+  const { query } = event.queryStringParameters;
+
+  if (event.httpMethod !== "GET" || !query) {
     return {
-      statusCode,
+      statusCode: 200,
       headers,
-      body: "",
+      body: JSON.stringify({
+        documents: [],
+        message: "Not a valid request!",
+      }),
     };
   }
-
-  const { query } = event.queryStringParameters;
 
   const results = idx
     .search(query)
