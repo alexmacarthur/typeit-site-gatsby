@@ -14,7 +14,6 @@ enable_sidebar: true
 - BREAKING: Remove support for legacy browsers (primarily Internet Explorer).
 - BREAKING: The `.move()` method no longer accepts 'START' or 'END' as the first paramter. Instead, it must be passed as an option in the second parameter. For example: `.move('.selector', {to: 'START'})`.
 - ENHANCEMENT: Switch from Rollup to Microbundle for bundling.
-- ENHANCEMENT: Reduce bundle size.
 - FEATURE: Add ability to make `.type()`, `.delete()`, and `.move()` methods execute instantly by passing an `{ instant: true }` option.
 - FEATURE: Allow `.move()` method to accept selectors for typed elements to which the cursor should move.
 - FEATURE: Allow `.delete()` method to accept selectors for typed elements to which text should be deleted.
