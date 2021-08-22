@@ -82,7 +82,7 @@ export default (addToTimeoutStore) => {
         "Callback methods are available for before and after each string or character is typed, as well as after the entire instance is finished.",
       options: {
         strings: ["Look, it's rainbow text!"],
-        afterStep: function (step, instance) {
+        afterStep: function (instance) {
           let letters = "0123456789ABCDEF";
           let color = "#";
           for (var i = 0; i < 6; i++) {

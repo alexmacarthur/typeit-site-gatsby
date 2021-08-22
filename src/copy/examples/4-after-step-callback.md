@@ -5,7 +5,7 @@
 ```javascript
 const instance = new TypeIt("#callback", {
   strings: ["Look, it's rainbow text!"],
-  afterStep: function (step, instance) {
+  afterStep: function (instance) {
     instance.getElement().style.color = getRandomColor();
   },
 }).go();
