@@ -1,9 +1,9 @@
 require("dotenv").config();
 
-import lunr from "lunr";
-import { createClient } from "@supabase/supabase-js";
-import documents from "../search-documents.json";
-import { trimWords } from "../node-helpers";
+const lunr = require("lunr");
+const { createClient } = require("@supabase/supabase-js");
+const documents = require("../search-documents.json");
+const { trimWords } = require("../node-helpers");
 
 const isProduction = process.env.NODE_ENV === "production";
 
