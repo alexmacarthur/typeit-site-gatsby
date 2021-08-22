@@ -10,10 +10,14 @@ export default function ({ snippet }) {
 
   return (
     <div className="relative max-w-3xl mx-auto pt-0 md:pt-20 px-3 z-10">
-      <style>{".hero-animation .place { font: inherit; }"}</style>
+      <style>
+        {
+          ".hero-animation .place { font: inherit; } .hero-animation:before { content: '.'; display: inline-block; width: 0; visibility: hidden;}"
+        }
+      </style>
       <TypeIt
         as={"h1"}
-        className="hero-animation text-center mb-20 text-4xl md:text-5xl font-light max-w-xl mx-auto"
+        className="hero-animation text-center mt-12 md:mt-0 mb-20 text-4xl md:text-5xl font-light max-w-xl mx-auto"
         aria-label="The most versatile animated typing utility on the planet."
         options={{
           speed: 50,
