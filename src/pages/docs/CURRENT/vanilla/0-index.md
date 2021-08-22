@@ -8,7 +8,7 @@ enable_sidebar: true
 
 **1\. Get the code through one of the following means:**
 
-- [CDN](https://www.jsdelivr.com/package/npm/typeit) - Include the source on your page.
+- [CDN](https://unpkg.com/typeit) - Include the source on your page.
 
   ```html
   <script src="https://unpkg.com/typeit@%typeItVersion%/dist/index.umd.js"></script>
