@@ -10,7 +10,7 @@ module.exports = {
   siteMetadata: {
     publicUrl: "https://typeitjs.com",
     title: `TypeIt`,
-    description: `The most capable JavaScript animated typing utility on the planet.`,
+    description: `The most versatile JavaScript animated typewriter utility on the planet.`,
     author: {
       name: "Alex MacArthur",
       twitterHandle: "@amacarthur",
