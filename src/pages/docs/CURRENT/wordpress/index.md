@@ -1,19 +1,18 @@
 ---
 title: TypeIt for WordPress
 subtitle: >-
-  The official WordPress plugin for the most versatile animated typing utility
-  on the planet.
+  The official WordPress plugin for the most versatile JavaScript typewriter effect library on the planet.
 description: >-
   The official WordPress plugin for TypeIt, the most versatile JavaScript
   animated typing utility on the planet.
 enable_sidebar: true
 ---
 
-This is the documentation is for TypeIt's official WordPress plugin. Install the plugin and easily generate typing animations via shortcode or Gutenberg block.
+This is the documentation is for TypeIt's official WordPress plugin. Install the plugin and easily generate typewriter animations via shortcode or Gutenberg block.
 
 ### Requirements
 
-The following are required to run this plugin. In addition, keep in mind [TypeIt's browser requirements](https://typeitjs.com/docs#browser-support).
+The following are required to run this plugin. In addition, keep in mind that TypeIt does not support legacy browsers like Internet Explorer. 
 
 - WordPress v5.4.1
 - PHP v7.2

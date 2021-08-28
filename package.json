@@ -2,7 +2,7 @@
   "name": "typeit-site-gatsby",
   "version": "0.0.1",
   "private": true,
-  "description": "Official site for the most versatile JavaScript animated typing utility on the planet.",
+  "description": "Official site for the most versatile JavaScript typewriter effect library on the planet.",
   "keywords": [
     "typewriter",
     "text effect",

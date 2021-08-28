@@ -1,11 +1,11 @@
 ---
 title: TypeIt for React
 description: >-
-  The official React component for TypeIt, the most versatile JavaScript animated typing utility on the planet.
+  The official React component for TypeIt, the most versatile JavaScript typewriter effect library on the planet.
 enable_sidebar: true
 ---
 
-The official React component for the most versatile JavaScript animated typing utility on the planet. You can use it to bring dynamic typewriter effects to your React applications.
+The official React component for the most versatile JavaScript typewriter effect library on the planet. You can use it to bring dynamic typewriter effects to your React applications.
 
 ## Installation
 

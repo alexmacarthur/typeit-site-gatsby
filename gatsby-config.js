@@ -10,7 +10,7 @@ module.exports = {
   siteMetadata: {
     publicUrl: "https://typeitjs.com",
     title: `TypeIt`,
-    description: `The most versatile JavaScript animated typewriter utility on the planet.`,
+    description: `The most versatile JavaScript typewriter effect library on the planet.`,
     author: {
       name: "Alex MacArthur",
       twitterHandle: "@amacarthur",
@@ -170,7 +170,6 @@ module.exports = {
               rel: "noopener noreferrer",
             },
           },
-          // `gatsby-plugin-markdown-search`
         ],
       },
     },
