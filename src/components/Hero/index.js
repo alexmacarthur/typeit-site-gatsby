@@ -21,7 +21,7 @@ export default function ({ snippet }) {
         aria-label="The most versatile animated typing utility on the planet."
         options={{
           speed: 50,
-          startDelay: 900,
+          startDelay: 600,
         }}
         getBeforeInit={(instance) => {
           return instance
@@ -51,7 +51,7 @@ export default function ({ snippet }) {
         }}
       />
       <div
-        className={`transition-all duration-500 delay-300 ${
+        className={`transition-all duration-500 delay-200 ${
           isDone ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
         }`}
         dangerouslySetInnerHTML={{ __html: snippet }}
