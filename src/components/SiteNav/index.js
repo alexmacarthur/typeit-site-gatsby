@@ -222,9 +222,12 @@ export default ({ pixelAnchorRef }) => {
                   to="/licenses/purchase"
                   className="button slim self-center"
                   onClick={() => {
-                    sendGaEvent("click", {
-                      event_category: "purchase_cta_button",
-                      event_label: "main nav",
+                    sendGaEvent({
+                      action: "click",
+                      payload: {
+                        event_category: "purchase_cta_button",
+                        event_label: "main nav",
+                      },
                     });
                   }}
                 >

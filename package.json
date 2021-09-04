@@ -21,7 +21,7 @@
     "serve": "gatsby serve",
     "functions": "netlify functions:serve",
     "test": "echo \"No tests yet!\"",
-    "prettier": "prettier --write \"**/*.{md,js}\"",
+    "prettier": "prettier --write \"**/*.{js,ts}\"",
     "prepare": "husky install"
   },
   "lint-staged": {
@@ -34,6 +34,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
+    "@netlify/functions": "^0.7.2",
     "@sentry/node": "^6.11.0",
     "@supabase/supabase-js": "^1.22.2",
     "autoprefixer": "^10.3.2",
@@ -78,14 +79,12 @@
     "react-github-btn": "^1.2.1",
     "react-helmet": "^6.1.0",
     "react-intersection-observer": "^8.32.0",
-    "react-stripe-elements": "^6.1.2",
     "sass": "^1.38.0",
     "showdown": "^1.9.1",
     "stripe": "^8.170.0",
     "tailwindcss": "^2.2.7",
     "typeit": "^8.0.2",
     "typeit-react": "^2.0.2",
-    "uuid": "^8.3.2",
     "webpack": "^5.51.1"
   }
 }

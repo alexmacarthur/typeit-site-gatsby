@@ -4,6 +4,11 @@
   functions = "functions"
   node_bundler = "esbuild"
 
+[[headers]]
+  for = "/confirmation/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
 [build.environment]
   NODE_VERSION = "v14.15.0"
 

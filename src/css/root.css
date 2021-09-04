@@ -26,7 +26,7 @@
 
   &:after {
     @apply bg-purple-400 rounded-sm;
-    content: '';
+    content: "";
     display: block;
     width: 5px;
     height: 100%;
@@ -163,8 +163,7 @@ td {
 
 input,
 select,
-textarea,
-.StripeElement {
+textarea {
   @apply px-3 bg-white rounded text-xl rounded ring-4 ring-gray-100 focus:ring-gray-300;
   min-height: 48px;
 }
@@ -221,6 +220,10 @@ textarea {
 
 @layer utilities {
   .purple-gradient {
-    background-image: linear-gradient(to bottom right, theme("colors.purple.500"), theme("colors.purple.600"));
+    background-image: linear-gradient(
+      to bottom right,
+      theme("colors.purple.500"),
+      theme("colors.purple.600")
+    );
   }
 }

@@ -127,9 +127,12 @@ export default function () {
             className="button"
             type="submit"
             onClick={() => {
-              sendGaEvent("submit", {
-                event_category: "demo_form",
-                event_label: values.strings,
+              sendGaEvent({
+                action: "submit",
+                payload: {
+                  event_category: "demo_form",
+                  event_label: values.strings,
+                },
               });
             }}
           >

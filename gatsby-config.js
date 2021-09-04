@@ -85,7 +85,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-gtag`,
       options: {
-        trackingId: `UA-69226290-1`,
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
       },
     },
     `gatsby-plugin-postcss`,

@@ -1,11 +1,11 @@
-module.exports = `
-# Thanks for purchasing a TypeIt <%= simpleTitle %>! 
+export default `
+# Thanks for purchasing a TypeIt <%= simpleTitle %>!
 
 <%= permissionDescription %>
 
 <h2 style="border-bottom: 2px solid black;">Getting Started</h2>
 
-The following packages are available for usage with your license. Depending on your needs, refer to the following source code links and documentation to get started. 
+The following packages are available for usage with your license. Depending on your needs, refer to the following source code links and documentation to get started.
 
 ### Vanilla JavaScript
 
@@ -37,6 +37,6 @@ The following packages are available for usage with your license. Depending on y
 
 <h2 style="border-bottom: 2px solid black;">License Information</h2>
 
-To view a copy of your license, see here: 
+To view a copy of your license, see here:
 <%= licenseLink %>
 `;

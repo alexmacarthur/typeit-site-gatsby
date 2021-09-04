@@ -45,7 +45,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
  * @param {object} graphql
  * @param {object} createPage
  */
-async function createProductPages(graphql, createPage) {
+async function createConfirmationPages(graphql, createPage) {
   const rawProductData = await graphql(
     `
       {
@@ -56,7 +56,9 @@ async function createProductPages(graphql, createPage) {
               simpleTitle
               description
               price
+              friendlySlug
               slug
+              usageScope
             }
           }
         }
@@ -65,20 +67,13 @@ async function createProductPages(graphql, createPage) {
   );
 
   const allProductData = rawProductData.data.site.siteMetadata.licenseOptions;
-  const objectifiedProductData = {};
-
-  allProductData.forEach((product) => {
-    objectifiedProductData[product.slug] = product;
-  });
 
   allProductData.forEach((thisProductData) => {
     createPage({
-      path: `/checkout/${thisProductData.slug}`,
-      component: path.resolve("./src/templates/product.js"),
+      path: `/confirmation/${thisProductData.friendlySlug}`,
+      component: path.resolve("./src/templates/confirmation.js"),
       context: {
-        thisProductData,
-        allProductData, // probably don't need to pass this anymore.
-        objectifiedProductData, // or this.
+        productData: thisProductData,
       },
     });
   });
@@ -217,5 +212,5 @@ exports.createPages = async ({ graphql, actions }) => {
     pattern: "((?!docs/).*)",
   });
 
-  await createProductPages(graphql, createPage);
+  await createConfirmationPages(graphql, createPage);
 };

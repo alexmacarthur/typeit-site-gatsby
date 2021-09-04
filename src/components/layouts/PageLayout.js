@@ -9,7 +9,7 @@ export default ({
   title = "",
 }) => {
   return (
-    <PageHeadingContext.Provider value={{ headigs: headings.headings, title }}>
+    <PageHeadingContext.Provider value={{ headings: headings.headings, title }}>
       <MainLayout>
         <div
           className={`${
