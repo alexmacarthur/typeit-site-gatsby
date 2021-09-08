@@ -11,6 +11,7 @@
 
 [build.environment]
   NODE_VERSION = "v14.15.0"
+  NPM_VERSION = "v7.22.0"
 
 [[redirects]]
   from = "/download/javascript"
