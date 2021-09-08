@@ -6,6 +6,6 @@
 
 exports.onRenderBody = ({ setBodyAttributes }, _pluginOptions) => {
   setBodyAttributes({
-    "data-branch": process.env.BRANCH,
+    "data-branch": process.env.GATSBY_BRANCH,
   });
 };

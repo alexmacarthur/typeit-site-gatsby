@@ -6,6 +6,8 @@ require("dotenv").config({
   path: `.env`,
 });
 
+process.env["GATSBY_BRANCH"] = process.env.BRANCH;
+
 module.exports = {
   siteMetadata: {
     publicUrl: "https://typeitjs.com",
