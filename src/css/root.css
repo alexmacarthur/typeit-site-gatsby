@@ -37,7 +37,7 @@
 }
 
 .container-top-padding {
-  @apply pt-14 lg:pt-12;
+  @apply pt-14 lg:pt-10;
 }
 
 .container-bottom-padding {
@@ -83,7 +83,7 @@ html {
 .tableWrapper {
   margin-bottom: 1rem;
 
-  &--inner {
+  &-inner {
     overflow: auto;
   }
 }

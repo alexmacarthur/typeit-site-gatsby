@@ -4,7 +4,7 @@ li,
 td,
 th,
 blockquote {
-  @apply text-xl;
+  @apply text-lg;
 }
 
 a,
@@ -14,12 +14,22 @@ blockquote,
 p,
 td,
 th,
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   @apply text-gray-default font-light;
   line-height: 1.55;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   @apply mb-6;
   line-height: 1.35;
 
@@ -33,7 +43,7 @@ p {
 }
 
 h1 {
-  @apply text-4xl;
+  @apply text-4xl mb-4;
 
   @screen lg {
     @apply text-5xl;
@@ -74,22 +84,24 @@ th {
   text-align: left;
 }
 
-td, th {
+td,
+th {
   @apply border-solid border-4 border-gray-light p-4;
 }
 
 .contentArea {
-
-  h2, h3, h4 {
+  h2,
+  h3,
+  h4 {
     @apply mb-2 mt-6;
   }
 
   h2 {
-    @apply inline-block text-4xl;
+    @apply inline-block text-3xl;
   }
 
   h3 {
-    @apply text-3xl;
+    @apply text-2xl;
   }
 
   h4 {

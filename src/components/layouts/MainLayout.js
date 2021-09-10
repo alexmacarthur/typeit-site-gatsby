@@ -36,7 +36,7 @@ const MainLayout = ({ children }) => {
           <main style={{ marginTop: "var(--ti-nav-height)" }}>{children}</main>
         </PageCoverContext.Provider>
 
-        <footer className="bg-gray-default text-white text-center p-8">
+        <footer className="relative bg-gray-default text-white text-center p-8">
           <span className="text-white font-thin text-xl">
             © {new Date().getFullYear()} | designed & created by{" "}
             <a

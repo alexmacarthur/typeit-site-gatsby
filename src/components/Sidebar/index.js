@@ -119,7 +119,7 @@ export default forwardRef(
             top: "var(--ti-nav-height)",
             height: "calc(100vh - var(--ti-nav-height))",
           }}
-          className="overflow-auto pt-14 lg:pt-12 pb-8 sidebar-container"
+          className="overflow-auto pt-14 lg:pt-12 sidebar-container"
           ref={sidebarRef}
         >
           <button

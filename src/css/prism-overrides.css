@@ -1,32 +1,37 @@
-code[class*="language-"], pre[class*="language-"] {
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+code[class*="language-"],
+pre[class*="language-"] {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace !important;
 }
 
 .language-text {
-    @apply inline-block relative text-base text-gray-default bg-gray-light rounded-none text-gray-medium !important;
-    text-shadow: none !important;
-    padding: 5px 4px 0px 4px !important;
-    transform: translateY(-2px);
-    display: inline-block !important;
+  @apply inline-block relative text-base text-gray-default bg-gray-light rounded-none text-gray-medium !important;
+  text-shadow: none !important;
+  padding: 5px 4px 0px 4px !important;
+  transform: translateY(-2px);
+  display: inline-block !important;
+}
+
+.contentArea {
+  .language-text {
+    padding-top: 0 !important;
+    font-size: 0.85em !important;
+  }
 }
 
 .language-javascript {
-    color: white;
+  color: white;
 }
 
 .gatsby-highlight {
-    overflow: auto;
-    @apply mt-6 mb-6;
+  overflow: auto;
+  @apply mt-6 mb-6;
 
-    &, & * {
-        @apply text-base !important;
-
-        @screen lg {
-            @apply text-lg !important;
-        }
-    }
+  &,
+  & * {
+    @apply text-base !important;
+  }
 }
 
 .parameter {
-    color: white;
+  color: white;
 }
