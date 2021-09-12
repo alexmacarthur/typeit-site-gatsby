@@ -65,13 +65,13 @@
     "lint-staged": "^11.1.2",
     "lodash.groupby": "^4.6.0",
     "lunr": "^2.3.9",
-    "netlify-cli": "^6.8.8",
+    "netlify-cli": "^6.8.12",
     "nodemailer": "^6.6.3",
     "postcss": "^8.3.6",
     "postcss-import": "^14.0.2",
     "preact": "^10.5.14",
     "preact-render-to-string": "^5.1.19",
-    "prettier": "^2.3.2",
+    "prettier": "^2.4.0",
     "prismjs": "^1.24.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -79,12 +79,12 @@
     "react-github-btn": "^1.2.1",
     "react-helmet": "^6.1.0",
     "react-intersection-observer": "^8.32.1",
-    "sass": "^1.39.0",
+    "sass": "^1.39.2",
     "showdown": "^1.9.1",
     "stripe": "^8.174.0",
-    "tailwindcss": "^2.2.11",
-    "typeit": "^8.0.2",
-    "typeit-react": "^2.0.2",
-    "webpack": "^5.52.0"
+    "tailwindcss": "^2.2.15",
+    "typeit": "^8.0.3",
+    "typeit-react": "^2.0.3",
+    "webpack": "^5.52.1"
   }
 }
