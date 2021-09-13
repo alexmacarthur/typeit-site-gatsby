@@ -169,7 +169,7 @@ Alternatively, you can pass a CSS selector to move the cursor to a particular ty
 
 ```javascript
 // Move the cursor to the beginning of the <strong> element.
-instance.type("Jack and <strong>Jill</strong> went up the hill").move(-5).go();
+instance.type("Jack and <strong class='a-class'>Jill</strong> went up the hill").move('.a-class').go();
 ```
 
 By default, passing a selector will move the cursor to the "start" of the target element. To move it to the end of the element, pass `END` in the `to` option.
@@ -178,7 +178,7 @@ By default, passing a selector will move the cursor to the "start" of the target
 // Move the cursor to the END of the <strong> element.
 instance
   .type("Jack and <strong>Jill</strong> went up the hill")
-  .move(-5, { to: "END" })
+  .move('.a-class', { to: "END" })
   .go();
 ```
 
