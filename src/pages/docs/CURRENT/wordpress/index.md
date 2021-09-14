@@ -12,7 +12,7 @@ This is the documentation is for TypeIt's official WordPress plugin. Install the
 
 ### Requirements
 
-The following are required to run this plugin. In addition, keep in mind that TypeIt does not support legacy browsers like Internet Explorer. 
+The following are required to run this plugin. In addition, keep in mind that TypeIt does not support legacy browsers like Internet Explorer.
 
 - WordPress v5.4.1
 - PHP v7.2
@@ -50,11 +50,21 @@ Or to make it continuously loop, use `loop`.
 
 #### Specifying a Container Element
 
-By default, a `<span>` tag will be used to house the animation, but you set your own by passing an `element` attribute:
+By default, a `<span>` tag will be used to house the animation, but you can set your own by passing an `element` attribute:
 
 ```
 [typeit strings="This will be in an H1." element="h1"]
 ```
+
+#### Creating Fine-Tuned Animations via Shortcode
+
+If, for whatever reason, you're in need of maximum control of an animation via shortcode, you can leverage the `queue` attribute. Using this, you can pass a customized queue of actions using [core TypeIt instance methods](https://typeitjs.com/docs/vanilla/instance-methods). To use this feature, inject a string of instance method calls like below:
+
+```
+[typeit speed="50" queue="type('This will be typed!').pause(1000).type('...and now it will go away.').pause(1000).delete()"]
+```
+
+This chain of methods is injected directly into the generated instance. As a result, make sure it neither starts nor ends with any special characters (like `;` or `.`).
 
 #### Alternate Way to Define Strings
 
@@ -111,3 +121,15 @@ To update the plugin, navigate to the plugins page in the WP admin and check if 
 
 - Introduce Gutenberg block.
 - Add support for the `element` attribute in a shortcode.
+
+### 2.0.1
+
+- Improve styling for improved usability.
+- Add missing shortcode option for `waitUntilVisible`.
+
+### 3.0.0
+
+- Update core TypeIt library to v8+.
+- Fix bug causing inaccurate plugin update alerts.
+- Clean up styling.
+- Add `queue` shortcode option for customizing animations using full TypeIt API.
