@@ -133,3 +133,8 @@ To update the plugin, navigate to the plugins page in the WP admin and check if 
 - Fix bug causing inaccurate plugin update alerts.
 - Clean up styling.
 - Add `queue` shortcode option for customizing animations using full TypeIt API.
+
+### 3.0.1
+
+- Update dependencies.
+- Simplify plugin update logic.
