@@ -37,7 +37,7 @@
 }
 
 .container-top-padding {
-  @apply pt-14 lg:pt-10;
+  @apply pt-12 lg:pt-8;
 }
 
 .container-bottom-padding {

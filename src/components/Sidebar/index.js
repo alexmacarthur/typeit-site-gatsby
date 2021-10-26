@@ -8,8 +8,8 @@ import React, {
 } from "react";
 import { getPathWithHash, scrollTo, headingIsActive } from "./util";
 
-const topLevelClasses = `font-semibold border-b-2 border-gray pt-8 mb-4`;
-const nonTopLevelClasses = `font-medium hover:text-gray-medium pl-2 rounded-md`;
+const topLevelClasses = `font-normal border-b-2 border-gray pt-8 mb-4`;
+const nonTopLevelClasses = `font-light hover:text-gray-medium pl-2 rounded-md`;
 
 export default forwardRef(
   (

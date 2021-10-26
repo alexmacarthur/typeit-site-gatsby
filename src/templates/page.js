@@ -81,7 +81,7 @@ const PageTemplate = (props) => {
         <div
           className={`lg:grid gap-6`}
           style={{
-            gridTemplateColumns: `${shouldShowSidebar ? "22rem 1fr" : "1fr"}`,
+            gridTemplateColumns: `${shouldShowSidebar ? "20rem 1fr" : "1fr"}`,
           }}
         >
           {shouldShowSidebar && (

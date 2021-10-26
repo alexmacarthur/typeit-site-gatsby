@@ -6,13 +6,11 @@ description: >-
 enable_sidebar: true
 ---
 
-## Overview
-
 TypeIt is the most versatile JavaScript tool for creating typewriter effects on the planet. With a straightforward configuration, it allows you to type single or multiple strings that break lines, delete & replace each other, and it even handles strings that contain complex HTML.
 
 For more advanced typing effects, instance methods are available that can be chained to control your typing down to a single character, enabling you to create a dynamic, life-like narrative, with complete reign over speed changes, deletions, and even cursor position.
 
-## Documentation
+## Quick Links
 
 See the documentation menu for digging into a specific flavor of TypeIt:
 

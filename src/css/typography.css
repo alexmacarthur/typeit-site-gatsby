@@ -44,10 +44,6 @@ p {
 
 h1 {
   @apply text-4xl mb-4;
-
-  @screen lg {
-    @apply text-5xl;
-  }
 }
 
 h2 {
@@ -97,7 +93,7 @@ th {
   }
 
   h2 {
-    @apply inline-block text-3xl;
+    @apply inline-block text-2xl;
   }
 
   h3 {

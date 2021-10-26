@@ -40,7 +40,7 @@ const MainLayout = ({ children }) => {
           <span className="text-white font-thin text-xl">
             © {new Date().getFullYear()} | designed & created by{" "}
             <a
-              className="text-white font-bold"
+              className="text-white font-semibold"
               href="https://macarthur.me"
               target="_blank"
               rel="noopener noreferrer"
