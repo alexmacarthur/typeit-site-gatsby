@@ -84,8 +84,8 @@
     "showdown": "^1.9.1",
     "stripe": "^8.184.0",
     "tailwindcss": "^2.2.17",
-    "typeit": "^8.0.6",
-    "typeit-react": "^2.0.6",
+    "typeit": "^8.0.7",
+    "typeit-react": "^2.0.7",
     "webpack": "^5.59.1"
   }
 }
