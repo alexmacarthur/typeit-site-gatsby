@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import TypeIt from "typeit-react";
 import defaultOptions from "./defaultOptions";
 import PageCoverContext from "../../PageCoverContext";
-import { sendGaEvent } from "../../utilities";
+import { sendEvent } from "../../utilities";
 
 export default function () {
   const { setPageCoverContents } = useContext(PageCoverContext);
@@ -127,12 +127,9 @@ export default function () {
             className="button"
             type="submit"
             onClick={() => {
-              sendGaEvent({
-                action: "submit",
-                payload: {
-                  event_category: "demo_form",
-                  event_label: values.strings,
-                },
+              sendEvent("Submit", {
+                form_name: "demo_form",
+                form_values: values.strings,
               });
             }}
           >

@@ -4,8 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-const { sendGaEvent } = require("./src/utilities");
-
 require("prismjs/themes/prism-okaidia.css");
 require("./src/css/root.css");
 
@@ -39,21 +37,4 @@ exports.shouldUpdateScroll = ({
 
 exports.onRouteUpdate = () => {
   document.body.classList.remove("overflow-hidden");
-
-  const trackingId = window.GATSBY_GTAG_PLUGIN_GA_TRACKING_ID;
-
-  if (trackingId) {
-    sendGaEvent({
-      event: "set",
-      action: {
-        custom_map: { dimension1: "branch" },
-      },
-    });
-
-    sendGaEvent({
-      event: "config",
-      action: trackingId,
-      payload: { branch: process.env.BRANCH },
-    });
-  }
 };

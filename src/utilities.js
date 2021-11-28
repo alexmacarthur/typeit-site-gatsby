@@ -4,17 +4,17 @@ export function svgWrap(WrappedComponent) {
   return <WrappedComponent />;
 }
 
-export function sendGaEvent({
-  event = "event",
-  action = undefined,
-  payload = undefined,
-}) {
-  if (!window.gtag) {
-    console.log(`GA event: ${event}`);
-    console.log(`GA action: ${action}`);
-    console.log(payload);
-    return;
+export function sendEvent(eventName, eventProps) {
+  eventProps.branch_name = process.env.BRANCH || "local";
+
+  if (!window.plausible || process.env.NODE_ENV === "development") {
+    return console.log({
+      event_name: eventName,
+      event_data: eventProps,
+    });
   }
 
-  window.gtag(event, action, payload);
+  plausible(eventName, {
+    props: eventProps,
+  });
 }

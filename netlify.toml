@@ -35,3 +35,13 @@
 [[redirects]]
   from = "/licenses/download/unlimited-commercial"
   to = "https://docs.google.com/document/d/1hkusQ5JSoXj7KcJ6pTS5frN3PTehuYCjePgGrjKeknA/edit?usp=sharing"
+
+[[redirects]]
+  from = "/js/numbers.js"
+  to = "https://analytics.macarthur.me/js/plausible.js"
+  status = 200
+
+[[redirects]]
+  from = "/api/event"
+  to = "https://analytics.macarthur.me/api/event"
+  status = 202
