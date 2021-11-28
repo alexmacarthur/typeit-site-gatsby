@@ -5,7 +5,7 @@ export function svgWrap(WrappedComponent) {
 }
 
 export function sendEvent(eventName, eventProps) {
-  eventProps.branch_name = process.env.BRANCH || "local";
+  eventProps.branch_name = process.env.GATSBY_BRANCH || "local";
 
   if (!window.plausible || process.env.NODE_ENV === "development") {
     return console.log({
