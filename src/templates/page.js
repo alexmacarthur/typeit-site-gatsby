@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { graphql, Link } from "gatsby";
-import template from "../helpers/template";
 import PageLayout from "../components/layouts/PageLayout";
 import Sidebar from "../components/Sidebar";
 import SEO from "../components/seo";
@@ -68,8 +67,6 @@ const PageTemplate = (props) => {
 
   const shouldShowSidebar = headings.length > 0 && enable_sidebar;
 
-  const { typeItVersion } = props.data.site.siteMetadata;
-
   return (
     <PageLayout
       isFullWidth={shouldShowSidebar}
@@ -123,7 +120,7 @@ const PageTemplate = (props) => {
               <div
                 className="contentArea"
                 dangerouslySetInnerHTML={{
-                  __html: template(html, { typeItVersion }),
+                  __html: html,
                 }}
               />
             </div>
@@ -136,11 +133,6 @@ const PageTemplate = (props) => {
 
 export const pageQuery = graphql`
   query PageContent($slug: String!) {
-    site {
-      siteMetadata {
-        typeItVersion
-      }
-    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html

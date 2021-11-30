@@ -11,7 +11,7 @@ enable_sidebar: true
 - [CDN](https://unpkg.com/typeit) - Include the source on your page.
 
   ```html
-  <script src="https://unpkg.com/typeit@%typeItVersion%/dist/index.umd.js"></script>
+  <script src="https://unpkg.com/typeit@@{TYPEIT_VERSION}/dist/index.umd.js"></script>
   ```
 
 - [npm / yarn](https://www.npmjs.com/package/typeit) - Install with `npm install typeit` or `yarn add typeit`.
@@ -33,7 +33,7 @@ import TypeIt from "typeit";
 Whatever the case, just be sure you load and instantiate TypeIt _after_ the script and your target element are loaded on the page. This can usually be accomplished by loading & running the script at the bottom of your page. But if you can't you can use the `DOMContentLoaded` event to execute it anywhere on the page. Example:
 
 ```html
-<script src="<https://unpkg.com/typeit@%typeItVersion%/dist/index.umd.js>"></script>
+<script src="<https://unpkg.com/typeit@@{TYPEIT_VERSION}/dist/index.umd.js>"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -66,7 +66,7 @@ If you're looking for a super simple template for how TypeIt would ideally be lo
     <span id="myElement"></span>
 
     <!-- The script itself, loaded AFTER your root element. -->
-    <script src="<https://unpkg.com/typeit@%typeItVersion%/dist/index.umd.js>"></script>
+    <script src="<https://unpkg.com/typeit@@{TYPEIT_VERSION}/dist/index.umd.js>"></script>
     <script>
       new TypeIt("#myElement", {
         strings: "This is what will be typed!",

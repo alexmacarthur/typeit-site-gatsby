@@ -1,8 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import template from "../helpers/template";
-
 import MainLayout from "../components/layouts/MainLayout";
 import SEO from "../components/seo";
 import Hero from "../components/Hero";
@@ -16,7 +14,6 @@ import FlavorCards from "../components/FlavorCards";
 const IndexPage = ({ data }) => {
   let snippet = data.markdownRemark.html;
   let productData = data.allProductData.siteMetadata.licenseOptions;
-  let { typeItVersion } = data.allProductData.siteMetadata;
   let { homeSlices } = data.allProductData.siteMetadata;
 
   return (
@@ -66,7 +63,7 @@ const IndexPage = ({ data }) => {
                   </div>
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: template(step.node.html, { typeItVersion }),
+                      __html: step.node.html,
                     }}
                   ></div>
                 </div>
@@ -101,7 +98,6 @@ const IndexPage = ({ data }) => {
 export const query = graphql`
   fragment allProductData on Site {
     siteMetadata {
-      typeItVersion
       homeSlices {
         pricing {
           description

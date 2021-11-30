@@ -85,6 +85,7 @@
     "tailwindcss": "^2.2.19",
     "typeit": "^8.0.7",
     "typeit-react": "^2.0.7",
+    "unist-util-map": "^2.0.1",
     "webpack": "^5.64.4"
   }
 }

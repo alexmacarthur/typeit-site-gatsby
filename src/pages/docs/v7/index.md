@@ -28,7 +28,7 @@ Using TypeIt for an open source or personal project is completely free. To use i
 - [CDN](https://www.jsdelivr.com/package/npm/typeit) - Include the source on your page. Be sure to specify a version number.
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typeit@@{TYPEIT_VERSION}/dist/typeit.min.js"></script>
   ```
 
 - [npm / yarn](https://www.npmjs.com/package/typeit) - Install with `npm install typeit` or `yarn add typeit`.
@@ -71,7 +71,7 @@ If you're looking for a super simple template for how TypeIt should be loaded on
     <span id="myElement"></span>
 
     <!-- The script itself, loaded AFTER your root element. -->
-    <script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typeit@@{TYPEIT_VERSION}/dist/typeit.min.js"></script>
     <script>
       new TypeIt("#myElement", {
         strings: "This is what will be typed!",
@@ -392,7 +392,7 @@ In that textarea, paste the following code that will load the TypeIt source scri
 Note: If you don't want to load the script on every page, you could also paste this snippet below the element you created in the first step.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typeit@@{TYPEIT_VERSION}/dist/typeit.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     new TypeIt("#element", {
@@ -421,7 +421,7 @@ What you paste into that box must look something like this:
 ```html
 <span id="myElement"></span>
 
-<script src="https://cdn.jsdelivr.net/npm/typeit@%typeItVersion%/dist/typeit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typeit@@{TYPEIT_VERSION}/dist/typeit.min.js"></script>
 <script>
   new TypeIt("#myElement", {
     strings: "This is what will be typed!",

@@ -12,7 +12,6 @@ function SEO({ description, lang, meta, keywords, title }) {
           publicUrl
           title
           description
-          typeItVersion
           author {
             name
             twitterHandle

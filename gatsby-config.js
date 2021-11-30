@@ -1,6 +1,5 @@
 const path = require("path");
 const licenseOptions = require("./licenseOptions");
-const packageLock = require("./package-lock.json");
 
 require("dotenv").config({
   path: `.env`,
@@ -54,7 +53,6 @@ module.exports = {
         ],
       },
     ],
-    typeItVersion: packageLock.dependencies.typeit.version,
     perks: [
       {
         text: "~4kb gzipped",
@@ -166,6 +164,7 @@ module.exports = {
               rel: "noopener noreferrer",
             },
           },
+          require.resolve(`./plugins/gatsby-remark-process-variables`),
         ],
       },
     },
