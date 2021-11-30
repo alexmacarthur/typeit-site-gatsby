@@ -166,6 +166,9 @@ module.exports = {
               rel: "noopener noreferrer",
             },
           },
+          require.resolve(
+            `./plugins/gatsby-remark-variable-embedder/index.mjs`
+          ),
         ],
       },
     },
