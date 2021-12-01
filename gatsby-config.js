@@ -7,9 +7,12 @@ require("dotenv").config({
 
 process.env["GATSBY_BRANCH"] = process.env.BRANCH;
 
+const url = "https://typeitjs.com";
+
 module.exports = {
   siteMetadata: {
-    publicUrl: "https://typeitjs.com",
+    siteUrl: url,
+    publicUrl: url,
     title: `TypeIt`,
     description: `The most versatile JavaScript typewriter effect library on the planet.`,
     author: {
@@ -187,6 +190,12 @@ module.exports = {
           "@variables": path.resolve(__dirname, "src/css/variables"),
         },
         extensions: [".js"],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-sitemap",
+      options: {
+        excludes: ["/confirmation/*"],
       },
     },
   ],
