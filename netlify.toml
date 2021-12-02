@@ -45,3 +45,8 @@
   from = "/api/event"
   to = "https://analytics.macarthur.me/api/event"
   status = 202
+  
+[[redirects]]
+  from = "/checkout/*"
+  to = "/licenses/purchase"
+  status = 301
