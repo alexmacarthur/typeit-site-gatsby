@@ -151,7 +151,6 @@ module.exports = {
               linkImagesToOriginal: false,
             },
           },
-          `gatsby-remark-prismjs`,
           {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
@@ -168,6 +167,7 @@ module.exports = {
             },
           },
           require.resolve(`./plugins/gatsby-remark-process-variables`),
+          `gatsby-remark-prismjs`,
         ],
       },
     },

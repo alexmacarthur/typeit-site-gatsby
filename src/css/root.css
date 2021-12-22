@@ -104,7 +104,7 @@ td {
   max-width: 1000px;
 }
 
-@responsive {
+@layer components {
   .transform-up {
     transform: translateY(-100%);
   }

@@ -132,7 +132,7 @@ export default ({ pixelAnchorRef }) => {
             fixed
             lg:relative
             top-0
-            left-0
+            left-[0]
             h-full
             w-full
             bg-white
