@@ -1,19 +1,15 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
+import Bolt from "../icons/Bolt";
+import Happy from "../icons/Happy";
+import Flexible from "../icons/Flexible";
+import Clipboard from "../icons/Clipboard";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFeather,
-  faLaugh,
-  faHandSpock,
-  faMapSigns,
-} from "@fortawesome/free-solid-svg-icons";
-
-const componentMap = {
-  Feather: <FontAwesomeIcon className="perkIcon" icon={faFeather} />,
-  Laugh: <FontAwesomeIcon className="perkIcon" icon={faLaugh} />,
-  Spock: <FontAwesomeIcon className="perkIcon" icon={faHandSpock} />,
-  Signs: <FontAwesomeIcon className="perkIcon" icon={faMapSigns} />,
+const iconComponents = {
+  Bolt,
+  Happy,
+  Flexible,
+  Clipboard,
 };
 
 export default function () {
@@ -33,13 +29,15 @@ export default function () {
   return (
     <ul className="flex flex-wrap justify-center -mr-6 -mt-6">
       {perksData.site.siteMetadata.perks.map((perk) => {
+        const Icon = iconComponents[perk.component];
+
         return (
           <li
             key={perk.component}
             className="mb-6 pr-6 flex flex-col w-1/2 md:w-auto"
           >
-            <i className="text-2xl md:text-5xl">
-              {componentMap[perk.component]}
+            <i className="text-2xl md:text-5xl flex justify-center items-center text-gray-mediumLight mb-3">
+              <Icon className="h-12 w-12" />
             </i>
             <span className="ml-2 text-gray-mediumLight text-lg md:text-xl">
               {perk.text}

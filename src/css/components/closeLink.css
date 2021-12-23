@@ -1,11 +1,8 @@
 .closeLink {
   &:hover {
-    span {
+    span,
+    svg {
       @apply text-purple-600;
-    }
-
-    path {
-      fill: theme("colors.purple.600");
     }
   }
 }

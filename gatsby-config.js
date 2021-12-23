@@ -59,19 +59,19 @@ module.exports = {
     perks: [
       {
         text: "~4kb gzipped",
-        component: "Feather",
+        component: "Bolt",
       },
       {
         text: "no dependencies",
-        component: "Laugh",
+        component: "Happy",
       },
       {
         text: "super flexible API",
-        component: "Spock",
+        component: "Flexible",
       },
       {
         text: "SEO-friendly",
-        component: "Signs",
+        component: "Clipboard",
       },
     ],
     licenseOptions,
@@ -85,6 +85,12 @@ module.exports = {
     },
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
+      options: {
+        devMode: process.env.NODE_ENV === "development",
+      },
+    },
     `gatsby-plugin-postcss`,
     `gatsby-plugin-preact`,
     {

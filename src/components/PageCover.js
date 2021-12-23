@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import Times from "./icons/Times";
 
 export default ({ render, setPageCoverContents }) => {
   useEffect(() => {
@@ -34,9 +33,8 @@ export default ({ render, setPageCoverContents }) => {
             onClick={() => setPageCoverContents("")}
             className="flex items-center closeLink mt-4"
           >
-            <FontAwesomeIcon icon={faTimes} />
-
-            <span className="text-base ml-2">Close</span>
+            <Times />
+            <span className="text-base ml-1">Close</span>
           </button>
         </div>
       </div>
