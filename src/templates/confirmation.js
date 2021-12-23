@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PageLayout from "../components/layouts/PageLayout";
-import { sendEvent } from "../utilities";
+import { sendGaEvent } from "../utilities";
 
 const ConfirmationTemplate = (props) => {
   const { productData } = props.pageContext;
@@ -37,10 +37,22 @@ const ConfirmationTemplate = (props) => {
 
       const priceInDollars = productData.price / 100;
 
-      sendEvent("Purchase", {
-        transaction_id: paymentId,
-        total: priceInDollars,
-        product_slug: productData.slug,
+      sendGaEvent({
+        action: "purchase",
+        payload: {
+          transaction_id: paymentId,
+          value: priceInDollars,
+          currency: "USD",
+          items: [
+            {
+              id: productData.slug,
+              name: productData.simpleTitle,
+              category: "javascript_license",
+              quantity: 1,
+              price: priceInDollars,
+            },
+          ],
+        },
       });
 
       window.localStorage.setItem(

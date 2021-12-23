@@ -88,6 +88,12 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-plugin-preact`,
     {
+      resolve: `gatsby-plugin-gtag`,
+      options: {
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+      },
+    },
+    {
       resolve: "gatsby-plugin-webfonts",
       options: {
         fonts: {

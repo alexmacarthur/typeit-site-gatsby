@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import PageHeadingContext from "../../PageHeadingContext";
 import ToggleButton from "./ToggleButton";
+import { sendGaEvent } from "../../utilities";
 import toggleOverflow from "../../helpers/toggleOverflow";
 import Search from "../Search";
 import GitHubButton from "react-github-btn";
@@ -132,7 +133,7 @@ export default ({ pixelAnchorRef }) => {
             fixed
             lg:relative
             top-0
-            left-[0]
+            left-0
             h-full
             w-full
             bg-white
@@ -220,6 +221,15 @@ export default ({ pixelAnchorRef }) => {
                 <SelfClosingLink
                   to="/licenses/purchase"
                   className="button slim self-center"
+                  onClick={() => {
+                    sendGaEvent({
+                      action: "click",
+                      payload: {
+                        event_category: "purchase_cta_button",
+                        event_label: "main nav",
+                      },
+                    });
+                  }}
                 >
                   Purchase a License
                 </SelfClosingLink>
