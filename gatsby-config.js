@@ -85,12 +85,6 @@ module.exports = {
     },
   },
   plugins: [
-    {
-      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
-      options: {
-        devMode: process.env.NODE_ENV === "development",
-      },
-    },
     `gatsby-plugin-postcss`,
     `gatsby-plugin-preact`,
     {
