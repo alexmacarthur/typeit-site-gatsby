@@ -12,7 +12,7 @@ const Up = () => {
       viewBox="0 0 531.74 460.5"
       overflow="visible"
       enableBackground="new 0 0 531.74 460.5"
-      className="stroke-current text-gray-200"
+      className="stroke-current text-gray-100"
     >
       <polygon
         strokeWidth="40px"
@@ -116,8 +116,8 @@ export default ({ pixelAnchorRef }) => {
         style={{ height: "var(--ti-nav-height)" }}
         className={`h-24 flex items-center absolute justify-between px-5 py-3 pb-4 z-20 top-0 w-full bg-white`}
       >
-        <span className="flex-initial text-5xl font-thin logo">
-          <SelfClosingLink to="/" className="font-thin text-gray-default">
+        <span className="flex-initial text-5xl font-extralight logo">
+          <SelfClosingLink to="/" className="font-extralight text-gray-700">
             TypeIt
           </SelfClosingLink>
         </span>
@@ -151,7 +151,7 @@ export default ({ pixelAnchorRef }) => {
                   <li
                     key={link.path}
                     ref={navItemRef}
-                    className={`siteNavListItem flex px-5 flex-col lg:flex-row ld:items-center font-light mb-5 lg:mb-0 relative`}
+                    className={`siteNavListItem flex px-5 flex-col lg:flex-row ld:items-center font-extralight mb-5 lg:mb-0 relative`}
                   >
                     <SelfClosingLink to={link.path} className="siteNavLink">
                       {link.title}
@@ -161,7 +161,7 @@ export default ({ pixelAnchorRef }) => {
                       <div
                         className={`relative lg:absolute top-[99%] left-[50%] transform -translate-x-1/2 pt-4`}
                       >
-                        <div className="siteSubNav bg-white rounded-sm lg:border-4 border-gray-200 w-max lg:hidden">
+                        <div className="siteSubNav bg-white rounded-sm lg:border-4 border-gray-100 w-max lg:hidden">
                           <div className="relative">
                             <i className="hidden lg:block absolute block w-10 h-10 left-[50%] top-[-1rem] transform -translate-x-1/2">
                               <Up />
@@ -172,7 +172,7 @@ export default ({ pixelAnchorRef }) => {
                                   <li key={l.path} className="text-center">
                                     <SelfClosingLink
                                       to={l.path}
-                                      className="text-xl text-gray-mediumLight hover:text-gray"
+                                      className="text-xl text-gray-700 hover:text-gray"
                                     >
                                       <span className="lg:hidden inline-block mr-2">
                                         &mdash;
@@ -230,14 +230,14 @@ export default ({ pixelAnchorRef }) => {
               <ul className="self-start lg:hidden">
                 {hasPageHeadings && (
                   <li className="px-5 mb-5 mt-10 text-center">
-                    <h4 className="font-thin text-3xl">{pageTitle}</h4>
+                    <h4 className="font-extralight text-3xl">{pageTitle}</h4>
                   </li>
                 )}
                 {pageHeadings.map((heading) => {
                   return (
                     <li
                       key={heading.hash}
-                      className="px-5 font-light justify-center mb-5 lg:mb-0 text-center"
+                      className="px-5 font-extralight justify-center mb-5 lg:mb-0 text-center"
                     >
                       <SelfClosingLink
                         to={heading.hash}
@@ -253,7 +253,7 @@ export default ({ pixelAnchorRef }) => {
                               <li className="py-1">
                                 <SelfClosingLink
                                   to={subHeading.hash}
-                                  className="text-xl text-gray-mediumLight hover:text-gray"
+                                  className="text-xl text-gray-700 hover:text-gray"
                                 >
                                   {subHeading.value}
                                 </SelfClosingLink>

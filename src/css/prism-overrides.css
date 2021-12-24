@@ -4,7 +4,7 @@ pre[class*="language-"] {
 }
 
 .language-text {
-  @apply inline-block relative text-base text-gray-default bg-gray-light rounded-none text-gray-medium !important;
+  @apply inline-block relative text-base text-gray-700 bg-gray-100 rounded-none text-gray-700 !important;
   text-shadow: none !important;
   padding: 5px 4px 0px 4px !important;
   transform: translateY(-2px);

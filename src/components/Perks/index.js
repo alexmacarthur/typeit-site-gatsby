@@ -36,10 +36,10 @@ export default function () {
             key={perk.component}
             className="mb-6 pr-6 flex flex-col w-1/2 md:w-auto"
           >
-            <i className="text-2xl md:text-5xl flex justify-center items-center text-gray-mediumLight mb-3">
+            <i className="text-2xl md:text-5xl flex justify-center items-center text-gray-700 mb-3">
               <Icon className="h-12 w-12" />
             </i>
-            <span className="ml-2 text-gray-mediumLight text-lg md:text-xl">
+            <span className="ml-2 text-gray-700 text-lg md:text-xl">
               {perk.text}
             </span>
           </li>

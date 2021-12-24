@@ -5,7 +5,7 @@
 
 .menuIcon {
   li {
-    @apply bg-gray-default h-2;
+    @apply bg-gray-700 h-2;
     display: block;
     width: 100%;
   }

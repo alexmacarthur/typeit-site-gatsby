@@ -93,8 +93,8 @@ module.exports = {
         fonts: {
           google: [
             {
-              family: `Source Sans Pro`,
-              variants: [`300`, `400`, `600`, `700`],
+              family: `Heebo`,
+              variants: [`100`, `200`, `300`, `500`],
             },
           ],
         },

@@ -4,7 +4,7 @@ li,
 td,
 th,
 blockquote {
-  @apply text-lg;
+  @apply text-xl;
 }
 
 a,
@@ -20,7 +20,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply text-gray-default font-light;
+  @apply text-gray-700 font-light;
   line-height: 1.55;
 }
 
@@ -47,7 +47,7 @@ h1 {
 }
 
 h2 {
-  @apply text-4xl font-thin;
+  @apply text-4xl font-extralight;
 
   @screen lg {
     @apply text-5xl;
@@ -55,11 +55,11 @@ h2 {
 }
 
 h3 {
-  @apply text-4xl font-thin;
+  @apply text-4xl font-extralight;
 }
 
 h4 {
-  @apply text-3xl font-light;
+  @apply text-3xl font-extralight;
 }
 
 h5 {
@@ -82,7 +82,7 @@ th {
 
 td,
 th {
-  @apply border-solid border-4 border-gray-light p-4;
+  @apply border-solid border-4 border-gray-100 p-4;
 }
 
 .contentArea {

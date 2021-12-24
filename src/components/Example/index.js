@@ -49,16 +49,16 @@ export default function ({ data, instance, isLast, exampleSlug }) {
     setisFrozen(!isFrozen);
   };
 
-  const elementFontStyles = "text-xl md:text-2xl text-gray-medium font-light";
+  const elementFontStyles = "text-xl md:text-2xl text-gray-700 font-extralight";
 
   return (
     <div className="max-container mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
         <div className="">
-          <h3 className="font-light mb-3">{instance.title}</h3>
+          <h3 className="font-extralight mb-3">{instance.title}</h3>
           <p>{instance.description}</p>
 
-          <div className="my-6 md:my-12 bg-gray-light p-8">
+          <div className="my-6 md:my-12 bg-gray-100 p-8">
             {instance.element === "input" && (
               <>
                 <label>

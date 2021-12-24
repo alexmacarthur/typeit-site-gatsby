@@ -9,7 +9,7 @@ const ToggleButton = ({ toggleMenu, menuIsOpen }) => {
   return (
     <button
       onClick={toggleMenu}
-      className={`-mt-12 mb-8 sticky border-t-4 border-b-4 border-gray-light items-center flex justify-between lg:hidden bg-white text-gray-medium px-8 py-2 h-16 ml-auto z-10 ${
+      className={`-mt-12 mb-8 sticky border-t-4 border-b-4 border-gray-100 items-center flex justify-between lg:hidden bg-white text-gray-700 px-8 py-2 h-16 ml-auto z-10 ${
         menuIsOpen ? "opacity-0" : "opacity-100"
       }`}
       aria-label={"open docs menu"}
@@ -108,7 +108,7 @@ const PageTemplate = (props) => {
                   version of TypeIt. For the latest,{" "}
                   <Link
                     to="/docs"
-                    className="text-gray-default font-semibold hover:text-gray-medium"
+                    className="text-gray-700 font-semibold hover:text-gray-700"
                   >
                     go here.
                   </Link>

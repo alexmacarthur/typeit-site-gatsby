@@ -22,7 +22,7 @@ const IndexPage = ({ data }) => {
 
       <Hero snippet={snippet} />
 
-      <div className="relative text-center bg-gray-light p-8 pt-64 -mt-56 pb-16">
+      <div className="relative text-center bg-gray-100 p-8 pt-64 -mt-56 pb-16">
         <div className="triangle-top"></div>
 
         <h3 className="mb-16 mt-8 text-2xl md:text-3xl">
@@ -41,7 +41,7 @@ const IndexPage = ({ data }) => {
         description={
           "For a full description of each option, <a href='/docs/vanilla/usage#configuration-options'>see here.</a>"
         }
-        bgClasses="bg-gray-light"
+        bgClasses="bg-gray-100"
         id="options"
         showTriangles={true}
       >
@@ -56,10 +56,10 @@ const IndexPage = ({ data }) => {
             {data.installationSteps.edges.map((step, index) => {
               return (
                 <div key={step.node.id}>
-                  <div className="block text-center mb-2 md:mb-4">
-                    <div>
-                      <span className="self-center text-5xl">#{index + 1}</span>
-                    </div>
+                  <div className="block text-center">
+                    <span className="self-center text-5xl font-normal">
+                      #{index + 1}
+                    </span>
                   </div>
                   <div
                     dangerouslySetInnerHTML={{
@@ -75,7 +75,7 @@ const IndexPage = ({ data }) => {
 
       <Slice
         heading="Available in Multiple Flavors"
-        bgClasses="bg-gray-light"
+        bgClasses="bg-gray-100"
         id="flavors"
         showTriangles={true}
         description={homeSlices.flavors.description}

@@ -76,7 +76,7 @@ main {
 
 html {
   font-size: 16px;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Heebo", sans-serif;
 }
 
 .tableWrapper {
@@ -126,7 +126,7 @@ td {
 }
 
 .button {
-  @apply rounded text-white text-center font-light font-medium py-3 px-5 cursor-pointer text-xl purple-gradient;
+  @apply rounded text-white text-center font-light py-3 px-5 cursor-pointer text-xl purple-gradient;
   @apply ring-4 ring-purple-600;
 
   &.slim {
@@ -163,18 +163,18 @@ td {
 input,
 select,
 textarea {
-  @apply px-3 bg-white rounded text-xl rounded ring-4 ring-gray-100 focus:ring-gray-300;
+  @apply px-3 bg-white rounded text-xl rounded ring-4 ring-gray-100 focus:ring-gray-300 font-light;
   min-height: 48px;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  @apply border-gray-medium outline-none;
+  @apply border-gray-100 outline-none;
 }
 
 label {
-  @apply text-2xl block font-thin;
+  @apply text-2xl block font-extralight;
 }
 
 select {

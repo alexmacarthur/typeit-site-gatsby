@@ -52,7 +52,7 @@
 }
 
 .siteNavLink {
-  @apply text-xl text-gray-mediumLight z-10 relative font-light;
+  @apply text-xl text-gray-700 z-10 relative font-extralight;
 
   @screen xl {
     @apply items-center text-2xl;

@@ -35,7 +35,7 @@ export default () => {
               </div>
               <Link
                 to={`/docs/${flavor.path}`}
-                className="text-gray-medium text-base"
+                className="text-gray-700 text-base"
               >
                 View the Docs
               </Link>

@@ -69,7 +69,7 @@ const ConfirmationTemplate = (props) => {
 
         {confirmationNumber && (
           <div className="flex flex-col md:flex-row md:gap-4 items-baseline -mt-4 mb-8">
-            <small className="text-gray-mediumLight block text-base">
+            <small className="text-gray-700 block text-base">
               Confirmation Number:
             </small>
             <span className="text-base break-all">{confirmationNumber}</span>

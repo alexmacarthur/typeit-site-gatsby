@@ -1,12 +1,6 @@
-import { Link } from "gatsby";
 import React from "react";
 import centsToDollars from "../helpers/centsToDollars";
 import Card from "./Card";
-
-const purchaseLinks = {
-  limited: process.env.GATSBY_STRIPE_LIMITED_LICENSE_LINK,
-  unlimited: process.env.GATSBY_STRIPE_UNLIMITED_LICENSE_LINK,
-};
 
 export default ({
   isLight = false,
@@ -26,7 +20,7 @@ export default ({
             className={`${
               isLight
                 ? "text-center leading-none text-3xl self-center flex-grow"
-                : ""
+                : "leading-snug"
             }`}
             dangerouslySetInnerHTML={{ __html: htmlTitle }}
           ></h3>
@@ -35,15 +29,9 @@ export default ({
           </h4>
         </div>
 
-        <p className="mt-0 mb-12 text-center text-gray-mediumLight">
-          {description}
-        </p>
+        <p className="mt-0 mb-12 text-center text-gray-700">{description}</p>
 
         <div className="mt-auto">
-          {/* <Link to={purchaseLinks[slug]} target="_blank">
-            Purchase
-          </Link> */}
-
           <form action={process.env.GATSBY_STRIPE_CHECKOUT_URL} method="POST">
             <input type="hidden" name="slug" value={slug} />
             <button type="submit" class="button">

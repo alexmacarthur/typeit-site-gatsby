@@ -9,7 +9,7 @@ import React, {
 import { getPathWithHash, scrollTo, headingIsActive } from "./util";
 
 const topLevelClasses = `font-normal border-b-2 border-gray pt-8 mb-4`;
-const nonTopLevelClasses = `font-light hover:text-gray-medium pl-2 rounded-md`;
+const nonTopLevelClasses = `font-extralight hover:text-gray-700 pl-2 rounded-md`;
 
 export default forwardRef(
   (
@@ -64,8 +64,8 @@ export default forwardRef(
                   <a
                     onClick={(e) => scrollTo(e, setPath, toggleMenu)}
                     href={subHeading.path}
-                    className={`block text-lg text-gray-mediumLight py-1 font-light ${nonTopLevelClasses} ${
-                      isActive ? "bg-gray-light" : ""
+                    className={`block text-lg text-gray-700 py-1 font-extralight ${nonTopLevelClasses} ${
+                      isActive ? "bg-gray-100" : ""
                     }`}
                   >
                     {subHeading.value}
@@ -89,14 +89,14 @@ export default forwardRef(
       <aside
         className={`
         left-[50%]
-        md:left-0
+        md:left-[0]
         transform
         -translate-x-1/2
-        lg:translate-x-0
+        md:translate-x-0
         bg-white
         block
         flex-none
-        border-gray-light
+        border-gray-100
         border-t-4
         lg:border-0
         opacity-0
@@ -124,7 +124,7 @@ export default forwardRef(
         >
           <button
             aria-label="close menu"
-            className="absolute right-[.5rem] top-[0] p-4 text-gray-medium flex items-center lg:hidden"
+            className="absolute right-[.5rem] top-[0] p-4 text-gray-700 flex items-center lg:hidden"
             onClick={toggleMenu}
           >
             <span className="text-base text-current inline-block pr-1">
@@ -192,9 +192,9 @@ export default forwardRef(
                       mr-2
                       text-lg
                       block
-                      text-gray-mediumLight
+                      text-gray-700
                       ${isPrimaryHeading ? topLevelClasses : nonTopLevelClasses}
-                      ${isActive && !isPrimaryHeading ? "bg-gray-light" : ""}
+                      ${isActive && !isPrimaryHeading ? "bg-gray-100" : ""}
                     `}
                       style={{
                         paddingTop:

@@ -11,7 +11,7 @@ export default (props) => {
       {...otherProps}
     >
       <div
-        className={`rounded border-4 border-gray-light h-full ${innerPadding}`}
+        className={`rounded border-4 border-gray-100 h-full ${innerPadding}`}
       >
         {children}
       </div>

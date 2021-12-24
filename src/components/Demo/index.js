@@ -114,7 +114,7 @@ export default function () {
                     id={option.label}
                     placeholder="Enter one or multiple strings per line. You can use HTML too!"
                     onBlur={updateInput}
-                    className="mt-2 w-full font-thin"
+                    className="mt-2 w-full font-extralight"
                   ></textarea>
                 )}
               </label>

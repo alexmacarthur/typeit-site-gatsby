@@ -73,7 +73,7 @@ export default ({ setShowSearch }) => {
       className={`
       rounded
       ring-4
-      ring-gray-200
+      ring-gray-100
       fixed
       top-50
       left-50
