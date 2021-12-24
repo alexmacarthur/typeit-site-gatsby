@@ -89,7 +89,7 @@ export default forwardRef(
       <aside
         className={`
         left-[50%]
-        lg:left-0
+        md:left-0
         transform
         -translate-x-1/2
         lg:translate-x-0
@@ -124,7 +124,7 @@ export default forwardRef(
         >
           <button
             aria-label="close menu"
-            className="absolute right-[.5rem] top-0 p-4 text-gray-medium flex items-center lg:hidden"
+            className="absolute right-[.5rem] top-[0] p-4 text-gray-medium flex items-center lg:hidden"
             onClick={toggleMenu}
           >
             <span className="text-base text-current inline-block pr-1">
