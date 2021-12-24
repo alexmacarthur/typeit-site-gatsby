@@ -42,28 +42,30 @@ p {
   @apply mb-5;
 }
 
-h1 {
-  @apply text-4xl mb-4;
-}
-
-h2 {
-  @apply text-4xl font-extralight;
-
-  @screen lg {
-    @apply text-5xl;
+main {
+  h1 {
+    @apply text-4xl mb-4 font-semibold;
   }
-}
 
-h3 {
-  @apply text-4xl font-extralight;
-}
+  h2 {
+    @apply text-4xl font-extralight;
 
-h4 {
-  @apply text-3xl font-extralight;
-}
+    @screen lg {
+      @apply text-5xl;
+    }
+  }
 
-h5 {
-  @apply text-xl font-medium;
+  h3 {
+    @apply text-4xl font-extralight;
+  }
+
+  h4 {
+    @apply text-3xl font-extralight;
+  }
+
+  h5 {
+    @apply text-xl font-medium;
+  }
 }
 
 a {

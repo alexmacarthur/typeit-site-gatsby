@@ -172,7 +172,7 @@ export default ({ pixelAnchorRef }) => {
                                   <li key={l.path} className="text-center">
                                     <SelfClosingLink
                                       to={l.path}
-                                      className="text-xl text-gray-700 hover:text-gray"
+                                      className="text-xl text-gray-700 hover:text-gray-800 font-extralight"
                                     >
                                       <span className="lg:hidden inline-block mr-2">
                                         &mdash;
@@ -253,7 +253,7 @@ export default ({ pixelAnchorRef }) => {
                               <li className="py-1">
                                 <SelfClosingLink
                                   to={subHeading.hash}
-                                  className="text-xl text-gray-700 hover:text-gray"
+                                  className="text-xl text-gray-700 hover:text-gray-800"
                                 >
                                   {subHeading.value}
                                 </SelfClosingLink>

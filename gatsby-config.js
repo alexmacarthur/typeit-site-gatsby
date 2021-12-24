@@ -94,7 +94,7 @@ module.exports = {
           google: [
             {
               family: `Heebo`,
-              variants: [`100`, `200`, `300`, `500`],
+              variants: [`200`, `300`, `500`, `600`],
             },
           ],
         },

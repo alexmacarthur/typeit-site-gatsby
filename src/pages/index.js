@@ -57,7 +57,7 @@ const IndexPage = ({ data }) => {
               return (
                 <div key={step.node.id}>
                   <div className="block text-center">
-                    <span className="self-center text-5xl font-normal">
+                    <span className="self-center text-5xl font-medium">
                       #{index + 1}
                     </span>
                   </div>
