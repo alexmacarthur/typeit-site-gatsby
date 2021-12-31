@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { getPathWithHash, scrollTo, headingIsActive } from "./util";
 
-const topLevelClasses = `font-medium border-b-2 border-gray pt-8 mb-4`;
+const topLevelClasses = `font-medium uppercase border-gray pt-4 mb-2`;
 const nonTopLevelClasses = `font-extralight hover:text-gray-700 pl-2 rounded-md`;
 
 export default forwardRef(
@@ -45,11 +45,7 @@ export default forwardRef(
       sidebarRef.current.scrollTo(0, newPosition);
     }, [path]);
 
-    const SubHeadingList = ({
-      subHeadings,
-      isPrimaryHeading,
-      dampen = true,
-    }) => {
+    const SubHeadingList = ({ subHeadings, isPrimaryHeading }) => {
       return (
         <ul className={`${isPrimaryHeading ? "" : "ml-6"}`}>
           {subHeadings.map((subHeading) => {
@@ -60,7 +56,7 @@ export default forwardRef(
                 key={subHeading.path}
                 ref={isActive ? activeSubheadingRef : null}
               >
-                <span className={`mx-5 block`}>
+                <span className={`mx-5 block py-1`}>
                   <a
                     onClick={(e) => scrollTo(e, setPath, toggleMenu)}
                     href={subHeading.path}
@@ -73,10 +69,7 @@ export default forwardRef(
                 </span>
 
                 {(subHeading.subHeadings?.length || 0) > 0 && (
-                  <SubHeadingList
-                    subHeadings={subHeading.subHeadings}
-                    dampen={true}
-                  />
+                  <SubHeadingList subHeadings={subHeading.subHeadings} />
                 )}
               </li>
             );
@@ -119,7 +112,7 @@ export default forwardRef(
             top: "var(--ti-nav-height)",
             height: "calc(100vh - var(--ti-nav-height))",
           }}
-          className="overflow-auto pt-14 lg:pt-12 sidebar-container"
+          className="overflow-auto pt-0 md:pt-14 lg:pt-4 sidebar-container"
           ref={sidebarRef}
         >
           <button
@@ -149,7 +142,7 @@ export default forwardRef(
           {breadcrumbUrl && breadcrumbText && (
             <Link
               to={breadcrumbUrl}
-              className="flex items-center gap-1 text-lg font-semibold mb-6 ml-6"
+              className="flex items-center gap-1 text-lg font-semibold mt-4 mb-6 ml-6"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +163,7 @@ export default forwardRef(
             </Link>
           )}
 
-          <ul>
+          <ul className="pb-6">
             {headings.map((heading, index) => {
               const { depth } = heading;
               const isActive = headingIsActive(heading, path);
@@ -182,7 +175,7 @@ export default forwardRef(
                   ref={isActive ? activeHeadingRef : null}
                   data-depth={depth}
                 >
-                  <span className="block">
+                  <span className="block mt-5 mb-2">
                     <a
                       onClick={(e) => scrollTo(e, setPath, toggleMenu)}
                       href={heading.path}
@@ -196,10 +189,6 @@ export default forwardRef(
                       ${isPrimaryHeading ? topLevelClasses : nonTopLevelClasses}
                       ${isActive && !isPrimaryHeading ? "bg-gray-100" : ""}
                     `}
-                      style={{
-                        paddingTop:
-                          isPrimaryHeading && index === 0 ? "0px" : "",
-                      }}
                     >
                       {heading.value}
                     </a>

@@ -91,7 +91,7 @@ th {
   h2,
   h3,
   h4 {
-    @apply mb-2 mt-6;
+    @apply mb-2 mt-6 font-semibold;
   }
 
   h2 {

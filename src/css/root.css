@@ -13,7 +13,7 @@
 }
 
 :root {
-  --ti-nav-height: 100px;
+  --ti-nav-height: 75px;
 }
 
 .highlight {
@@ -61,6 +61,12 @@
     border: 2px solid white;
     background-color: rgba(0, 0, 0, 0.5);
   }
+
+  ul > li {
+    & + li {
+      @apply mt-1;
+    }
+  }
 }
 
 html,
@@ -100,7 +106,7 @@ td {
 }
 
 .medium-max-container {
-  max-width: 1000px;
+  max-width: 850px;
 }
 
 @layer components {
@@ -126,7 +132,7 @@ td {
 }
 
 .button {
-  @apply rounded text-white text-center font-light py-3 px-5 cursor-pointer text-xl purple-gradient;
+  @apply rounded text-white text-center font-normal py-3 px-5 cursor-pointer text-lg purple-gradient;
   @apply ring-4 ring-purple-600;
 
   &.slim {

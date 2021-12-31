@@ -77,6 +77,7 @@ export default ({ pixelAnchorRef }) => {
         const nav = navRef.current;
 
         if (!nav) return;
+
         const isStuck = e.boundingClientRect.y < 0;
 
         nav.classList.toggle("isSticky", isStuck);
@@ -90,7 +91,7 @@ export default ({ pixelAnchorRef }) => {
     );
 
     observer.observe(pixelAnchorRef.current);
-    // eslint-disable-next-line
+    //   // eslint-disable-next-line
   }, []);
 
   // Whenever the menu state changes, make sure to set overflow appropriately.
