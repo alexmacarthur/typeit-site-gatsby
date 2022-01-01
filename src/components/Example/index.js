@@ -46,7 +46,7 @@ export default function ({ data, instance, isLast, exampleSlug }) {
       tiInstance.freeze();
     }
 
-    setisFrozen(!isFrozen);
+    setisFrozen((v) => !v);
   };
 
   const elementFontStyles = "text-xl md:text-2xl text-gray-700 font-extralight";
@@ -60,9 +60,9 @@ export default function ({ data, instance, isLast, exampleSlug }) {
 
           <div className="my-6 md:my-12 bg-gray-100 p-8">
             {instance.element === "input" && (
-              <>
-                <label>
-                  Name: {"  "}
+              <label>
+                Name: {"  "}
+                <LazyLoader>
                   <TypeIt
                     as={"input"}
                     type="text"
@@ -76,22 +76,24 @@ export default function ({ data, instance, isLast, exampleSlug }) {
                     }}
                     className={elementFontStyles}
                   />
-                </label>
-              </>
+                </LazyLoader>
+              </label>
             )}
 
             {!instance.element && (
-              <TypeIt
-                className={elementFontStyles}
-                options={instance.options}
-                getBeforeInit={(tiInstance) => {
-                  return instance.getBeforeInit(tiInstance);
-                }}
-                getAfterInit={(instance) => {
-                  setTiInstance(instance);
-                  return instance;
-                }}
-              />
+              <LazyLoader>
+                <TypeIt
+                  className={elementFontStyles}
+                  options={instance.options}
+                  getBeforeInit={(tiInstance) => {
+                    return instance.getBeforeInit(tiInstance);
+                  }}
+                  getAfterInit={(instance) => {
+                    setTiInstance(instance);
+                    return instance;
+                  }}
+                />
+              </LazyLoader>
             )}
           </div>
           <div className="flex items-center gap-6">

@@ -8,9 +8,7 @@ export default (addToTimeoutStore) => {
         strings: "This is a simple string.",
         waitUntilVisible: true,
       },
-      getBeforeInit: (instance) => {
-        return instance;
-      },
+      getBeforeInit: (instance) => instance,
     },
     "multiple-strings": {
       title: "Type multiple strings.",

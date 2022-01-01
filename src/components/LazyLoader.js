@@ -8,10 +8,12 @@ export default ({ children }) => {
 
   // If the global context says we need to force render, do it.
   useEffect(() => {
-    if (shouldExpandLazyLoadedContent) {
-      setShouldForceRender(true);
-    }
+    shouldExpandLazyLoadedContent && setShouldForceRender(true);
   }, [shouldExpandLazyLoadedContent]);
+
+  if (shouldForceRender) {
+    return <div>{children}</div>;
+  }
 
   const [ref, inView] = useInView({
     threshold: 0,
@@ -19,5 +21,5 @@ export default ({ children }) => {
     rootMargin: "200px",
   });
 
-  return <div ref={ref}>{(shouldForceRender || inView) && children}</div>;
+  return <div ref={ref}>{inView && children}</div>;
 };
