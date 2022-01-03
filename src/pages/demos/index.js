@@ -7,11 +7,26 @@ import CodePen from "../../components/CodePen";
 const Demos = ({ data }) => {
   const demos = data.allMarkdownRemark.nodes;
 
+  console.log(demos);
+
   return (
     <PageLayout>
       <SEO title={"Demo Library"} />
-      Demos will go here.
-      <CodePen slug="jzybpB" />
+
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {demos.map((demo) => {
+          const { title, codepen_slug } = demo.frontmatter;
+
+          return (
+            <li>
+              <h3>{title}</h3>
+
+              <CodePen slug={codepen_slug} />
+            </li>
+          );
+        })}
+      </ul>
+
       <script
         async
         src="https://cpwebassets.codepen.io/assets/embed/ei.js"
@@ -25,8 +40,8 @@ export const query = graphql`
     allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/(demos)/" } }) {
       nodes {
         frontmatter {
-          enable_sidebar
           title
+          codepen_slug
         }
       }
     }
