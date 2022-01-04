@@ -15,22 +15,26 @@ const Demos = ({ data }) => {
 
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {demos.map((demo) => {
-          const { title, codepen_slug } = demo.frontmatter;
+          const {
+            html,
+            frontmatter: { title, codepen_slug },
+          } = demo;
 
           return (
             <li>
               <h3>{title}</h3>
 
-              <CodePen slug={codepen_slug} />
+              {/* <CodePen slug={codepen_slug} /> */}
+
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: html,
+                }}
+              />
             </li>
           );
         })}
       </ul>
-
-      <script
-        async
-        src="https://cpwebassets.codepen.io/assets/embed/ei.js"
-      ></script>
     </PageLayout>
   );
 };
@@ -39,6 +43,7 @@ export const query = graphql`
   query {
     allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/(demos)/" } }) {
       nodes {
+        html
         frontmatter {
           title
           codepen_slug

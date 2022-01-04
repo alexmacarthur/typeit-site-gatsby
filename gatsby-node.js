@@ -91,6 +91,7 @@ async function createMarkdownPages({
   pattern,
   simpleSidebarHeadings = false,
   shouldMakeSearchable = true,
+  pageTemplate = path.resolve("./src/templates/page.js"),
 } = {}) {
   const pageMarkdownData = await graphql(`
     {
@@ -169,7 +170,7 @@ async function createMarkdownPages({
 
     createPage({
       path: formattedSlug,
-      component: path.resolve("./src/templates/page.js"),
+      component: pageTemplate,
       context: {
         slug: edge.node.fields.slug, // MUST be the original, unformatted slug.
         html,
@@ -210,6 +211,14 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage,
     simpleSidebarHeadings: true,
     pattern: "((?!docs/).*)",
+  });
+
+  // Demos
+  await createMarkdownPages({
+    graphql,
+    createPage,
+    pattern: "(demos/).*",
+    pageTemplate: path.resolve("./src/templates/demo.js"),
   });
 
   await createConfirmationPages(graphql, createPage);
