@@ -2,12 +2,9 @@ import React from "react";
 import SEO from "../../components/seo";
 import PageLayout from "../../components/layouts/PageLayout";
 import { graphql } from "gatsby";
-import CodePen from "../../components/CodePen";
 
 const Demos = ({ data }) => {
   const demos = data.allMarkdownRemark.nodes;
-
-  console.log(demos);
 
   return (
     <PageLayout>
@@ -17,14 +14,12 @@ const Demos = ({ data }) => {
         {demos.map((demo) => {
           const {
             html,
-            frontmatter: { title, codepen_slug },
+            frontmatter: { title },
           } = demo;
 
           return (
             <li>
               <h3>{title}</h3>
-
-              {/* <CodePen slug={codepen_slug} /> */}
 
               <div
                 dangerouslySetInnerHTML={{
