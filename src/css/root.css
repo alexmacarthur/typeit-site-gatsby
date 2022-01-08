@@ -35,14 +35,6 @@
   }
 }
 
-.container-top-padding {
-  @apply pt-12 lg:pt-8;
-}
-
-.container-bottom-padding {
-  @apply pb-14;
-}
-
 .sidebar-container {
   &::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -106,7 +98,7 @@ td {
 }
 
 .medium-max-container {
-  max-width: 850px;
+  max-width: 900px;
 }
 
 @layer components {

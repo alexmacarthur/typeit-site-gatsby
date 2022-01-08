@@ -22,10 +22,10 @@ const Licenses = () => {
   });
 
   return (
-    <PageLayout>
+    <PageLayout isContentPage={true} isFullWidth={true}>
       <SEO title={"Purchase a License for TypeIt"} />
 
-      <div className="text-center mb-12 container-top-padding">
+      <div className="text-center mb-12">
         <h1>Purchase a License</h1>
 
         <p>

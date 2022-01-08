@@ -1,31 +1,46 @@
 import React from "react";
 import SEO from "../../components/seo";
 import PageLayout from "../../components/layouts/PageLayout";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
+import LeftArrow from "../../components/icons/LeftArrow";
 
 const Demos = ({ data }) => {
   const demos = data.allMarkdownRemark.nodes;
 
   return (
-    <PageLayout>
+    <PageLayout isContentPage={true}>
       <SEO title={"Demo Library"} />
 
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <h1>Demo Library</h1>
+
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {demos.map((demo) => {
           const {
             html,
             frontmatter: { title },
+            fields: { slug },
           } = demo;
 
           return (
             <li>
-              <h3>{title}</h3>
+              <h3>
+                <Link to={`/${slug}`} className="text-gray-700">
+                  {title}
+                </Link>
+              </h3>
 
               <div
                 dangerouslySetInnerHTML={{
                   __html: html,
                 }}
               />
+
+              <div>
+                <Link to={`/${slug}`} className="inline-flex items-center">
+                  See It
+                  <LeftArrow classes="rotate-180 ml-1" />
+                </Link>
+              </div>
             </li>
           );
         })}
@@ -42,6 +57,9 @@ export const query = graphql`
         frontmatter {
           title
           codepen_slug
+        }
+        fields {
+          slug
         }
       }
     }

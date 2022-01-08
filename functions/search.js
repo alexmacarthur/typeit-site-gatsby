@@ -13,7 +13,9 @@ const supabase = createClient(
 );
 
 const headers = {
-  "Access-Control-Allow-Origin": isProduction ? "https://typeitjs.com" : "*",
+  "Access-Control-Allow-Origin": isProduction
+    ? "https://www.typeitjs.com"
+    : "*",
   "Access-Control-Allow-Headers": "Content-Type",
 };
 

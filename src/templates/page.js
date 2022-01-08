@@ -69,6 +69,7 @@ const PageTemplate = (props) => {
 
   return (
     <PageLayout
+      isContentPage={true}
       isFullWidth={shouldShowSidebar}
       headings={headings}
       title={title}
@@ -92,11 +93,7 @@ const PageTemplate = (props) => {
             />
           )}
 
-          <div
-            className={`${
-              shouldShowSidebar ? "container-top-padding" : "pt-4"
-            } lg:overflow-auto pb-8`}
-          >
+          <div className={`lg:overflow-auto pb-8`}>
             <div className="medium-max-container mx-auto">
               {shouldShowSidebar && (
                 <ToggleButton menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} />

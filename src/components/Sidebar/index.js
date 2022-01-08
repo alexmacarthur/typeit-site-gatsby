@@ -112,7 +112,7 @@ export default forwardRef(
             top: "var(--ti-nav-height)",
             height: "calc(100vh - var(--ti-nav-height))",
           }}
-          className="overflow-auto pt-0 md:pt-14 lg:pt-4 sidebar-container"
+          className="overflow-auto pt-0 md:pt-14 lg:pt-0 sidebar-container"
           ref={sidebarRef}
         >
           <button
@@ -175,7 +175,7 @@ export default forwardRef(
                   ref={isActive ? activeHeadingRef : null}
                   data-depth={depth}
                 >
-                  <span className="block mt-5 mb-2">
+                  <span className="block mb-2">
                     <a
                       onClick={(e) => scrollTo(e, setPath, toggleMenu)}
                       href={heading.path}

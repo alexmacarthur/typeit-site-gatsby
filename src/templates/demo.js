@@ -15,27 +15,25 @@ const Demo = ({ data }) => {
   } = data;
 
   return (
-    <PageLayout>
+    <PageLayout isContentPage={true}>
       <SEO title={`${title} | TypeIt Demos`} description={excerpt} />
 
-      <div className="medium-max-container container-top-padding container-bottom-padding mx-auto">
-        <Link to="/demos" className="flex items-center inline-block mb-6">
-          <LeftArrow />
-          Back To All Demos
-        </Link>
+      <Link to="/demos" className="flex items-center inline-block mb-6">
+        <LeftArrow />
+        Back To All Demos
+      </Link>
 
-        <h1 className="text-3xl md:text-4xl lg:text-5xl">Demo: {title}</h1>
+      <h1 className="text-3xl md:text-4xl lg:text-5xl">Demo: {title}</h1>
 
-        <div className="mb-6">
-          <CodePen slug={codepen_slug} />
-        </div>
-
-        <div
-          dangerouslySetInnerHTML={{
-            __html: html,
-          }}
-        ></div>
+      <div className="mb-6">
+        <CodePen slug={codepen_slug} />
       </div>
+
+      <div
+        dangerouslySetInnerHTML={{
+          __html: html,
+        }}
+      ></div>
     </PageLayout>
   );
 };
