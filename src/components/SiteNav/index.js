@@ -5,6 +5,7 @@ import ToggleButton from "./ToggleButton";
 import toggleOverflow from "../../helpers/toggleOverflow";
 import Search from "../Search";
 import GitHubButton from "react-github-btn";
+import SearchIcon from "../icons/SearchIcon";
 
 const Up = () => {
   return (
@@ -23,7 +24,7 @@ const Up = () => {
   );
 };
 
-export default ({ pixelAnchorRef }) => {
+export default () => {
   const navLinkData = useStaticQuery(graphql`
     query NavItemQuery {
       site {
@@ -71,29 +72,6 @@ export default ({ pixelAnchorRef }) => {
     setMenuIsOpen(!menuIsOpen);
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([e]) => {
-        const nav = navRef.current;
-
-        if (!nav) return;
-
-        const isStuck = e.boundingClientRect.y < 0;
-
-        nav.classList.toggle("isSticky", isStuck);
-
-        document.documentElement.style.setProperty(
-          "--ti-nav-height",
-          isStuck ? "75px" : ""
-        );
-      },
-      { threshold: 1 }
-    );
-
-    observer.observe(pixelAnchorRef.current);
-    //   // eslint-disable-next-line
-  }, []);
-
   // Whenever the menu state changes, make sure to set overflow appropriately.
   useEffect(() => {
     toggleOverflow(menuIsOpen);
@@ -114,8 +92,7 @@ export default ({ pixelAnchorRef }) => {
 
       <nav
         ref={navRef}
-        style={{ height: "var(--ti-nav-height)" }}
-        className={`h-24 flex items-center absolute justify-between px-5 py-3 pb-4 z-20 top-0 w-full bg-white`}
+        className={`sticky top-[0] h-24 flex items-center justify-between px-5 py-10 z-20 top-0 w-full bg-white`}
       >
         <span className="flex-initial text-5xl font-extralight logo">
           <SelfClosingLink to="/" className="font-extralight text-gray-700">
@@ -201,11 +178,14 @@ export default ({ pixelAnchorRef }) => {
                     setMenuIsOpen(false);
                   }}
                 >
-                  <span className="inline-block siteNavLink">Search</span>
+                  <SearchIcon className="h-8 w-8" />
+                  <span className="text-xl text-gray-700 hover:text-gray-800 font-extralight inline lg:hidden pl-3">
+                    Search
+                  </span>
                 </button>
               </li>
 
-              <li className="siteNavListItem justify-center siteNavListItem mt-10 md:mt-0">
+              <li className="siteNavListItem justify-center siteNavListItem mt-10 lg:mt-0">
                 <GitHubButton
                   href="https://github.com/alexmacarthur/typeit"
                   data-color-scheme="no-preference: dark; light: dark; dark: dark;"

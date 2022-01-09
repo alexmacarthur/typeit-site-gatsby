@@ -12,10 +12,6 @@
   transition: all 0.15s;
 }
 
-:root {
-  --ti-nav-height: 75px;
-}
-
 .highlight {
   @apply relative pl-6 my-10;
 
@@ -63,8 +59,7 @@
 
 html,
 body,
-#___gatsby,
-#gatsby-focus-wrapper {
+#___gatsby {
   height: 100%;
 }
 

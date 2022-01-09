@@ -12,16 +12,13 @@ const topLevelClasses = `font-medium uppercase border-gray pt-4 mb-2`;
 const nonTopLevelClasses = `font-extralight hover:text-gray-700 pl-2 rounded-md`;
 
 export default forwardRef(
-  (
-    {
-      headings,
-      menuIsOpen,
-      toggleMenu,
-      breadcrumbText = "",
-      breadcrumbUrl = "",
-    },
-    sidebarRef
-  ) => {
+  ({
+    headings,
+    menuIsOpen,
+    toggleMenu,
+    breadcrumbText = "",
+    breadcrumbUrl = "",
+  }) => {
     const [path, setPath] = useState("");
     const activeHeadingRef = useRef(null);
     const activeSubheadingRef = useRef(null);
@@ -29,21 +26,6 @@ export default forwardRef(
     useEffect(() => {
       setPath(getPathWithHash(window.location));
     }, []);
-
-    useLayoutEffect(() => {
-      if (!path) return;
-
-      const activeItem =
-        activeHeadingRef.current || activeSubheadingRef.current;
-
-      if (!activeItem) return;
-
-      const sidebarHeight = sidebarRef.current.clientHeight;
-      const activeItemPosition = activeItem.getBoundingClientRect().y;
-      const newPosition = activeItemPosition - sidebarHeight / 2;
-
-      sidebarRef.current.scrollTo(0, newPosition);
-    }, [path]);
 
     const SubHeadingList = ({ subHeadings, isPrimaryHeading }) => {
       return (
@@ -106,15 +88,7 @@ export default forwardRef(
           zIndex: menuIsOpen ? "11" : "",
         }}
       >
-        <div
-          style={{
-            position: "sticky",
-            top: "var(--ti-nav-height)",
-            height: "calc(100vh - var(--ti-nav-height))",
-          }}
-          className="overflow-auto pt-0 md:pt-14 lg:pt-0 sidebar-container"
-          ref={sidebarRef}
-        >
+        <div className="overflow-auto pt-0 md:pt-14 lg:pt-0 sidebar-container">
           <button
             aria-label="close menu"
             className="absolute right-[.5rem] top-[0] p-4 text-gray-700 flex items-center lg:hidden"

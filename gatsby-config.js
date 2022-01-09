@@ -30,8 +30,8 @@ module.exports = {
         path: "/#pricing",
       },
       {
-        title: "Installation",
-        path: "/#installation",
+        title: "Demos",
+        path: "/demos",
       },
       {
         title: "Flavors",

@@ -1,24 +1,6 @@
 import { Link } from "gatsby";
 import React, { useEffect, useRef, useState } from "react";
-
-const CloseIcon = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full m-0"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M6 18L18 6M6 6l12 12"
-      />
-    </svg>
-  );
-};
+import CloseIcon from "../icons/CloseIcon";
 
 export default ({ setShowSearch }) => {
   const inputRef = useRef(null);
@@ -109,15 +91,13 @@ export default ({ setShowSearch }) => {
           </label>
 
           <div className="flex flex-col md:flex-row gap-6 justify-between mb-10">
-            <div className="flex-1">
-              <input
-                type="text"
-                name="search"
-                ref={inputRef}
-                placeholder="Search for something..."
-                className="py-3 px-5 mb-0 w-full "
-              />
-            </div>
+            <input
+              type="text"
+              name="search"
+              ref={inputRef}
+              placeholder="Search for something..."
+              className="py-2 px-5 mb-0 w-full "
+            />
 
             <div className="">
               <button

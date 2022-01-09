@@ -1,25 +1,25 @@
 import React from "react";
-import JavaScriptLogo from "../images/javascript-logo.inline.svg";
-import ReactLogo from "../images/react-logo.inline.svg";
-import WordPressLogo from "../images/wordpress-logo.inline.svg";
 import { Link } from "gatsby";
+import JsIcon from "./icons/JsIcon";
+import WordPressIcon from "./icons/WordPressIcon";
+import ReactIcon from "./icons/ReactIcon";
 
 export default () => {
   const flavors = [
     {
       name: "Vanilla JS",
       path: "vanilla",
-      logo: JavaScriptLogo,
+      logo: JsIcon,
     },
     {
       name: "WordPress",
       path: "wordpress",
-      logo: WordPressLogo,
+      logo: WordPressIcon,
     },
     {
       name: "React",
       path: "react",
-      logo: ReactLogo,
+      logo: ReactIcon,
     },
   ];
 
@@ -29,13 +29,16 @@ export default () => {
         {flavors.map((flavor, index) => {
           return (
             <li className="mb-12 pr-12 flex flex-col w-1/2 md:w-auto text-center last:mb-0">
-              <h4 className="mb-6">{flavor.name}</h4>
+              <h4 className="mb-4">{flavor.name}</h4>
               <div className="w-24 h-24 mx-auto mb-6">
-                <flavor.logo style={{ maxWidth: "100%" }} />
+                <flavor.logo
+                  style={{ maxWidth: "100%" }}
+                  className="w-24 h-24"
+                />
               </div>
               <Link
                 to={`/docs/${flavor.path}`}
-                className="text-gray-700 text-base"
+                className="text-gray-700 text-base hover:text-purple-400"
               >
                 View the Docs
               </Link>

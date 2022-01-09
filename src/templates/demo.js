@@ -25,15 +25,16 @@ const Demo = ({ data }) => {
 
       <h1 className="text-3xl md:text-4xl lg:text-5xl">Demo: {title}</h1>
 
-      <div className="mb-6">
-        <CodePen slug={codepen_slug} />
-      </div>
-
       <div
+        className="mb-10"
         dangerouslySetInnerHTML={{
           __html: html,
         }}
       ></div>
+
+      <div className="mb-6">
+        <CodePen slug={codepen_slug} />
+      </div>
     </PageLayout>
   );
 };

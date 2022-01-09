@@ -24,13 +24,7 @@ See the documentation menu for digging into a specific flavor of TypeIt:
 
 ## Examples
 
-I have a few CodePen examples that illustrate how to do some interesting things with TypeIt.
-
-- [Cute Rainbow Effect Using a Callback Method](https://codepen.io/alexmacarthur/pen/jzybpB)
-- [Chained Typing Animations](https://codepen.io/alexmacarthur/pen/MOPQvp)
-- ['Fill in the Blank' Effect](https://codepen.io/alexmacarthur/pen/pdXLRG)
-- [Movable Cursor](https://codepen.io/alexmacarthur/pen/rNVMXaV)
-- [Remove Cursor After Completion](https://codepen.io/alexmacarthur/pen/WzVqeM)
+There's a growing number of CodePen demos on the [Demos](/demos) page.
 
 ## Need Help?
 

@@ -15,7 +15,6 @@ const ToggleButton = ({ toggleMenu, menuIsOpen }) => {
       aria-label={"open docs menu"}
       style={{
         width: "100vw",
-        top: "calc(var(--ti-nav-height) - 2px)",
         transform: "translateX(-1.5rem)",
       }}
     >

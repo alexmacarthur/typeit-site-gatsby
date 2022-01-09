@@ -56,7 +56,7 @@ main {
   }
 
   h3 {
-    @apply text-4xl font-extralight;
+    @apply text-3xl font-extralight;
   }
 
   h4 {

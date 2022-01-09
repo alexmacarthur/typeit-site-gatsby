@@ -5,20 +5,11 @@ import PageCoverContext from "../../PageCoverContext";
 import GlobalEventContextProvider from "../GlobalEventContextProvider";
 
 const MainLayout = ({ children }) => {
-  const pixelAnchorRef = useRef(null);
   const [pageCoverContents, setPageCoverContents] = useState(null);
   const [cleanUp, setCleanUp] = useState(() => {});
 
   return (
     <GlobalEventContextProvider>
-      <span
-        id="pixelAnchor"
-        className="absolute top-0 left-0"
-        ref={pixelAnchorRef}
-      >
-        &nbps;
-      </span>
-
       {pageCoverContents && (
         <PageCover
           setPageCoverContents={setPageCoverContents}
@@ -29,11 +20,11 @@ const MainLayout = ({ children }) => {
         />
       )}
 
-      <SiteNav pixelAnchorRef={pixelAnchorRef} />
+      <SiteNav />
 
-      <div className="relative h-full flex flex-col">
+      <div className="relative flex flex-col">
         <PageCoverContext.Provider value={{ setPageCoverContents, setCleanUp }}>
-          <main style={{ marginTop: "var(--ti-nav-height)" }}>{children}</main>
+          <main>{children}</main>
         </PageCoverContext.Provider>
 
         <footer className="relative bg-gray-900 text-center p-8">
