@@ -138,3 +138,21 @@ To update the plugin, navigate to the plugins page in the WP admin and check if 
 
 - Update dependencies.
 - Simplify plugin update logic.
+
+### 3.0.2
+
+- Lower minimum PHP version to 7.0.
+
+### 3.0.3
+
+- Update dependencies.
+- Update core version of TypeIt.
+- Adjust odd styling issues for Gutenberg block.
+
+### 3.0.4
+
+- Fix bug preventing Gutenberg block from being used as reusable block.
+
+### 3.0.5
+
+- Fix bug preventing reusable block from being used within column layout.
