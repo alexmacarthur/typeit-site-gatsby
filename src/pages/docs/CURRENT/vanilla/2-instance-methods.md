@@ -275,7 +275,8 @@ instance.reset();
 ### .freeze() / .unfreeze()
 
 ```typescript
-instance.reset();
+instance.freeze();
+instance.unfreeze();
 ```
 
 Use the `.freeze()` and `.unfreeze()` methods on a active instance to pause and resume its execution any time.
