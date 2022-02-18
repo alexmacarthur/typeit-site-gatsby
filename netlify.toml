@@ -25,7 +25,7 @@
 
 [[redirects]]
   from = "/download/wordpress"
-  to = "https://wp-plugin-update.vercel.app/plugins/wp-typeit/3.0.6/wp-typeit.zip"
+  to = "https://wp-plugin-update.vercel.app/api/wp-typeit/download"
   status = 301
 
 [[redirects]]
