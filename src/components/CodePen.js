@@ -7,7 +7,7 @@ const CodePen = ({ slug, name = "" }) => {
   return (
     <LazyLoader>
       <p
-        className="codepen"
+        class="codepen"
         data-height={height}
         data-theme-id="dark"
         data-default-tab="js,result"

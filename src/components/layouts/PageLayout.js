@@ -1,25 +1,25 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import MainLayout from "./MainLayout";
 import PageHeadingContext from "../../PageHeadingContext";
 
 export default ({
-  children = null,
+  children,
   isFullWidth = false,
   headings = [],
   title = "",
   isContentPage = false,
   otherClasses = "",
-}): React.FC => {
-  const paddingClass = isContentPage ? "pt-10 lg:pt-8 pb-16" : "";
+}) => {
+  const paddingClass = isContentPage ? "pt-12 lg:pt-8 pb-14" : "";
   const widthClass = isFullWidth
     ? "max-container"
     : "medium-max-container mx-auto";
 
   return (
-    <PageHeadingContext.Provider value={{ headings: headings['headings'], title }}>
+    <PageHeadingContext.Provider value={{ headings: headings.headings, title }}>
       <MainLayout>
         <div
-          className={`${widthClass} ${paddingClass} px-3 lg:px-0 min-h-full ${otherClasses}`}
+          className={`${widthClass} ${paddingClass} px-2 lg:px-0 min-h-full ${otherClasses}`}
         >
           {children}
         </div>

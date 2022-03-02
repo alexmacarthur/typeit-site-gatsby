@@ -7,7 +7,6 @@ require("dotenv").config({
 
 process.env["GATSBY_BRANCH"] = process.env.BRANCH;
 
-const prodOnlyPlugins = ["gatsby-plugin-preact"];
 const url = "https://typeitjs.com";
 
 module.exports = {
@@ -37,10 +36,6 @@ module.exports = {
       {
         title: "Flavors",
         path: "/#flavors",
-      },
-      {
-        title: "Build an Animation",
-        path: "/build-your-own",
       },
       {
         title: "Documentation",
@@ -91,6 +86,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-postcss`,
+    `gatsby-plugin-preact`,
     {
       resolve: "gatsby-plugin-webfonts",
       options: {
@@ -202,6 +198,5 @@ module.exports = {
         excludes: ["/confirmation/*"],
       },
     },
-    ...(process.env.NODE_ENV === "production" ? prodOnlyPlugins : []),
   ],
 };

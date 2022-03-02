@@ -11,7 +11,7 @@ import PricingCards from "../components/PricingCards";
 import Slice from "../components/Slice";
 import FlavorCards from "../components/FlavorCards";
 
-const IndexPage = ({ data, path }) => {
+const IndexPage = ({ data }) => {
   let snippet = data.markdownRemark.html;
   let productData = data.allProductData.siteMetadata.licenseOptions;
   let { homeSlices } = data.allProductData.siteMetadata;
@@ -37,16 +37,16 @@ const IndexPage = ({ data, path }) => {
       </Slice>
 
       <Slice
-        heading="Build an Animation Now"
+        heading="Every Option You Might Need"
         description={
-          "Record an animation, tweak it to your liking, and use it (if you want)."
+          "For a full description of each option, <a href='/docs/vanilla/usage#configuration-options'>see here.</a>"
         }
         bgClasses="bg-gray-100"
         id="options"
         showTriangles={true}
       >
         <div className="max-w-5xl mx-auto">
-          <Demo pagePath={path} />
+          <Demo />
         </div>
       </Slice>
 

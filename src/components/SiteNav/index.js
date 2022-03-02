@@ -185,7 +185,7 @@ export default () => {
                 </button>
               </li>
 
-              {/* <li className="siteNavListItem justify-center siteNavListItem mt-10 lg:mt-0">
+              <li className="siteNavListItem justify-center siteNavListItem mt-10 lg:mt-0">
                 <GitHubButton
                   href="https://github.com/alexmacarthur/typeit"
                   data-color-scheme="no-preference: dark; light: dark; dark: dark;"
@@ -195,7 +195,7 @@ export default () => {
                 >
                   Star
                 </GitHubButton>
-              </li> */}
+              </li>
 
               <li className="siteNavListItem justify-center siteNavListItem mt-10 md:mt-0">
                 <SelfClosingLink

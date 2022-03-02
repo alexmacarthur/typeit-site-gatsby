@@ -28,10 +28,7 @@ export default () => {
       <ul className="flex flex-wrap justify-center -mr-12">
         {flavors.map((flavor, index) => {
           return (
-            <li
-              key={flavor.path}
-              className="mb-12 pr-12 flex flex-col w-1/2 md:w-auto text-center last:mb-0"
-            >
+            <li className="mb-12 pr-12 flex flex-col w-1/2 md:w-auto text-center last:mb-0">
               <h4 className="mb-4">{flavor.name}</h4>
               <div className="w-24 h-24 mx-auto mb-6">
                 <flavor.logo

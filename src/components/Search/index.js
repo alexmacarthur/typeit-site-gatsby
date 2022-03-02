@@ -75,7 +75,7 @@ export default ({ setShowSearch }) => {
     >
       <div className="relative z-10">
         <div className="flex justify-between items-center mb-8">
-          <h3 className="mb-0 text-2xl font-semibold">Search</h3>
+          <h3 className="mb-0">Search</h3>
           <button
             onClick={closeSearch}
             aria-label="close search"
@@ -86,6 +86,10 @@ export default ({ setShowSearch }) => {
         </div>
 
         <form onSubmit={onSubmit} className="mb-4">
+          <label htmlFor="search" className="invisible -z-10 absolute">
+            Search
+          </label>
+
           <div className="flex flex-col md:flex-row gap-6 justify-between mb-10">
             <input
               type="text"
@@ -110,7 +114,7 @@ export default ({ setShowSearch }) => {
             {!hasSearched && <p>You haven't searched yet.</p>}
 
             {hasSearched && !isLoading ? (
-              <div className="col-span-2">
+              <div class="col-span-2">
                 <span className="inline-block mb-2 text-lg font-semibold">
                   {getResultCount().toString()} {getResultsText()}
                 </span>
@@ -119,7 +123,7 @@ export default ({ setShowSearch }) => {
                   <ul className="ring-4 ring-gray-100 rounded p-0 md:py-5 md:px-6">
                     {results.map((result) => {
                       return (
-                        <li key={result.url}>
+                        <li>
                           <Link
                             to={result.url}
                             onClick={closeSearch}
