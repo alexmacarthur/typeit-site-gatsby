@@ -3,7 +3,13 @@ import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 import ogImage from "../images/open-graph.jpg";
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({
+  description = null,
+  lang = null,
+  meta = null,
+  keywords = null,
+  title = null,
+}) {
   const data = useStaticQuery(graphql`
     query DefaultSEOQuery {
       site {

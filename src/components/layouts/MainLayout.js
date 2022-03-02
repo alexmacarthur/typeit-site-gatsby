@@ -4,7 +4,7 @@ import PageCover from "../PageCover";
 import PageCoverContext from "../../PageCoverContext";
 import GlobalEventContextProvider from "../GlobalEventContextProvider";
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children = null }) => {
   const [pageCoverContents, setPageCoverContents] = useState(null);
   const [cleanUp, setCleanUp] = useState(() => {});
 

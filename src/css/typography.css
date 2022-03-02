@@ -44,7 +44,7 @@ p {
 
 main {
   h1 {
-    @apply text-4xl lg:text-5xl mb-4 font-semibold;
+    @apply text-4xl lg:text-5xl mb-4 font-semibold leading-tight;
   }
 
   h2 {

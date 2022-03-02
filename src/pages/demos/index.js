@@ -43,7 +43,7 @@ const Demos = ({ data }) => {
             } = demo;
 
             return (
-              <li className="relative py-4">
+              <li className="relative py-4" key={slug}>
                 <h3>
                   <Link to={`/${slug}`} className="text-gray-700 leading-tight">
                     {title}

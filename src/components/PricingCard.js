@@ -34,7 +34,7 @@ export default ({
         <div className="mt-auto">
           <form action={process.env.GATSBY_STRIPE_CHECKOUT_URL} method="POST">
             <input type="hidden" name="slug" value={slug} />
-            <button type="submit" class="button">
+            <button type="submit" className="button">
               Checkout
             </button>
           </form>
