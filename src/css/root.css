@@ -31,6 +31,10 @@
   }
 }
 
+.heading-spread {
+  @apply flex items-center gap-4 mb-8;
+}
+
 .sidebar-container {
   &::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -123,7 +127,7 @@ td {
   @apply ring-4 ring-purple-600;
 
   &.slim {
-    @apply py-2 px-4;
+    @apply py-1 px-3 ring-2 font-light;
   }
 
   &:hover:not(:disabled) {
@@ -176,6 +180,10 @@ select {
 
 textarea {
   @apply p-3;
+
+  &.is-active {
+    @apply ring-emerald-500;
+  }
 }
 
 .triangle-top {
