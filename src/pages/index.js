@@ -39,7 +39,7 @@ const IndexPage = ({ data, path }) => {
       <Slice
         heading="Build an Animation Now"
         description={
-          "Record an animation, tweak it to your liking, and use it (if you want)."
+          "Record an animation and tweak it to your liking. (Be gracious -- this playground is a work-in-progress!)"
         }
         bgClasses="bg-gray-100"
         id="options"

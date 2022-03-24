@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { KeyRecordingEntry, Stroke } from "./types";
+import striff from "striff";
+import { Stroke } from "./types";
 
 export const useKeyRecordingHandler = (setState: Function) => {
+  const [previousContent, setPreviousContent] = useState("");
   const [previousCursorDiff, setPreviousCursorDiff] = useState(0);
-  const [strokes, setStrokes] = useState<any[]>([]);
+  const [strokes, setStrokes] = useState([]);
   const pushStrokes = (newStrokes) => {
     setStrokes(() => strokes.concat(newStrokes));
   };
 
-  const handleKeyRecording = ({ key, event }: KeyRecordingEntry) => {
+  const handleKeyRecording = (event: any): void => {
     setState("RECORDING");
 
     const target = event.target as HTMLTextAreaElement;
@@ -17,11 +19,12 @@ export const useKeyRecordingHandler = (setState: Function) => {
     const cursorSpacesToMove = currentCursorDiff - previousCursorDiff;
     const newStrokes: Stroke[] = [];
     const { timeStamp } = event;
+    const { added, removed } = striff(previousContent, event.target.value);
 
+    setPreviousContent(event.target.value);
     setPreviousCursorDiff(currentCursorDiff);
 
-    // Only push a `.move()` action when we
-    // actually have movement.
+    // Cursor movement!
     if (Math.abs(cursorSpacesToMove) > 0) {
       newStrokes.push({
         data: {
@@ -32,13 +35,34 @@ export const useKeyRecordingHandler = (setState: Function) => {
       });
     }
 
-    newStrokes.push({
-      data: key,
-      timeStamp,
-    });
+    // Backspacing!
+    if (removed.length) {
+      let args: any[] = [removed.length];
+
+      if (removed.length > 1) {
+        args.push({ instant: true });
+      }
+
+      newStrokes.push({
+        data: {
+          methodName: "delete",
+          args,
+        },
+        timeStamp,
+        prependDelay: true,
+      });
+    }
+
+    // Character additions!
+    if (added.length) {
+      newStrokes.push({
+        data: added.map(({ value }) => value).join(""),
+        timeStamp,
+      });
+    }
 
     pushStrokes(newStrokes);
   };
 
-  return [handleKeyRecording, setStrokes, strokes];
+  return [handleKeyRecording, strokes, setStrokes];
 };

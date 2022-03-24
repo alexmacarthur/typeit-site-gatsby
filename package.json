@@ -82,11 +82,12 @@
     "react-intersection-observer": "^8.33.1",
     "sass": "^1.49.9",
     "showdown": "^2.0.1",
+    "striff": "^1.0.2",
     "stripe": "^8.206.0",
     "tailwindcss": "^3.0.23",
     "type": "^2.6.0",
-    "typeit": "^8.3.1",
-    "typeit-react": "^2.3.2",
+    "typeit": "^8.3.3",
+    "typeit-react": "^2.3.3",
     "unist-util-map": "^2.0.1",
     "webpack": "^5.69.1"
   }

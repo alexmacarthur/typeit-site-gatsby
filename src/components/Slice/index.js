@@ -31,7 +31,7 @@ export default ({
         {heading && <h2 className="mb-16 text-center">{heading}</h2>}
 
         {description && (
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             <p
               className="text-center -mt-12 mb-16"
               dangerouslySetInnerHTML={{ __html: description }}

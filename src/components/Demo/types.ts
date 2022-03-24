@@ -17,4 +17,5 @@ export interface KeyRecordingEntry {
 export interface Stroke {
   data: string | InstanceMethod;
   timeStamp: number;
+  prependDelay?: boolean;
 }

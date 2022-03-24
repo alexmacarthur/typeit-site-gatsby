@@ -1,14 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TypeIt from "typeit-react";
 import { sendEvent } from "../../utilities";
 import CopyButton from "../CopyButton";
-import { useKeyRecordingHandler } from "./hooks";
 import {
   buildInstance,
   instanceMethodsToArray,
   processTemplate,
 } from "./utils";
 import { State, EventProps } from './types';
+import Editor from "./editor";
 
 const typeItOptions = { lifeLike: true, speed: 0, waitUntilVisible: true };
 
@@ -17,10 +17,10 @@ const Demo = ({ pagePath }: { pagePath: string }) => {
   const editorRef = useRef(null);
   const contentContainerRef = useRef(null);
   const [error, setError] = useState<string>("");
-  const [state, setState] = useState<State>("WAITING");
+  const [capturedStrokes, setCapturedStrokes] = useState([]);
   const [builtInstance, setBuiltInstance] = useState(null);
-  const [handleKeyRecording, setStrokes, strokes ] = useKeyRecordingHandler(setState);
-  const is = (s: State) => s === state;
+  const [playerState, setPlayerState] = useState<State>("WAITING");
+  const is = (s: State) => s === playerState;
   const getEditorValue = (): string => editorRef?.current?.value || "";
 
   const sendDemoEvent = (name: string, props: EventProps = {}) => {
@@ -29,12 +29,25 @@ const Demo = ({ pagePath }: { pagePath: string }) => {
     sendEvent(name, props);
   };
 
-  const finishRecording = () => {
-    if (!contentRef.current.value) {
+  useEffect(() => {
+    if(playerState !== 'RECORDING') return;
+
+    console.log('rebuild instance')
+    // builtInstance && builtInstance.destroy(true);
+    setCapturedStrokes([]);
+
+    // destroy the instnace.
+  }, [playerState]);
+
+  const finishRecording = (strokes) => {
+    setCapturedStrokes(strokes);
+
+    if (!is("RECORDING")) {
       return;
     }
 
-    setState("PLAYING");
+    // -- Trigger the instance to render...
+    setPlayerState("PLAYING");
     sendDemoEvent("Demo", {
       content: contentRef.current.value,
     });
@@ -88,21 +101,7 @@ const Demo = ({ pagePath }: { pagePath: string }) => {
     );
   };
 
-  const handleInstanceConstruction = (instance) => {
-    const { instance: builtInstance, template } = buildInstance({
-      strokes,
-      instance,
-    });
-
-    editorRef.current.value = template;
-    setStrokes([]);
-    setBuiltInstance(builtInstance);
-
-    // Animate height of textarea.
-    editorRef.current.style.height = `${editorRef.current.scrollHeight}px`;
-
-    return builtInstance;
-  };
+  console.log("re-render demo!")
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -121,22 +120,12 @@ const Demo = ({ pagePath }: { pagePath: string }) => {
           </div>
 
           <div className="mb-6">
-            <textarea
-              ref={contentRef}
-              className={`w-full m-0 ${is("RECORDING") ? "is-active" : ""}`}
-              placeholder="Start typing to record something..."
-              onChange={(event) => {
-                // We must explicitly grab the last item in order to
-                // avoid mobile issues.
-                const characters = event.nativeEvent.data.split("");
-
-                handleKeyRecording({
-                  key: characters[characters.length - 1],
-                  event,
-                });
-              }}
-              onBlur={finishRecording}
-            ></textarea>
+            <Editor
+              isRecording={is("RECORDING")}
+              contentRef={contentRef}
+              finishRecording={finishRecording}
+              setPlayerState={setPlayerState}
+            />
           </div>
         </div>
 
@@ -152,7 +141,24 @@ const Demo = ({ pagePath }: { pagePath: string }) => {
               <TypeIt
                 className="block"
                 options={typeItOptions}
-                getBeforeInit={handleInstanceConstruction}
+                getBeforeInit={(instance) => {
+
+                  console.log(capturedStrokes);
+
+                  const { instance: newInstance, template } = buildInstance({
+                    strokes: capturedStrokes,
+                    instance,
+                  });
+
+                  editorRef.current.value = template;
+                  setCapturedStrokes([]);
+                  setBuiltInstance(newInstance);
+
+                  // Animate height of textarea.
+                  editorRef.current.style.height = `${editorRef.current.scrollHeight}px`;
+
+                  return newInstance;
+                }}
               />
             )}
 

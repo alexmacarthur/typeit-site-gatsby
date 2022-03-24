@@ -1,14 +1,25 @@
-import { InstanceMethod } from "./types";
+import { InstanceMethod, Stroke } from "./types";
+
+const isObject = (thing) => typeof thing === "object" && thing !== null;
 
 const stringifyEach = (arr: any[]) => {
   return arr.map((item) => {
     try {
-      return JSON.stringify(item);
+      let strignified = JSON.stringify(item);
+
+      // Remove quotes from keys and add spacing between items.
+      return strignified.replace(/\"(.+?)\":/gi, "$1: ").replace(/,/, "$1 ");
     } catch (e) {
       return item;
     }
   });
 };
+
+const getAverage = (delays: number[]): number => {
+  const total = delays.reduce((a, b) => a + b);
+
+  return Math.floor(total / delays.length);
+}
 
 export const processTemplate = (
   template
@@ -35,8 +46,6 @@ export const processTemplate = (
   };
 };
 
-const isObject = (thing) => typeof thing === "object" && thing !== null;
-
 export const buildInstance = ({ strokes, instance }) => {
   let template = `new TypeIt("#element", { 
     lifeLike: false, 
@@ -44,14 +53,18 @@ export const buildInstance = ({ strokes, instance }) => {
 })
 `;
 
+  const delays = [];
+
   strokes.forEach(
     (
       {
         data,
         timeStamp,
+        prependDelay
       }: {
         data: string | InstanceMethod;
         timeStamp: number;
+        prependDelay ?: boolean
       },
       index
     ) => {
@@ -59,12 +72,27 @@ export const buildInstance = ({ strokes, instance }) => {
         !index ? 0 : timeStamp - strokes[index - 1].timeStamp
       );
 
+      delays.push(delay);
+
+      const insertDelay = () => {
+        let calculatedDelay = delay || getAverage(delays);
+        if(!calculatedDelay) return;
+
+        instance.pause(calculatedDelay);
+        template += `\t.pause(${calculatedDelay})\n`;
+      }
+
       // Makes it possible to pass instance methods
       // with more complex arguments.
       if (isObject(data)) {
         const { methodName, args } = data as InstanceMethod;
-        args[1] = args[1] || {};
-        args[1]["speed"] = Math.round(delay / Math.abs(args[0]));
+
+        if (prependDelay) {
+          insertDelay();
+        } else {
+          args[1] = args[1] || {};
+          args[1]["speed"] = Math.round(delay / Math.abs(args[0]));
+        }
 
         template += `\t.${methodName}(${stringifyEach(args).join(", ")})\n`;
         return instance[methodName](...args);
@@ -72,28 +100,12 @@ export const buildInstance = ({ strokes, instance }) => {
 
       // Sometimes, the delay is `0`.
       if (delay) {
-        instance.pause(delay);
-        template += `\t.pause(${delay})\n`;
+        insertDelay();
       }
 
-      if (/enter|insertLineBreak/i.test(data as string)) {
+      if (/%0A/i.test(encodeURI(data as string))) {
         template += `\t.break()\n`;
         return instance.break();
-      }
-
-      if (/backspace|deleteContentBackward/i.test(data as string)) {
-        template += `\t.delete(1)\n`;
-        return instance.delete(1);
-      }
-
-      if (/arrowleft/i.test(data as string)) {
-        template += `\t.move(-1)\n`;
-        return instance.move(-1);
-      }
-
-      if (/arrowright/i.test(data as string)) {
-        template += `\t.move(1)\n`;
-        return instance.move(1);
       }
 
       if ((data as string).length === 1) {

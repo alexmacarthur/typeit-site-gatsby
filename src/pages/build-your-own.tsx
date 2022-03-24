@@ -13,7 +13,8 @@ const GeneratorPage = ({ path }) => {
       <p>
         In order to get a feel for what TypeIt can do, try your hand at building
         an instance of yourself without writing a lick of code. Record an
-        animation, tweak it to your liking, and use it (if you want).
+        animation and tweak it to your liking. (Be gracious -- this playground
+        is a work-in-progress!)
       </p>
 
       <div className="mt-16 mb-12">
