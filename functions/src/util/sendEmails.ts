@@ -5,10 +5,10 @@ import nodemailer from "nodemailer";
 const markdownConverter = new showdown.Converter();
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: "FastMail",
   auth: {
-    user: process.env.MY_EMAIL_ADDRESS,
-    pass: process.env.GMAIL_APP_PASSWORD,
+    user: process.env.EMAIL_ADDRESS,
+    pass: process.env.EMAIL_PASSWORD,
   },
 });
 
@@ -47,8 +47,8 @@ export default async ({ emailAddress, licenseData, paymentId }) => {
   });
 
   const personalEmailPromise = transport({
-    to: process.env.MY_EMAIL_ADDRESS,
-    from: process.env.MY_EMAIL_ADDRESS,
+    to: process.env.EMAIL_ADDRESS,
+    from: process.env.EMAIL_ADDRESS,
     subject: `${simpleTitle} Purchased!`,
     html: `
       Email Address: ${emailAddress}
