@@ -11,8 +11,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2020-08-27",
 });
 
-const statusCode = 200;
-
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
 });
@@ -20,7 +18,7 @@ Sentry.init({
 const handler: Handler = async (event, _context) => {
   if (event.httpMethod !== "POST") {
     return {
-      statusCode,
+      statusCode: 200,
       headers,
       body: JSON.stringify({
         message: "Not a valid request!",
@@ -52,7 +50,7 @@ const handler: Handler = async (event, _context) => {
 
   if (stripeEvent.type !== "checkout.session.completed") {
     return {
-      statusCode,
+      statusCode: 400,
       headers,
       body: JSON.stringify({
         message: "Not a checkout.session.completed event.",
@@ -83,11 +81,19 @@ const handler: Handler = async (event, _context) => {
     } catch (err) {
       Sentry.captureException(err);
       console.error(err.message);
+
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({
+          message: err.message,
+        }),
+      };
     }
   }
 
   return {
-    statusCode,
+    statusCode: 200,
     headers,
     body: JSON.stringify({
       message: "We good.",

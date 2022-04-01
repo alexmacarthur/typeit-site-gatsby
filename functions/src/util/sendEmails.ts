@@ -41,7 +41,7 @@ export default async ({ emailAddress, licenseData, paymentId }) => {
 
   const clientEmailPromise = transport({
     to: emailAddress,
-    from: process.env.MY_EMAIL_ADDRESS,
+    from: process.env.EMAIL_ADDRESS,
     subject: "TypeIt - License & Instructions",
     html: emailContent,
   });
