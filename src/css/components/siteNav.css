@@ -2,11 +2,12 @@
   @apply flex px-4;
 
   @screen lg {
-    @apply items-center;
+    align-items: center;
   }
 
   @screen xl {
-    @apply px-5;
+    padding-left: theme("padding.5");
+    padding-right: theme("padding.5");
   }
 
   &:hover {
@@ -28,6 +29,7 @@
   @apply text-xl text-gray-700 z-10 relative font-extralight;
 
   @screen xl {
-    @apply items-center text-2xl;
+    align-items: center;
+    font-size: theme("fontSize.2xl");
   }
 }

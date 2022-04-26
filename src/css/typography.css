@@ -51,7 +51,7 @@ main {
     @apply text-4xl font-extralight;
 
     @screen lg {
-      @apply text-5xl;
+      font-size: theme("fontSize.5xl");
     }
   }
 
