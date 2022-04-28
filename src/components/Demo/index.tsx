@@ -101,8 +101,6 @@ const Demo = ({ pagePath }: { pagePath: string }) => {
     );
   };
 
-  console.log("re-render demo!")
-
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
       <div>
