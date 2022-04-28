@@ -4,6 +4,13 @@ import PageLayout from "../../components/layouts/PageLayout";
 import { graphql, Link } from "gatsby";
 import LeftArrow from "../../components/icons/LeftArrow";
 
+const truncate = (str, max = 10) => {
+  const array = str.trim().split(" ");
+  const ellipsis = array.length > max ? "..." : "";
+
+  return array.slice(0, max).join(" ") + ellipsis;
+};
+
 const Demos = ({ data }) => {
   const demos = data.allMarkdownRemark.nodes;
 
@@ -52,7 +59,7 @@ const Demos = ({ data }) => {
 
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: html,
+                    __html: truncate(html, 50),
                   }}
                 />
 

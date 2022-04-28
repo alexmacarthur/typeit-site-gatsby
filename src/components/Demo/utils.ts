@@ -19,7 +19,7 @@ const getAverage = (delays: number[]): number => {
   const total = delays.reduce((a, b) => a + b);
 
   return Math.floor(total / delays.length);
-}
+};
 
 export const processTemplate = (
   template
@@ -60,11 +60,11 @@ export const buildInstance = ({ strokes, instance }) => {
       {
         data,
         timeStamp,
-        prependDelay
+        prependDelay,
       }: {
         data: string | InstanceMethod;
         timeStamp: number;
-        prependDelay ?: boolean
+        prependDelay?: boolean;
       },
       index
     ) => {
@@ -76,11 +76,11 @@ export const buildInstance = ({ strokes, instance }) => {
 
       const insertDelay = () => {
         let calculatedDelay = delay || getAverage(delays);
-        if(!calculatedDelay) return;
+        if (!calculatedDelay) return;
 
         instance.pause(calculatedDelay);
         template += `\t.pause(${calculatedDelay})\n`;
-      }
+      };
 
       // Makes it possible to pass instance methods
       // with more complex arguments.

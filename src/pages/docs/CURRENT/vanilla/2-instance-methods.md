@@ -169,7 +169,10 @@ Alternatively, you can pass a CSS selector to move the cursor to a particular ty
 
 ```javascript
 // Move the cursor to the beginning of the <strong> element.
-instance.type("Jack and <strong class='a-class'>Jill</strong> went up the hill").move('.a-class').go();
+instance
+  .type("Jack and <strong class='a-class'>Jill</strong> went up the hill")
+  .move(".a-class")
+  .go();
 ```
 
 By default, passing a selector will move the cursor to the "start" of the target element. To move it to the end of the element, pass `END` in the `to` option.
@@ -178,7 +181,7 @@ By default, passing a selector will move the cursor to the "start" of the target
 // Move the cursor to the END of the <strong> element.
 instance
   .type("Jack and <strong>Jill</strong> went up the hill")
-  .move('.a-class', { to: "END" })
+  .move(".a-class", { to: "END" })
   .go();
 ```
 
@@ -311,3 +314,63 @@ instance.is('completed');
 instance.is('frozen');
 instance.is('destroyed');
 ```
+
+## Kicking Off an Animation
+
+After building an animation, there are two methods you can use to kick it off.
+
+### .go()
+
+```typescript
+instance.go();
+```
+
+Most of the time, this what you should reach for. Running go will execute each item in your animation's queue, eventually get to a "completed" status (which you can check using the [`.is()` method](/docs/vanilla/instance-methods#is)), and run your [`afterComplete` callback](/docs/vanilla/usage/#callback-methods) (if defined).
+
+```javascript
+new TypeIt("#element", {
+  afterComplete: () => console.log("I am done!"),
+})
+  //... instance methods building the animation
+  .go();
+```
+
+After you've run `.go()` and the animation has completed, you can reset it using the [`.reset()` method](http://localhost:8000/docs/vanilla/instance-methods/#reset) and then calling `.go()` again.
+
+### .flush()
+
+```typescript
+instance.flush(callback?: () => any);
+```
+
+Sometimes, you might want to type out some one-off strings at unknown periods of time (ex: you're responding to user input). In this event, the `.flush()` method might be more appropriate. This method will execute all non-executed items in your animation queue, and then immediately remove them. You will not be able to replay these items after a `.reset()`, and your `afterComplete` callback will not be executed.
+
+Optionally, `.flush()` accepts a callback that will be executed after the animation is completed.
+
+```javascript
+new TypeIt("#element")
+  //... instance methods building the animation
+  .flush(() => "i am done!");
+```
+
+#### Using .go() + .flush() Together
+
+Depending on your needs, it might make sense to use both `.go()` and `.flush()` together. For example, you may want to start with an initial animation to run, but then follow up with some uknown, one-off content, but still want to preserve the ability to reset it all to the intitial animation.
+
+```javascript
+const instance = new TypeIt("#element", {
+  afterComplete: () => console.log("Initial animation is done!"),
+})
+  .type("initial!")
+  .go();
+
+// Later... type some other stuff.
+
+instance.type("some one-off stuff!").flush();
+
+// Later... reset & re-run from the beginning.
+
+instance.reset().go();
+```
+
+To see something like this in action, check out [this demo](/demos/flush).
