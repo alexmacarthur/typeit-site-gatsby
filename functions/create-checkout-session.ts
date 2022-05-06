@@ -1,5 +1,5 @@
 import { Handler } from "@netlify/functions";
-import Sentry from "@sentry/node";
+import * as Sentry from "@sentry/node";
 import Stripe from "stripe";
 import { default as headers } from "./src/constants/defaultHeaders";
 import isProduction from "./src/util/isProduction";
