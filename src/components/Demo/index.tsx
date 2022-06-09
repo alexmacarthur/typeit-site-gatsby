@@ -32,8 +32,6 @@ const Demo = ({ pagePath }: { pagePath: string }) => {
   useEffect(() => {
     if(playerState !== 'RECORDING') return;
 
-    console.log('rebuild instance')
-    // builtInstance && builtInstance.destroy(true);
     setCapturedStrokes([]);
 
     // destroy the instnace.
@@ -140,8 +138,6 @@ const Demo = ({ pagePath }: { pagePath: string }) => {
                 className="block"
                 options={typeItOptions}
                 getBeforeInit={(instance) => {
-
-                  console.log(capturedStrokes);
 
                   const { instance: newInstance, template } = buildInstance({
                     strokes: capturedStrokes,

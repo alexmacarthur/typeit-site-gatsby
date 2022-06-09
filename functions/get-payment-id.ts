@@ -1,6 +1,6 @@
 import { Handler } from "@netlify/functions";
 import Stripe from "stripe";
-import Sentry from "@sentry/node";
+import * as Sentry from "@sentry/node";
 import { default as headers } from "./src/constants/defaultHeaders";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {

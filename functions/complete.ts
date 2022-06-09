@@ -2,7 +2,7 @@ import { Handler } from "@netlify/functions";
 import { License } from "./types";
 
 import getLicenseData from "./src/util/getLicenseData";
-import Sentry from "@sentry/node";
+import * as Sentry from "@sentry/node";
 import Stripe from "stripe";
 import sendEmails from "./src/util/sendEmails";
 import { default as headers } from "./src/constants/defaultHeaders";
