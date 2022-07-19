@@ -133,39 +133,6 @@ new TypeIt("#element", {
 });
 ```
 
-## Cursor Styling
-
-When an animation is initialized, the cursor is dynamically styled based on the font properties in which it lives. These values are set with CSS custom properties, which fall back to those dynamically-calculated values. For example, when you inspect an animation, you'll see something like this:
-
-![CSS properties in browser dev tools](./../../images/css-in-dev-tools.png)
-
-You're welcome to customize these values as needed by setting the value for a property in your CSS. For example:
-
-```css
-:root {
-  --ti-cursor-color: dodgerblue;
-}
-```
-
-### Custom Properties
-
-Here are all of the custom properties defined for styling the cursor, along with the default values.
-
-| Property                 | Default Value                  |
-| ------------------------ | ------------------------------ |
-| --ti-cursor-font-family  | computed from inherited styles |
-| --ti-cursor-font-weight  | computed from inherited styles |
-| --ti-cursor-font-size    | computed from inherited styles |
-| --ti-cursor-font-style   | computed from inherited styles |
-| --ti-cursor-line-height  | computed from inherited styles |
-| --ti-cursor-color        | computed from inherited styles |
-| --ti-cursor-margin-left  | -.125em                        |
-| --ti-cursor-margin-right | .125em                         |
-
-### Special Note About Cursor Positioning
-
-Note the default `margin-left` and `margin-right` values above. These properties are used to control the cursor's positioning next to a given character, and it's rather difficult to reliably calculate a computed value based on inherited styles. The values that are set should be fine for just about every animation. But, if you find yourself wanting to move the cursor closer or farther from a character, those are the properties to tweak.
-
 ## Typing in Form Elements
 
 TypeIt supports typing into form elements like text inputs and textareas. However, due to the nature of these elements, some functionality maybe limited, like the use of a blinking cursor.
@@ -186,7 +153,7 @@ new TypeIt("#element", {
 | `speed: 100`              | `[number]` Typing speed, measured in milliseconds between each step.                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `deleteSpeed: null`       | `[number \| null]` Deletion speed. If left null, will be 1/3 of the type speed.                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `lifeLike: true`          | `[boolean]` Makes the typing pace irregular, as if a real person is doing it.                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `cursor: true`            | `[boolean]` Show a blinking cursor at the end of the string(s).                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `cursor: true`            | `[boolean \| CursorOptions]` Show a blinking cursor at the end of the string(s), or override the default animation. [See here](/docs/vanilla/cursor-customization#customizing-the-cursor-animation) for more information.                                                                                                                                                                                                                                                         |
 | `cursorSpeed: 1000`       | `[number]` The blinking speed of the cursor, measured in milliseconds.                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `cursorChar: \|`          | `[string]` The character used for the cursor. HTML works too!                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `breakLines: true`        | `[boolean]` Controls whether multiple strings are printed on top of each other (`breakLines: true`), or if they're deleted and replaced by each other (`breakLines: false`).                                                                                                                                                                                                                                                                                                      |
