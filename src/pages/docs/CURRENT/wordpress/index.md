@@ -156,3 +156,10 @@ To update the plugin, navigate to the plugins page in the WP admin and check if 
 ### 3.0.5
 
 - Fix bug preventing reusable block from being used within column layout.
+
+### 3.1.0
+
+- Fix unintuitive UI behavior related to input focus.
+- Allow new queue items to be added by pressing "enter," rather than requiring only a button click.
+- Update the core version of TypeIt.
+- Update some CSS for improved consistency.
