@@ -42,7 +42,7 @@
     "autoprefixer": "^10.4.8",
     "cheerio": "^1.0.0-rc.12",
     "ejs": "^3.1.8",
-    "gatsby": "^4.20.0",
+    "gatsby": "^4.25.0",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-manifest": "^4.20.0",
