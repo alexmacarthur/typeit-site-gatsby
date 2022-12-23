@@ -10,8 +10,8 @@
     X-Robots-Tag = "noindex"
 
 [build.environment]
-  NODE_VERSION = "v17.5.0"
-  NPM_VERSION = "v8.4.1"
+  NODE_VERSION = "v18.12.1"
+  NPM_VERSION = "v8.19.2"
 
 [[redirects]]
   from = "/download/javascript"
