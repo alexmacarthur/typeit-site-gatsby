@@ -1,12 +1,6 @@
 const fs = require("fs");
 const GithubSlugger = require("github-slugger");
 
-const trimWords = (text, max) => {
-  return text && text.length > max
-    ? text.slice(0, max).split(" ").slice(0, -1).join(" ")
-    : text;
-};
-
 /**
  * Format headings for the sidebar.
  *
@@ -143,5 +137,4 @@ module.exports = {
   generateDocuments,
   saveSearchDocuments,
   deleteFile,
-  trimWords,
 };

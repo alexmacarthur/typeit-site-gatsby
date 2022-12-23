@@ -3,8 +3,6 @@ require("dotenv").config();
 const lunr = require("lunr");
 const { createClient } = require("@supabase/supabase-js");
 const documents = require("../search-documents.json");
-const { trimWords } = require("../node-helpers");
-
 const isProduction = process.env.NODE_ENV === "production";
 
 const supabase = createClient(
@@ -17,6 +15,12 @@ const headers = {
     ? "https://www.typeitjs.com"
     : "*",
   "Access-Control-Allow-Headers": "Content-Type",
+};
+
+const trimWords = (text, max) => {
+  return text && text.length > max
+    ? text.slice(0, max).split(" ").slice(0, -1).join(" ")
+    : text;
 };
 
 const idx = lunr(function () {
