@@ -7,7 +7,7 @@ require("dotenv").config({
 
 process.env["GATSBY_BRANCH"] = process.env.BRANCH;
 
-const prodOnlyPlugins = ["gatsby-plugin-preact"];
+const prodOnlyPlugins = [];
 const url = "https://typeitjs.com";
 
 module.exports = {
