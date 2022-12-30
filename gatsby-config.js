@@ -31,10 +31,6 @@ module.exports = {
         path: "/#pricing",
       },
       {
-        title: "Demos",
-        path: "/demos",
-      },
-      {
         title: "Flavors",
         path: "/#flavors",
       },
