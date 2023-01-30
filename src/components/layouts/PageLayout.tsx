@@ -13,13 +13,13 @@ export default ({
   const paddingClass = isContentPage ? "pt-10 lg:pt-8 pb-16" : "";
   const widthClass = isFullWidth
     ? "max-container"
-    : "medium-max-container mx-auto";
+    : "medium-max-container";
 
   return (
     <PageHeadingContext.Provider value={{ headings: headings['headings'], title }}>
       <MainLayout>
         <div
-          className={`${widthClass} ${paddingClass} px-3 lg:px-0 min-h-full ${otherClasses}`}
+          className={`${widthClass} ${paddingClass} px-3 lg:px-0 min-h-full mx-auto ${otherClasses}`}
         >
           {children}
         </div>

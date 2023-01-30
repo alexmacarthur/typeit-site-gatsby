@@ -52,7 +52,7 @@ export default function ({ data, instance, isLast, exampleSlug }) {
   const elementFontStyles = "text-xl md:text-2xl text-gray-700 font-extralight";
 
   return (
-    <div className="max-container mx-auto">
+    <div className="max-w-[1600px] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
         <div className="">
           <h3 className="font-extralight mb-3">{instance.title}</h3>

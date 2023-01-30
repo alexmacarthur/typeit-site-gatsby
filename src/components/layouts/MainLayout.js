@@ -22,7 +22,10 @@ const MainLayout = ({ children = null }) => {
 
       <SiteNav />
 
-      <div className="relative flex flex-col">
+      <div
+        className="relative flex flex-col"
+        style={{ height: "calc(100vh - 6rem)" }}
+      >
         <PageCoverContext.Provider value={{ setPageCoverContents, setCleanUp }}>
           <main>{children}</main>
         </PageCoverContext.Provider>
