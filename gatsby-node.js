@@ -46,25 +46,23 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
  * @param {object} createPage
  */
 async function createConfirmationPages(graphql, createPage) {
-  const rawProductData = await graphql(
-    `
-      {
-        site {
-          siteMetadata {
-            licenseOptions {
-              htmlTitle
-              simpleTitle
-              description
-              price
-              friendlySlug
-              slug
-              usageScope
-            }
+  const rawProductData = await graphql(`
+    {
+      site {
+        siteMetadata {
+          licenseOptions {
+            htmlTitle
+            simpleTitle
+            description
+            price
+            friendlySlug
+            slug
+            usageScope
           }
         }
       }
-    `
-  );
+    }
+  `);
 
   const allProductData = rawProductData.data.site.siteMetadata.licenseOptions;
 

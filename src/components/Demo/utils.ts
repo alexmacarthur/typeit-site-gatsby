@@ -22,7 +22,7 @@ const getAverage = (delays: number[]): number => {
 };
 
 export const processTemplate = (
-  template
+  template,
 ): {
   instanceMethods: string;
   options: string;
@@ -34,10 +34,10 @@ export const processTemplate = (
 
   const instanceMethods = template.replace(
     /new TypeIt\((\'|\").+?(\'|\"),[ ]?{.+?}.*?\)/,
-    ""
+    "",
   );
   const options = template.match(
-    /new TypeIt\((?:\'|\").+?(?:\'|\"),[ ]?({.+?}).*?\)/
+    /new TypeIt\((?:\'|\").+?(?:\'|\"),[ ]?({.+?}).*?\)/,
   )[1];
 
   return {
@@ -66,10 +66,10 @@ export const buildInstance = ({ strokes, instance }) => {
         timeStamp: number;
         prependDelay?: boolean;
       },
-      index
+      index,
     ) => {
       const delay = Math.round(
-        !index ? 0 : timeStamp - strokes[index - 1].timeStamp
+        !index ? 0 : timeStamp - strokes[index - 1].timeStamp,
       );
 
       delays.push(delay);
@@ -112,7 +112,7 @@ export const buildInstance = ({ strokes, instance }) => {
         template += `\t.type("${data}")\n`;
         return instance.type(data);
       }
-    }
+    },
   );
 
   return { instance, template: `${template}\t.go();` };
@@ -145,7 +145,7 @@ export const prepAsJsonString = (str): string => {
 };
 
 export const instanceMethodsToArray = (
-  instanceMethods: string
+  instanceMethods: string,
 ): InstanceMethod[] => {
   const splitMethods = instanceMethods
     .split(/(?:\.)(?=[a-z])/gi)

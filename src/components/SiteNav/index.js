@@ -4,7 +4,6 @@ import PageHeadingContext from "../../PageHeadingContext";
 import ToggleButton from "./ToggleButton";
 import toggleOverflow from "../../helpers/toggleOverflow";
 import Search from "../Search";
-import GitHubButton from "react-github-btn";
 import SearchIcon from "../icons/SearchIcon";
 
 const Up = () => {
@@ -52,14 +51,30 @@ export default () => {
   const navRef = useRef(null);
 
   const SelfClosingLink = (props) => {
-    let onClick = props.onClick ? props.onClick : () => {};
+    const shouldScroll = props.to.includes("#");
+
+    let onClick = props.onClick
+      ? props.onClick
+      : (e) => {
+          if (!shouldScroll) return;
+
+          e.preventDefault();
+
+          const target = document.getElementById(
+            `${props.to.replace("#", "").replace("/", "")}`,
+          );
+
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        };
 
     return (
       <Link
         {...props}
-        onClick={() => {
+        onClick={(e) => {
           setMenuIsOpen(false);
-          onClick();
+          onClick(e);
         }}
       >
         {props.children}
@@ -86,6 +101,7 @@ export default () => {
             className="fixed z-50 top-50 opacity-50 left-50 transform -translate-x-1/2 -translate-y-1/2 bg-gray-600 w-screen h-screen"
             onClick={() => setShowSearch(false)}
           ></div>
+
           <Search setShowSearch={setShowSearch} />
         </>
       )}
@@ -184,18 +200,6 @@ export default () => {
                   </span>
                 </button>
               </li>
-
-              {/* <li className="siteNavListItem justify-center siteNavListItem mt-10 lg:mt-0">
-                <GitHubButton
-                  href="https://github.com/alexmacarthur/typeit"
-                  data-color-scheme="no-preference: dark; light: dark; dark: dark;"
-                  data-icon="octicon-star"
-                  data-size="large"
-                  aria-label="Star =TypeIt on GitHub"
-                >
-                  Star
-                </GitHubButton>
-              </li> */}
 
               <li className="siteNavListItem justify-center siteNavListItem mt-10 md:mt-0">
                 <SelfClosingLink

@@ -34,7 +34,7 @@ export default async ({ emailAddress, licenseData, paymentId }) => {
       permissionDescription,
       licenseLink,
     },
-    {}
+    {},
   );
 
   emailContent = markdownConverter.makeHtml(emailContent);

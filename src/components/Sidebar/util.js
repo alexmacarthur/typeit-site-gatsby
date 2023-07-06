@@ -17,7 +17,7 @@ export const scrollTo = (e, setPath, toggleMenu) => {
   e.preventDefault();
 
   const headingTop = Math.abs(
-    headingNode.getBoundingClientRect().top + window.scrollY
+    headingNode.getBoundingClientRect().top + window.scrollY,
   );
 
   window.history.pushState({}, "", e.target.href);

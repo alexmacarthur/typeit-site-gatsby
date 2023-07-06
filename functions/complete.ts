@@ -33,7 +33,7 @@ const handler: Handler = async (event, _context) => {
     stripeEvent = stripe.webhooks.constructEvent(
       event.body,
       sig,
-      process.env.STRIPE_WEBHOOK_SECRET
+      process.env.STRIPE_WEBHOOK_SECRET,
     );
   } catch (err) {
     Sentry.captureException(err);
@@ -63,7 +63,7 @@ const handler: Handler = async (event, _context) => {
     expand: ["line_items"],
   });
   const customer = (await stripe.customers.retrieve(
-    sessionData.customer
+    sessionData.customer,
   )) as any;
 
   for (const item of session.line_items.data) {

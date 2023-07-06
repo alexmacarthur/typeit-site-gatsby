@@ -12,7 +12,7 @@ const astMap = (tree, mapFunction) => {
 
     if ("children" in node) {
       newNode.children = node.children.map((child, index) =>
-        processNodes(child, index, node)
+        processNodes(child, index, node),
       );
     }
 

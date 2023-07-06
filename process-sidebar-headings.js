@@ -67,7 +67,7 @@ module.exports = (edges) => {
         }
 
         return 0;
-      }
+      },
     );
     ("");
     sortedHeadings[pageKey] = groupedPageHeadings[pageKey];

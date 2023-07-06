@@ -97,7 +97,7 @@ function SEO({
                 name: `keywords`,
                 content: keywords.join(`, `),
               }
-            : []
+            : [],
         )
         .concat(meta)}
     >

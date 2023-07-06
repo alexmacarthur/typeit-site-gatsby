@@ -29,7 +29,7 @@ export default ({ setShowSearch }) => {
 
     const query = inputRef.current.value;
     const response = await fetch(
-      `${process.env.GATSBY_SEARCH_ENDPOINT}?query=${query}`
+      `${process.env.GATSBY_SEARCH_ENDPOINT}?query=${query}`,
     );
     const results = await response.json();
 

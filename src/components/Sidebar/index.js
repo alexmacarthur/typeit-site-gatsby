@@ -181,5 +181,5 @@ export default forwardRef(
         </div>
       </aside>
     );
-  }
+  },
 );

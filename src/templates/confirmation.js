@@ -27,7 +27,7 @@ const ConfirmationTemplate = (props) => {
 
       try {
         const response = await fetch(
-          `${process.env.GATSBY_STRIPE_GET_SESSION_URL}?id=${id}`
+          `${process.env.GATSBY_STRIPE_GET_SESSION_URL}?id=${id}`,
         );
         data = await response.json();
         paymentId = data.paymentId;
@@ -47,7 +47,7 @@ const ConfirmationTemplate = (props) => {
         "typeItPurchases",
         JSON.stringify({
           [id]: paymentId,
-        })
+        }),
       );
 
       if (shouldCancel) return;

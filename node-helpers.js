@@ -20,7 +20,7 @@ function organizeHeadings(headings, level = 2) {
 
     // Only include the subHeadings one later deeper.
     heading.subHeadings = subHeadings.filter(
-      (h) => h.depth === heading.depth + 1
+      (h) => h.depth === heading.depth + 1,
     );
 
     return heading;
