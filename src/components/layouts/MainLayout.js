@@ -31,7 +31,7 @@ const MainLayout = ({ children = null }) => {
         </PageCoverContext.Provider>
 
         <footer className="relative bg-gray-900 text-center p-8">
-          <span className="text-gray-400 font-extralight text-xl">
+          <span className="text-gray-400 font-extralight text-lg">
             © {new Date().getFullYear()} | designed & created by{" "}
             <a
               className="text-gray-400 font-semibold"
@@ -40,6 +40,15 @@ const MainLayout = ({ children = null }) => {
               rel="noopener noreferrer"
             >
               Alex MacArthur
+            </a>{" "}
+            | images optimized by{" "}
+            <a
+              className="text-gray-400 font-semibold"
+              href="https://picperf.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              PicPerf
             </a>
           </span>
         </footer>
